@@ -1,6 +1,7 @@
-package StateGame_libgdx;
+package com.youtoolife.labyrinth.utils;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.youtoolife.labyrinth.MainGame;
 
 public abstract class GameState {
 

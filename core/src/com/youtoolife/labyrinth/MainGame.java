@@ -1,4 +1,5 @@
-package StateGame_libgdx;
+package com.youtoolife.labyrinth;
+
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -9,6 +10,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.youtoolife.labyrinth.states.GamePlayState;
+import com.youtoolife.labyrinth.states.MainMenuState;
+import com.youtoolife.labyrinth.utils.StateBasedGame;
 
 public class MainGame extends StateBasedGame implements ApplicationListener {
 
@@ -27,9 +31,7 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 		camera = new OrthographicCamera(w, h);
 		batch = new SpriteBatch();
 
-		font = new BitmapFont(Gdx.files.internal("font.fnt"),
-				new TextureRegion(new Texture(Gdx.files.internal("font.png"))),
-				false);
+		font = new BitmapFont();
 
 		this.addState(new MainMenuState(MAINMENUSTATE, this));
 		this.addState(new GamePlayState(GAMEPLAYSTATE, this));
@@ -46,13 +48,13 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 	public void render() {
 		super.update();
 		local_update();
-		Gdx.gl.glClearColor(58f / 255f, 39f / 255f, 34 / 255f, 1);
+		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		this.render(batch);
-		font.setScale(0.5f);
+		font.setScale(2f);
 		font.draw(batch,
 				"FPS: " + String.valueOf(Gdx.graphics.getFramesPerSecond()),
 				-w / 2 + 5, h / 2 - 5);

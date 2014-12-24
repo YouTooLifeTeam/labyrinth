@@ -1,4 +1,4 @@
-package Animation;
+package com.youtoolife.labyrinth.utils;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

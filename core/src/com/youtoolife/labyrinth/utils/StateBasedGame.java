@@ -1,4 +1,4 @@
-package StateGame_libgdx;
+package com.youtoolife.labyrinth.utils;
 
 import java.util.Vector;
 
