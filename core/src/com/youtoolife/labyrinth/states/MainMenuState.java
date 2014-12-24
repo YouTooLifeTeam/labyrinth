@@ -19,7 +19,7 @@ public class MainMenuState extends GameState {
 	
 	public void createMenu() {
 		title = new Sprite(Assets.getTexture("title"));
-		title.setSize(210, 124);
+		//title.setSize(210, 124);
 		//title.setPosition(800/2-210/2, 600/2+124/2);
 		/*play = new Sprite(Assets.playBtn, new Vector2(640/2-210/2,title.getPosition().y-40-50), 210, 50);
 		score = new Sprite(Assets.scoreBtn, new Vector2(play.getPosition().x,play.getPosition().y-53), play.getWidth(), play.getHeight());
