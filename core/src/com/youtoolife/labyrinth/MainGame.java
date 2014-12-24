@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.states.MainMenuState;
+import com.youtoolife.labyrinth.utils.Assets;
 import com.youtoolife.labyrinth.utils.StateBasedGame;
 
 public class MainGame extends StateBasedGame implements ApplicationListener {
@@ -25,6 +26,7 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 	BitmapFont font;
 
 	public void create() {
+		Assets.load();
 		Gdx.graphics.setVSync(true);
 		camera = new OrthographicCamera(w, h);
 		batch = new SpriteBatch();
