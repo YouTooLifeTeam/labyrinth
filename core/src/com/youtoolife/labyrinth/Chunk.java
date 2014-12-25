@@ -18,19 +18,6 @@ public class Chunk {
 		this.map = map;
 	}
 
-	public void rotateClockwise(int times){
-		GameObject buf[][] = new GameObject[10][10];
-		for(int time = 0;time<times;time++)
-			for(int i = 0; i<10;i++)
-				for(int j = 0; j<10;j++)
-					buf[i][j] = map[9-j][i]; 
-		map = buf;
-	}
-	
-	public Chunk copy(){
-		return new Chunk(this.type,this.name,this.map);
-	}
-	
 	public void draw(SpriteBatch batch) {
 
 	}

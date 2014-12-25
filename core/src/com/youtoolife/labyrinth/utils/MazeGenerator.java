@@ -3,60 +3,18 @@ package com.youtoolife.labyrinth.utils;
 import java.util.Random;
 
 import com.youtoolife.labyrinth.Chunk;
-import com.youtoolife.labyrinth.Chunk.Exits;
 
 public class MazeGenerator {
 
 	Chunk maze[][];
 	
 	private MazeGenerator(int size){
-		maze = new Chunk[size][size];
 		char[][] lab = (new Maze()).getMaze(size+1);
-		for(int i = 1; i<=size;i++){
-			for(int j = 1; j<=size;j++){
+		/**for(int i = 0; i<=size+1;i++){
+			for(int j = 0; j<=size+1;j++)
 					System.out.print((char)(lab[i][j]+' '));
-					if(lab[i][j]==0){
-						maze[i-1][j-1] = ChunkGenerator.getChunk(Exits.NoExit);
-					}else{
-						int exits = 4-(lab[i-1][j]+lab[i+1][j]+lab[i][j-1]+lab[i][j+1]);
-						if(exits==3){
-							Chunk buf = ChunkGenerator.getChunk(Exits.TriExit);
-							if(lab[i][j-1]==1)
-								buf.rotateClockwise(3);
-							if(lab[i][j+1]==1)
-								buf.rotateClockwise(1);
-							if(lab[i+1][j]==1)
-								buf.rotateClockwise(2);
-							maze[i-1][j-1] = buf;
-						}
-						if(exits == 1){
-							Chunk buf = ChunkGenerator.getChunk(Exits.SingleExit);
-							if(lab[i][j-1]==0)
-								buf.rotateClockwise(1);
-							if(lab[i][j+1]==0)
-								buf.rotateClockwise(3);
-							if(lab[i-1][j]==0)
-								buf.rotateClockwise(2);
-							maze[i-1][j-1] = buf;
-						}
-						if(exits == 2){
-							Chunk buf = null;
-							if(lab[i][j-1]==0&&lab[i][j+1]==0){
-								buf = ChunkGenerator.getChunk(Exits.DiOpposite);
-								buf.rotateClockwise(1);
-							}
-							if(lab[i-1][j]==0&&lab[i+1][j]==0){
-								buf = ChunkGenerator.getChunk(Exits.DiOpposite);
-							}
-							if(buf==null){
-								buf = ChunkGenerator.getChunk(Exits.DiOpposite);
-							}
-								
-						}
-					}
-			}
 			System.out.println();
-		}
+		}**/
 	}
 	
 	public static Chunk[][] getMaze(int size){
