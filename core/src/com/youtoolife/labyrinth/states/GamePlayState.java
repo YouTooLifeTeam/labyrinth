@@ -1,12 +1,15 @@
 package com.youtoolife.labyrinth.states;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.youtoolife.labyrinth.Chunk;
 import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.utils.GameState;
 import com.youtoolife.labyrinth.utils.StateBasedGame;
 
 public class GamePlayState extends GameState {
 
+	Chunk[][] chunks;
+	
 	public GamePlayState(int StateId, MainGame game) {
 		super(StateId, game);
 		// TODO Auto-generated constructor stub

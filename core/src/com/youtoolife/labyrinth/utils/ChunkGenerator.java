@@ -1,0 +1,77 @@
+package com.youtoolife.labyrinth.utils;
+
+import java.io.IOException;
+import java.util.Random;
+import java.util.Vector;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+import com.youtoolife.labyrinth.Chunk;
+import com.youtoolife.labyrinth.Chunk.Exits;
+import com.youtoolife.labyrinth.GameObject;
+import com.youtoolife.labyrinth.GameObject.BlockType;
+
+public class ChunkGenerator {
+
+	private static Vector<Chunk> chunks = new Vector<Chunk>();
+
+	public static Chunk getChunk(Exits type) {
+		Vector<Chunk> correct = new Vector<Chunk>();
+		for (int i = 0; i < chunks.size(); i++)
+			if (chunks.get(i).type == type)
+				correct.add(chunks.get(i));
+		return correct.get((new Random()).nextInt(correct.size()));
+	}
+
+	public static void init() {
+		FileHandle dir = Gdx.files.internal("chunks/");
+		String[] files = dir.readString().split("\n");
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+		for (String file : files) {
+			if (file.contains(".chunk")) {
+				DocumentBuilder db;
+				try {
+					db = dbf.newDocumentBuilder();
+					Document dom = db.parse(Gdx.files.internal(
+							"bin/chunks/" + file).file());
+					Element chunk = dom.getDocumentElement();
+					addChunk(chunk);
+					System.out.println(chunk.getAttribute("type"));
+				} catch (ParserConfigurationException e) {
+					e.printStackTrace();
+				} catch (SAXException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	private static void addChunk(Element chunk) {
+		String name = chunk.getAttribute("name");
+		Exits type = Exits.valueOf(chunk.getAttribute("type"));
+		GameObject[][] map = new GameObject[10][10];
+		NodeList blocks = chunk.getElementsByTagName("Block");
+		for (int i = 0; i < blocks.getLength(); i++) {
+			Element block = (Element) blocks.item(i);
+			GameObject buf_block = new GameObject(BlockType.valueOf(block
+					.getAttribute("type")));
+			map[Integer.valueOf(block.getAttribute("x"))][Integer.valueOf(block
+					.getAttribute("y"))] = buf_block;
+		}
+
+		Chunk buf = new Chunk(type, name, map);
+		chunks.add(buf);
+	}
+}
