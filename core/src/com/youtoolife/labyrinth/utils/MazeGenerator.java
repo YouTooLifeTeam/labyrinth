@@ -7,25 +7,27 @@ import com.youtoolife.labyrinth.Chunk.Exits;
 
 public class MazeGenerator {
 
-	Chunk maze[][];
+	static Chunk maze[][];
 	
 	private MazeGenerator(int size){
 		maze = new Chunk[size][size];
 		char[][] lab = (new Maze()).getMaze(size+1);
 		for(int i = 1; i<=size;i++){
 			for(int j = 1; j<=size;j++){
-					System.out.print((char)(lab[i][j]+' '));
-					if(lab[i][j]==0){
+					if(lab[i][j]==1){
 						maze[i-1][j-1] = ChunkGenerator.getChunk(Exits.NoExit);
 					}else{
 						int exits = 4-(lab[i-1][j]+lab[i+1][j]+lab[i][j-1]+lab[i][j+1]);
+						if(exits==4){
+							maze[i-1][j-1] = ChunkGenerator.getChunk(Exits.QuadroExit);
+						}
 						if(exits==3){
 							Chunk buf = ChunkGenerator.getChunk(Exits.TriExit);
-							if(lab[i][j-1]==1)
-								buf.rotateClockwise(3);
 							if(lab[i][j+1]==1)
 								buf.rotateClockwise(1);
-							if(lab[i+1][j]==1)
+							if(lab[i][j-1]==1)
+								buf.rotateClockwise(3);
+							if(lab[i-1][j]==1)
 								buf.rotateClockwise(2);
 							maze[i-1][j-1] = buf;
 						}
@@ -33,10 +35,10 @@ public class MazeGenerator {
 							Chunk buf = ChunkGenerator.getChunk(Exits.SingleExit);
 							if(lab[i][j-1]==0)
 								buf.rotateClockwise(1);
+							if(lab[i+1][j]==0)
+								buf.rotateClockwise(2);
 							if(lab[i][j+1]==0)
 								buf.rotateClockwise(3);
-							if(lab[i-1][j]==0)
-								buf.rotateClockwise(2);
 							maze[i-1][j-1] = buf;
 						}
 						if(exits == 2){
@@ -49,18 +51,38 @@ public class MazeGenerator {
 								buf = ChunkGenerator.getChunk(Exits.DiOpposite);
 							}
 							if(buf==null){
-								buf = ChunkGenerator.getChunk(Exits.DiOpposite);
-							}
+								buf = ChunkGenerator.getChunk(Exits.DiNeighbour);
+								if(lab[i+1][j]==1&&lab[i][j-1]==1)
+									buf.rotateClockwise(3);
+								if(lab[i-1][j]==1&&lab[i][j+1]==1)
+									buf.rotateClockwise(1);
+								if(lab[i+1][j]==0&&lab[i][j+1]==0)
+									buf.rotateClockwise(2);
 								
+							}
+							maze[i-1][j-1] = buf;	
 						}
 					}
 			}
-			System.out.println();
 		}
 	}
 	
-	public static Chunk[][] getMaze(int size){
-		return (new MazeGenerator(size)).maze;
+	public static Chunk[][] getMaze(int size, int[] positions){
+		new MazeGenerator(size);
+		for(int i = 0; i<size;i++)
+			for(int j = 0; j<size;j++)
+				if(MazeGenerator.maze[i][j].type==Exits.SingleExit){
+					positions[0] = j;
+					positions[1] = i;
+				}
+		for(int i = size-1; i>=0;i--)
+			for(int j = size-1; j>=0;j--)
+				if(MazeGenerator.maze[i][j].type==Exits.SingleExit){
+					positions[2] = j;
+					positions[3] = i;
+				}
+		
+		return MazeGenerator.maze;
 	}
 	private class Maze{
 		static final int fullfill = 89;

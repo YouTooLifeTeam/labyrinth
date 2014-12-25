@@ -29,7 +29,7 @@ public class ChunkGenerator {
 		for (int i = 0; i < chunks.size(); i++)
 			if (chunks.get(i).type == type)
 				correct.add(chunks.get(i));
-		return correct.get((new Random()).nextInt(correct.size()));
+		return correct.get((new Random()).nextInt(correct.size())).copy();
 	}
 
 	public static void init() {
@@ -46,7 +46,6 @@ public class ChunkGenerator {
 							"bin/chunks/" + file).file());
 					Element chunk = dom.getDocumentElement();
 					addChunk(chunk);
-					System.out.println(chunk.getAttribute("type"));
 				} catch (ParserConfigurationException e) {
 					e.printStackTrace();
 				} catch (SAXException e) {
@@ -67,8 +66,8 @@ public class ChunkGenerator {
 			Element block = (Element) blocks.item(i);
 			GameObject buf_block = new GameObject(BlockType.valueOf(block
 					.getAttribute("type")));
-			map[Integer.valueOf(block.getAttribute("x"))][Integer.valueOf(block
-					.getAttribute("y"))] = buf_block;
+			map[Integer.valueOf(block
+					.getAttribute("y"))][Integer.valueOf(block.getAttribute("x"))] = buf_block;
 		}
 
 		Chunk buf = new Chunk(type, name, map);

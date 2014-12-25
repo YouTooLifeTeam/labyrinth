@@ -10,6 +10,8 @@ import com.youtoolife.labyrinth.utils.StateBasedGame;
 public class GamePlayState extends GameState {
 
 	Chunk[][] chunks;
+	int xChunk = 1;
+	int yChunk = 1;
 	
 	public GamePlayState(int StateId, MainGame game) {
 		super(StateId, game);
@@ -17,8 +19,10 @@ public class GamePlayState extends GameState {
 
 	@Override
 	public void draw(SpriteBatch batch) {
-		// TODO Auto-generated method stub
-
+		for(int i = -1; i<=1;i++)
+			for(int j = -1; j<=1;j++)
+				if(i+yChunk>=0&&+yChunk+i<10&&xChunk+j>=0&&+xChunk+j<10)
+					chunks[i+yChunk][j+xChunk].draw(batch, j, -i);
 	}
 
 	@Override
@@ -29,7 +33,10 @@ public class GamePlayState extends GameState {
 
 	@Override
 	public void init(StateBasedGame game) {
-		chunks = MazeGenerator.getMaze(10);
+		int[] positions = new int[4];
+		chunks = MazeGenerator.getMaze(10,positions);
+		xChunk = positions[0];
+		yChunk = positions[1];
 	}
 
 	@Override

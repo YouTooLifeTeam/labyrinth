@@ -37,7 +37,7 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 
 		this.addState(new MainMenuState(MAINMENUSTATE, this));
 		this.addState(new GamePlayState(GAMEPLAYSTATE, this));
-		this.enterState(MAINMENUSTATE);
+		this.enterState(GAMEPLAYSTATE);
 		this.init();
 	}
 

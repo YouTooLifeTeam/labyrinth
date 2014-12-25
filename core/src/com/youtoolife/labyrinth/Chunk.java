@@ -20,19 +20,27 @@ public class Chunk {
 
 	public void rotateClockwise(int times){
 		GameObject buf[][] = new GameObject[10][10];
-		for(int time = 0;time<times;time++)
+		for(int time = 0;time<times;time++){
 			for(int i = 0; i<10;i++)
 				for(int j = 0; j<10;j++)
-					buf[i][j] = map[9-j][i]; 
-		map = buf;
+					buf[i][j] = map[9-j][i];
+			map = buf;
+			buf = new GameObject[10][10];
+		}
 	}
 	
 	public Chunk copy(){
-		return new Chunk(this.type,this.name,this.map);
+		return new Chunk(this.type,this.name,this.map.clone());
 	}
 	
-	public void draw(SpriteBatch batch) {
-
+	public void draw(SpriteBatch batch, int ChunkSubX, int ChunkSubY) {
+		int XOffset = ChunkSubX*500-250;
+		int YOffset = ChunkSubY*500-250;
+		
+		for(int i = 0; i<10;i++)
+			for(int j = 0; j<10;j++)
+				map[i][j].draw(batch, j*50+XOffset, i*50+YOffset);
+		
 	}
 
 	public void update() {
