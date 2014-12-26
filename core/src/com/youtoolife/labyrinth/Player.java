@@ -23,9 +23,9 @@ public class Player {
 	Controller control;
 
 	public Player(int ChunkX, int ChunkY, Controller control) {
-		sprite = new AnimatedSprite(0, 0, 50, 75, new Sprite(
-				Assets.getTexture("player")), 0);
-		sprite.setPreferedDelta(0.1f);
+		sprite = new AnimatedSprite(0, 0, 50, 50, new Sprite(
+				Assets.getTexture("player2")), 0);
+		sprite.setPreferedDelta(0.15f);
 		sprite.setAnimStart(0);
 		sprite.setAnimStop(3);
 		this.ChunkX = ChunkX;
