@@ -1,6 +1,7 @@
 package com.youtoolife.labyrinth.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.Chunk;
 import com.youtoolife.labyrinth.MainGame;
@@ -10,6 +11,8 @@ import com.youtoolife.labyrinth.controller.adapter.KeyBoardAdapter;
 import com.youtoolife.labyrinth.utils.GameState;
 import com.youtoolife.labyrinth.utils.MazeGenerator;
 import com.youtoolife.labyrinth.utils.StateBasedGame;
+
+import static com.youtoolife.labyrinth.MainGame.MAINMENUSTATE;
 
 public class GamePlayState extends GameState {
 
@@ -40,6 +43,9 @@ public class GamePlayState extends GameState {
 	public void update(StateBasedGame game) {
 		control.update();
 		player.update();
+		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+			game.enterState(MAINMENUSTATE);
+		}
 	}
 
 	@Override
@@ -63,8 +69,7 @@ public class GamePlayState extends GameState {
 
 	@Override
 	public void enter(StateBasedGame game) {
-		// TODO Auto-generated method stub
-
+		((MainGame)game).camera.position.set(0, 0, 0);
 	}
 
 	@Override

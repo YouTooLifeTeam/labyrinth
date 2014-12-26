@@ -1,5 +1,6 @@
 package com.youtoolife.labyrinth.states;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.MainGame;
@@ -7,43 +8,77 @@ import com.youtoolife.labyrinth.utils.Assets;
 import com.youtoolife.labyrinth.utils.GameState;
 import com.youtoolife.labyrinth.utils.StateBasedGame;
 
+import static com.youtoolife.labyrinth.MainGame.GAMEPLAYSTATE;
+
 public class MainMenuState extends GameState {
 	
-	Sprite play, score, about, quit, title, cursor;
+	Sprite single_btn, multi_btn, 
+	score_btn, about_btn, settings_btn,
+	quit_btn, title, cursor;
 
 	public MainMenuState(int StateId, MainGame game) {
 		super(StateId, game);
-		// TODO Auto-generated constructor stub
 		createMenu();
+		
 	}
 	
 	public void createMenu() {
 		title = new Sprite(Assets.getTexture("title"));
-		//title.setSize(210, 124);
-		//title.setPosition(800/2-210/2, 600/2+124/2);
-		/*play = new Sprite(Assets.playBtn, new Vector2(640/2-210/2,title.getPosition().y-40-50), 210, 50);
-		score = new Sprite(Assets.scoreBtn, new Vector2(play.getPosition().x,play.getPosition().y-53), play.getWidth(), play.getHeight());
-		about = new Sprite(Assets.aboutBtn, new Vector2(score.getPosition().x,score.getPosition().y-53), score.getWidth(), score.getHeight());
-		quit = new Sprite(Assets.quitBtn, new Vector2(score.getPosition().x,about.getPosition().y-65), score.getWidth(), score.getHeight());
-		cursor = new Sprite(Assets.curReg, new Vector2(play.getPosition().x, play.getPosition().y+play.getHeight()/2-15), 42, 30);
-	*/
+		title.setSize(512, 128);
+		title.setPosition(800/2-512/2, 600-128-30);
+		single_btn = new Sprite(Assets.getTexture("single"));
+		single_btn.setPosition(title.getX(), title.getY()-128-3);
+		multi_btn = new Sprite(Assets.getTexture("multiplayer"));
+		multi_btn.setPosition(title.getX()+254+8, title.getY()-128-3);
+		settings_btn = new Sprite(Assets.getTexture("settings"));
+		settings_btn.setPosition(title.getX(), title.getY()-128*2-3);
+		score_btn = new Sprite(Assets.getTexture("score"));
+		score_btn.setPosition(title.getX()+168+4, title.getY()-128*2-3);
+		about_btn = new Sprite(Assets.getTexture("about"));
+		about_btn.setPosition(title.getX()+168*2+4*2, title.getY()-128*2-3);
+		quit_btn = new Sprite(Assets.getTexture("quit"));
+		quit_btn.setPosition(800/2-254/2, title.getY()-128*3+3);
 	}
 
 	@Override
 	public void draw(SpriteBatch batch) {
 		title.draw(batch);
+		single_btn.draw(batch);
+		multi_btn.draw(batch);
+		settings_btn.draw(batch);
+		score_btn.draw(batch);
+		about_btn.draw(batch);
+		quit_btn.draw(batch);
 	}
 
 	@Override
 	public void update(StateBasedGame game) {
-		// TODO Auto-generated method stub
-
+		if (Gdx.input.justTouched()) {
+			if (single_btn.getBoundingRectangle().contains(Gdx.input.getX(),600-Gdx.input.getY())) {
+				System.out.println("single_btn");
+				game.enterState(GAMEPLAYSTATE);
+			}
+			if (multi_btn.getBoundingRectangle().contains(Gdx.input.getX(),600-Gdx.input.getY())) {
+				System.out.println("multi_btn");
+			}
+			if (settings_btn.getBoundingRectangle().contains(Gdx.input.getX(),600-Gdx.input.getY())) {
+				System.out.println("settings_btn");
+			}
+			if (score_btn.getBoundingRectangle().contains(Gdx.input.getX(),600-Gdx.input.getY())) {
+				System.out.println("score_btn");
+			}
+			if (about_btn.getBoundingRectangle().contains(Gdx.input.getX(),600-Gdx.input.getY())) {
+				System.out.println("about_btn");
+			}
+			if (quit_btn.getBoundingRectangle().contains(Gdx.input.getX(),600-Gdx.input.getY())) {
+				System.out.println("quit_btn");
+				System.exit(0);
+			}
+		}
 	}
 
 	@Override
 	public void init(StateBasedGame game) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -54,8 +89,7 @@ public class MainMenuState extends GameState {
 
 	@Override
 	public void enter(StateBasedGame game) {
-		// TODO Auto-generated method stub
-
+		((MainGame)game).camera.position.set(800/2, 600/2, 0);
 	}
 
 	@Override

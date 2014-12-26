@@ -38,7 +38,7 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 
 		this.addState(new MainMenuState(MAINMENUSTATE, this));
 		this.addState(new GamePlayState(GAMEPLAYSTATE, this));
-		this.enterState(GAMEPLAYSTATE);
+		this.enterState(MAINMENUSTATE);
 		this.init();
 	}
 
@@ -50,6 +50,7 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 
 	public void render() {
 		super.update();
+		camera.update();
 		local_update();
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
