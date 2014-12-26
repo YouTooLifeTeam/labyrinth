@@ -22,6 +22,9 @@ public class GamePlayState extends GameState {
 	int xChunk = 1;
 	int yChunk = 1;
 	
+	float XOffset = 0;
+	float YOffset = 0;
+	
 	public static Player player;
 	KeyBoardController control;
 	KeyBoardAdapter keyadapter; 
@@ -35,14 +38,38 @@ public class GamePlayState extends GameState {
 		for(int i = -1; i<=1;i++)
 			for(int j = -1; j<=1;j++)
 				if(i+yChunk>=0&&+yChunk+i<SIZE&&xChunk+j>=0&&+xChunk+j<SIZE)
-					chunks[i+yChunk][j+xChunk].draw(batch, j, i);
-		player.draw(batch, 0, 0);
+					chunks[i+yChunk][j+xChunk].draw(batch, j+XOffset, i+YOffset);
+		player.draw(batch, XOffset*500, YOffset*500);
 	}
 
 	@Override
 	public void update(StateBasedGame game) {
 		control.update();
 		player.update();
+		if(xChunk!=player.ChunkX){
+			XOffset = player.ChunkX-xChunk;
+			xChunk = player.ChunkX;
+		}
+		if(yChunk!=player.ChunkY){
+			YOffset = player.ChunkY-yChunk;
+			yChunk = player.ChunkY;
+		}
+		
+		if ((XOffset != 0) || (YOffset != 0)) {
+			int speedX = XOffset < 0 ? 1 : -1;
+			speedX = XOffset == 0 ? 0 : speedX;
+			int speedY = YOffset < 0 ? 1 : -1;
+			speedY = YOffset == 0 ? 0 : speedY;
+
+			XOffset += speedX * Gdx.graphics.getDeltaTime();
+			YOffset += speedY * Gdx.graphics.getDeltaTime();
+
+			if (XOffset * speedX > 0)
+				XOffset = 0;
+			if (YOffset * speedY > 0)
+				YOffset = 0;
+		}
+		
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			game.enterState(MAINMENUSTATE);
 		}

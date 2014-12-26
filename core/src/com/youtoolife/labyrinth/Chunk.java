@@ -1,6 +1,7 @@
 package com.youtoolife.labyrinth;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.youtoolife.labyrinth.GameObjects.GameObject;
 
 public class Chunk {
 
@@ -30,12 +31,16 @@ public class Chunk {
 	}
 	
 	public Chunk copy(){
-		return new Chunk(this.type,this.name,this.map.clone());
+		GameObject[][] buf = new GameObject[10][10];
+		for(int i = 0; i<10;i++)
+			for(int j = 0; j<10;j++)
+				buf[i][j] = map[i][j].copy();
+		return new Chunk(this.type,this.name,buf);
 	}
 	
-	public void draw(SpriteBatch batch, int ChunkSubX, int ChunkSubY) {
-		int XOffset = ChunkSubX*500-250;
-		int YOffset = ChunkSubY*500-250;
+	public void draw(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {
+		float XOffset = ChunkSubX*500-250;
+		float YOffset = ChunkSubY*500-250;
 		
 		for(int i = 0; i<10;i++)
 			for(int j = 0; j<10;j++)

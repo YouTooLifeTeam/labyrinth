@@ -32,7 +32,7 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 		Gdx.graphics.setVSync(true);
 		camera = new OrthographicCamera(w, h);
 		batch = new SpriteBatch();
-		//camera.zoom = 3f;
+		//camera.zoom = 4f;
 		//camera.update();
 		font = new BitmapFont();
 

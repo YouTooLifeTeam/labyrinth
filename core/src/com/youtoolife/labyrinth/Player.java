@@ -1,9 +1,10 @@
 package com.youtoolife.labyrinth;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.youtoolife.labyrinth.GameObject.BlockType;
+import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
 import com.youtoolife.labyrinth.controller.Controller;
 import com.youtoolife.labyrinth.controller.Controller.Action;
 import com.youtoolife.labyrinth.states.GamePlayState;
@@ -15,8 +16,8 @@ public class Player {
 	float xOffset = 0;
 	float yOffset = 0;
 
-	int ChunkX;
-	int ChunkY;
+	public int ChunkX;
+	public int ChunkY;
 	int x = 4, y = 4;
 
 	AnimatedSprite sprite;
@@ -25,19 +26,20 @@ public class Player {
 	public Player(int ChunkX, int ChunkY, Controller control) {
 		sprite = new AnimatedSprite(0, 0, 50, 50, new Sprite(
 				Assets.getTexture("player")), 0);
+		sprite.setPreferedDelta(0.2f);
 		this.ChunkX = ChunkX;
 		this.ChunkY = ChunkY;
 		this.control = control;
 	}
 
-	public void draw(SpriteBatch batch, int x, int y) {
+	public void draw(SpriteBatch batch, float x, float y) {
 		sprite.setPosition(this.x * 50 + xOffset + x - 250, this.y * 50
 				+ yOffset + y - 250);
 		sprite.draw(batch);
 	}
 
 	public void update() {
-		
+
 		if ((xOffset != 0) || (yOffset != 0)) {
 			sprite.update(Gdx.graphics.getDeltaTime());
 			int speedX = xOffset < 0 ? 1 : -1;
@@ -62,9 +64,14 @@ public class Player {
 					dir = -1;
 				if (action == Action.Right)
 					dir = 1;
-				if (GamePlayState.chunks[ChunkX][ChunkY].map[x + dir][y].type == BlockType.Floor) {
-					x += dir;
-					xOffset = -dir * 50;
+				if (x + dir >= 0 && x + dir <= 9) {
+					if (GamePlayState.chunks[ChunkY][ChunkX].map[9 - y][x + dir].type == BlockType.Floor) {
+						x += dir;
+						xOffset = -dir * 50;
+					}
+				} else {
+					ChunkX += dir;
+					x = 9 - x;
 				}
 			}
 			if (yOffset == 0) {
@@ -73,9 +80,14 @@ public class Player {
 					dir = 1;
 				if (action == Action.Down)
 					dir = -1;
-				if (GamePlayState.chunks[ChunkX][ChunkY].map[x][y + dir].type == BlockType.Floor) {
-					y += dir;
-					yOffset = -dir * 50;
+				if (y + dir >= 0 && y + dir <= 9) {
+					if (GamePlayState.chunks[ChunkY][ChunkX].map[9 - (y + dir)][x].type == BlockType.Floor) {
+						y += dir;
+						yOffset = -dir * 50;
+					}
+				} else {
+					ChunkY += dir;
+					y = 9 - y;
 				}
 			}
 		}

@@ -17,8 +17,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.youtoolife.labyrinth.Chunk;
 import com.youtoolife.labyrinth.Chunk.Exits;
-import com.youtoolife.labyrinth.GameObject;
-import com.youtoolife.labyrinth.GameObject.BlockType;
+import com.youtoolife.labyrinth.GameObjects.GameObject;
 
 public class ChunkGenerator {
 
@@ -64,8 +63,7 @@ public class ChunkGenerator {
 		NodeList blocks = chunk.getElementsByTagName("Block");
 		for (int i = 0; i < blocks.getLength(); i++) {
 			Element block = (Element) blocks.item(i);
-			GameObject buf_block = new GameObject(BlockType.valueOf(block
-					.getAttribute("type")));
+			GameObject buf_block = GameObject.getObject(block);
 			map[Integer.valueOf(block
 					.getAttribute("y"))][Integer.valueOf(block.getAttribute("x"))] = buf_block;
 		}
