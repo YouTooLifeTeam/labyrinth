@@ -59,7 +59,7 @@ public class ChunkGenerator {
 	private static void addChunk(Element chunk) {
 		String name = chunk.getAttribute("name");
 		Exits type = Exits.valueOf(chunk.getAttribute("type"));
-		GameObject[][] map = new GameObject[10][10];
+		GameObject[][] map = new GameObject[Chunk.SIZE][Chunk.SIZE];
 		NodeList blocks = chunk.getElementsByTagName("Block");
 		for (int i = 0; i < blocks.getLength(); i++) {
 			Element block = (Element) blocks.item(i);

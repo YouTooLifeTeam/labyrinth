@@ -1,7 +1,6 @@
 package com.youtoolife.labyrinth;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
@@ -33,8 +32,8 @@ public class Player {
 	}
 
 	public void draw(SpriteBatch batch, float x, float y) {
-		sprite.setPosition(this.x * 50 + xOffset + x - 250, this.y * 50
-				+ yOffset + y - 250);
+		sprite.setPosition(this.x * 50 + xOffset + x - 50*Chunk.SIZE/2, this.y * 50
+				+ yOffset + y - 50*Chunk.SIZE/2);
 		sprite.draw(batch);
 	}
 
@@ -56,7 +55,7 @@ public class Player {
 				yOffset = 0;
 		}
 		Action action = control.getAction();
-
+		
 		if (action != Action.None) {
 			if (xOffset == 0) {
 				int dir = 0;
@@ -64,14 +63,15 @@ public class Player {
 					dir = -1;
 				if (action == Action.Right)
 					dir = 1;
-				if (x + dir >= 0 && x + dir <= 9) {
-					if (GamePlayState.chunks[ChunkY][ChunkX].map[9 - y][x + dir].type == BlockType.Floor) {
+				if (x + dir >= 0 && x + dir <= Chunk.SIZE - 1) {
+					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x + dir].type == BlockType.Floor) {
 						x += dir;
 						xOffset = -dir * 50;
 					}
 				} else {
 					ChunkX += dir;
-					x = 9 - x;
+					x = Chunk.SIZE - 1 - x;
+					xOffset = -dir * 50;
 				}
 			}
 			if (yOffset == 0) {
@@ -80,14 +80,15 @@ public class Player {
 					dir = 1;
 				if (action == Action.Down)
 					dir = -1;
-				if (y + dir >= 0 && y + dir <= 9) {
-					if (GamePlayState.chunks[ChunkY][ChunkX].map[9 - (y + dir)][x].type == BlockType.Floor) {
+				if (y + dir >= 0 && y + dir <= Chunk.SIZE - 1) {
+					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - (y + dir)][x].type == BlockType.Floor) {
 						y += dir;
 						yOffset = -dir * 50;
 					}
 				} else {
 					ChunkY += dir;
-					y = 9 - y;
+					y = Chunk.SIZE - 1 - y;
+					yOffset = -dir * 50;
 				}
 			}
 		}

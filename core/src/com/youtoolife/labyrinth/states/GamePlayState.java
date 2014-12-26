@@ -1,5 +1,7 @@
 package com.youtoolife.labyrinth.states;
 
+import static com.youtoolife.labyrinth.MainGame.MAINMENUSTATE;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -7,12 +9,9 @@ import com.youtoolife.labyrinth.Chunk;
 import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.Player;
 import com.youtoolife.labyrinth.controller.KeyBoardController;
-import com.youtoolife.labyrinth.controller.adapter.KeyBoardAdapter;
 import com.youtoolife.labyrinth.utils.GameState;
 import com.youtoolife.labyrinth.utils.MazeGenerator;
 import com.youtoolife.labyrinth.utils.StateBasedGame;
-
-import static com.youtoolife.labyrinth.MainGame.MAINMENUSTATE;
 
 public class GamePlayState extends GameState {
 
@@ -27,7 +26,6 @@ public class GamePlayState extends GameState {
 	
 	public static Player player;
 	KeyBoardController control;
-	KeyBoardAdapter keyadapter; 
 	
 	public GamePlayState(int StateId, MainGame game) {
 		super(StateId, game);
@@ -35,11 +33,11 @@ public class GamePlayState extends GameState {
 
 	@Override
 	public void draw(SpriteBatch batch) {
-		for(int i = -1; i<=1;i++)
-			for(int j = -1; j<=1;j++)
+		for(int i = -2; i<=2;i++)
+			for(int j = -2; j<=2;j++)
 				if(i+yChunk>=0&&+yChunk+i<SIZE&&xChunk+j>=0&&+xChunk+j<SIZE)
 					chunks[i+yChunk][j+xChunk].draw(batch, j+XOffset, i+YOffset);
-		player.draw(batch, XOffset*500, YOffset*500);
+		player.draw(batch, XOffset*50*Chunk.SIZE, YOffset*50*Chunk.SIZE);
 	}
 
 	@Override
@@ -77,14 +75,11 @@ public class GamePlayState extends GameState {
 
 	@Override
 	public void init(StateBasedGame game) {
-		keyadapter = new KeyBoardAdapter();
-		Gdx.input.setInputProcessor(keyadapter);
 		int[] positions = new int[4];
 		chunks = MazeGenerator.getMaze(SIZE,positions);
 		xChunk = positions[0];
 		yChunk = positions[1];
 		control = new KeyBoardController();
-		keyadapter.addProc(control);
 		player =new Player(xChunk,yChunk,control);
 	}
 
