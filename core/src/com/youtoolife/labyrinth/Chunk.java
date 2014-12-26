@@ -39,9 +39,9 @@ public class Chunk {
 		
 		for(int i = 0; i<10;i++)
 			for(int j = 0; j<10;j++)
-				map[i][j].draw(batch, j*50+XOffset, i*50+YOffset);
+				map[i][j].draw(batch, j*50+XOffset, (9-i)*50+YOffset);
 		
-	}
+		}
 
 	public void update() {
 
