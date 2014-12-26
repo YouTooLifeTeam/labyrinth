@@ -54,23 +54,29 @@ public class MainMenuState extends GameState {
 	@Override
 	public void update(StateBasedGame game) {
 		if (Gdx.input.justTouched()) {
-			if (single_btn.getBoundingRectangle().contains(Gdx.input.getX(),600-Gdx.input.getY())) {
+		   
+			float w = Gdx.graphics.getWidth(), h = Gdx.graphics.getHeight(), 
+			dw = w/800, dh = h/600, 
+			cX = Gdx.input.getX(), cY = Gdx.input.getY(),
+			x = cX/dw, y = 600 - cY/dh;
+			System.out.println(x+" - "+y);
+			if (single_btn.getBoundingRectangle().contains(x,y)) {
 				System.out.println("single_btn");
 				game.enterState(GAMEPLAYSTATE);
 			}
-			if (multi_btn.getBoundingRectangle().contains(Gdx.input.getX(),600-Gdx.input.getY())) {
+			if (multi_btn.getBoundingRectangle().contains(x,y)) {
 				System.out.println("multi_btn");
 			}
-			if (settings_btn.getBoundingRectangle().contains(Gdx.input.getX(),600-Gdx.input.getY())) {
+			if (settings_btn.getBoundingRectangle().contains(x,y)) {
 				System.out.println("settings_btn");
 			}
-			if (score_btn.getBoundingRectangle().contains(Gdx.input.getX(),600-Gdx.input.getY())) {
+			if (score_btn.getBoundingRectangle().contains(x,y)) {
 				System.out.println("score_btn");
 			}
-			if (about_btn.getBoundingRectangle().contains(Gdx.input.getX(),600-Gdx.input.getY())) {
+			if (about_btn.getBoundingRectangle().contains(x,y)) {
 				System.out.println("about_btn");
 			}
-			if (quit_btn.getBoundingRectangle().contains(Gdx.input.getX(),600-Gdx.input.getY())) {
+			if (quit_btn.getBoundingRectangle().contains(x,y)) {
 				System.out.println("quit_btn");
 				System.exit(0);
 			}
