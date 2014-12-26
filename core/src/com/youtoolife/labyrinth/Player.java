@@ -23,9 +23,11 @@ public class Player {
 	Controller control;
 
 	public Player(int ChunkX, int ChunkY, Controller control) {
-		sprite = new AnimatedSprite(0, 0, 50, 50, new Sprite(
+		sprite = new AnimatedSprite(0, 0, 50, 75, new Sprite(
 				Assets.getTexture("player")), 0);
-		sprite.setPreferedDelta(0.2f);
+		sprite.setPreferedDelta(0.1f);
+		sprite.setAnimStart(0);
+		sprite.setAnimStop(3);
 		this.ChunkX = ChunkX;
 		this.ChunkY = ChunkY;
 		this.control = control;
@@ -59,10 +61,16 @@ public class Player {
 		if (action != Action.None) {
 			if (xOffset == 0) {
 				int dir = 0;
-				if (action == Action.Left)
+				if (action == Action.Left){
 					dir = -1;
-				if (action == Action.Right)
+					sprite.setAnimStart(4);
+					sprite.setAnimStop(7);
+				}
+				if (action == Action.Right){
 					dir = 1;
+					sprite.setAnimStart(8);
+					sprite.setAnimStop(11);
+				}
 				if (x + dir >= 0 && x + dir <= Chunk.SIZE - 1) {
 					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x + dir].type == BlockType.Floor) {
 						x += dir;
@@ -76,10 +84,16 @@ public class Player {
 			}
 			if (yOffset == 0) {
 				int dir = 0;
-				if (action == Action.Up)
+				if (action == Action.Up){
 					dir = 1;
-				if (action == Action.Down)
+					sprite.setAnimStart(12);
+					sprite.setAnimStop(15);
+				}
+				if (action == Action.Down){
 					dir = -1;
+					sprite.setAnimStart(0);
+					sprite.setAnimStop(3);
+				}
 				if (y + dir >= 0 && y + dir <= Chunk.SIZE - 1) {
 					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - (y + dir)][x].type == BlockType.Floor) {
 						y += dir;

@@ -20,22 +20,22 @@ public class KeyBoardController extends Controller {
 		if (input.isKeyPressed(key_map[0]))
 			if (dl <= 0) {
 				queue.add(Action.Left);
-				dl = 0.3f;
+				dl = 0.1f;
 			}
 		if (input.isKeyPressed(key_map[1]))
 			if (dr <= 0) {
 				queue.add(Action.Right);
-				dr = 0.3f;
+				dr = 0.1f;
 			}
 		if (input.isKeyPressed(key_map[2]))
 			if (du <= 0) {
 				queue.add(Action.Up);
-				du = 0.3f;
+				du = 0.1f;
 			}
 		if (input.isKeyPressed(key_map[3]))
 			if (dd <= 0) {
 				queue.add(Action.Down);
-				dd = 0.3f;
+				dd = 0.1f;
 			}
 	}
 
