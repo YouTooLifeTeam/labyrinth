@@ -13,8 +13,9 @@ public class Chunk {
 
 	public Exits type = null;
 	String name;
-	GameObject[][] map = new GameObject[SIZE][SIZE];
-
+	public GameObject[][] map = new GameObject[SIZE][SIZE];
+	public int rotates = 0;
+	
 	public Chunk(Exits type, String name, GameObject[][] map) {
 		this.name = name;
 		this.type = type;
@@ -30,6 +31,7 @@ public class Chunk {
 			map = buf;
 			buf = new GameObject[SIZE][SIZE];
 		}
+		rotates+=times;
 	}
 	
 	public Chunk copy(){

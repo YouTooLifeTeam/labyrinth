@@ -25,6 +25,8 @@ public class Assets {
 		String[] files = dir.readString().split("\n");
 		
 		for (String file: files) {	
+			if(file.lastIndexOf('.')==-1)
+				getSubDir(file);
 			if (file.contains(".png")
 					||file.contains(".jpg")
 					||file.contains(".PNG")
@@ -43,6 +45,24 @@ public class Assets {
 		return texture;
 	}
 
+	private static void getSubDir(String s){
+		FileHandle dir = Gdx.files.internal("textures/"+s);
+		String[] files = dir.readString().split("\n");
+		for (String file: files) {	
+			if(Gdx.files.internal("textures/"+file).isDirectory())
+				getSubDir(s+"/"+file);
+			if (file.contains(".png")
+					||file.contains(".jpg")
+					||file.contains(".PNG")
+					||file.contains(".JPG")) {
+				
+				Texture texture = new Texture(Gdx.files.internal("textures/"+s+"/"+file));
+				textures.add(texture);
+				textureNames.add(s+"/"+file.substring(0, file.lastIndexOf(".")));
+			}
+		}
+	}
+	
 	public static void load () {
 		//System.out.println("Loading textures...");
 		loadTextures();

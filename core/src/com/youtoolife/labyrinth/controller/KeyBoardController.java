@@ -5,11 +5,17 @@ import com.badlogic.gdx.Input;
 
 public class KeyBoardController extends Controller {
 
-	int[] key_map = { Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.UP,
-			Input.Keys.DOWN };
+	
+	
+	int[] key_map = null;
+	public static final int[] ARROWS = { Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.UP, Input.Keys.DOWN };
+	public static final int[] WASD = { Input.Keys.A, Input.Keys.D, Input.Keys.W, Input.Keys.S };
 
 	float dl = 0, dr = 0, du = 0, dd = 0;
 
+	public KeyBoardController(int[] key_map){
+		this.key_map = key_map;	}
+	
 	@Override
 	public void update() {
 		Input input = Gdx.input;

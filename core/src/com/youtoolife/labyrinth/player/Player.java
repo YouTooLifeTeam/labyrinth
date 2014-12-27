@@ -1,33 +1,27 @@
-package com.youtoolife.labyrinth;
+package com.youtoolife.labyrinth.player;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.youtoolife.labyrinth.Chunk;
 import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
 import com.youtoolife.labyrinth.controller.Controller;
 import com.youtoolife.labyrinth.controller.Controller.Action;
 import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.utils.AnimatedSprite;
-import com.youtoolife.labyrinth.utils.Assets;
 
-public class Player {
+public abstract class Player {
 
 	float xOffset = 0;
 	float yOffset = 0;
 
 	public int ChunkX;
 	public int ChunkY;
-	int x = 4, y = 4;
+	public int x = 5, y = 5;
 
 	AnimatedSprite sprite;
 	Controller control;
 
 	public Player(int ChunkX, int ChunkY, Controller control) {
-		sprite = new AnimatedSprite(0, 0, 50, 50, new Sprite(
-				Assets.getTexture("player2")), 0);
-		sprite.setPreferedDelta(0.15f);
-		sprite.setAnimStart(0);
-		sprite.setAnimStop(3);
 		this.ChunkX = ChunkX;
 		this.ChunkY = ChunkY;
 		this.control = control;
