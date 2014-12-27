@@ -43,13 +43,11 @@ public class Assets {
 				Texture texture = new Texture(Gdx.files.internal(s+"/"+file));
 				textures.add(texture);
 				textureNames.add(s+"/"+file.substring(0, file.lastIndexOf(".")));
-				System.out.println(s+"/"+file.substring(0, file.lastIndexOf(".")));
 			}
 		}
 	}
 	
 	public static void load () {
-		//System.out.println("Loading textures...");
 		loadTextures();
 	}
 }

@@ -18,7 +18,7 @@ import com.youtoolife.labyrinth.utils.StateBasedGame;
 
 public class GamePlayState extends GameState {
 
-	public static int SIZE = 50;
+	public static int SIZE = 10;
 
 	public static Chunk[][] chunks;
 	int xChunk = 1;
