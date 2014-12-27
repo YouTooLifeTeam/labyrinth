@@ -5,7 +5,7 @@ import com.youtoolife.labyrinth.GameObjects.GameObject;
 
 public class Chunk {
 
-	public static final int SIZE = 10;
+	public static final int SIZE = 12;
 	
 	public enum Exits {
 		SingleExit, DiNeighbour, DiOpposite, TriExit, QuadroExit, NoExit

@@ -75,12 +75,7 @@ public class GamePlayState extends GameState {
 
 	@Override
 	public void init(StateBasedGame game) {
-		int[] positions = new int[4];
-		chunks = MazeGenerator.getMaze(SIZE,positions);
-		xChunk = positions[0];
-		yChunk = positions[1];
-		control = new KeyBoardController();
-		player =new Player(xChunk,yChunk,control);
+
 	}
 
 	@Override
@@ -92,6 +87,13 @@ public class GamePlayState extends GameState {
 	@Override
 	public void enter(StateBasedGame game) {
 		((MainGame)game).camera.position.set(0, 0, 0);
+		
+		int[] positions = new int[4];
+		chunks = MazeGenerator.getMaze(SIZE,positions);
+		xChunk = positions[0];
+		yChunk = positions[1];
+		control = new KeyBoardController();
+		player =new Player(xChunk,yChunk,control);
 	}
 
 	@Override

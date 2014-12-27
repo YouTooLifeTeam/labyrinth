@@ -10,6 +10,9 @@
 	<Block type="Wall" x="0" y="7"></Block>
 	<Block type="Wall" x="0" y="8"></Block>
 	<Block type="Wall" x="0" y="9"></Block>
+	<Block type="Wall" x="0" y="10"></Block>
+	<Block type="Wall" x="0" y="11"></Block>
+	
 	<Block type="Wall" x="9" y="0"></Block>
 	<Block type="Wall" x="9" y="1"></Block>
 	<Block type="Wall" x="9" y="2"></Block>
@@ -20,6 +23,8 @@
 	<Block type="Wall" x="9" y="7"></Block>
 	<Block type="Wall" x="9" y="8"></Block>
 	<Block type="Wall" x="9" y="9"></Block>
+	<Block type="Wall" x="9" y="10"></Block>
+	<Block type="Wall" x="9" y="11"></Block>
 	
 	<Block type="Wall" x="1" y="0"></Block>
 	<Block type="Wall" x="1" y="1"></Block>
@@ -31,6 +36,9 @@
 	<Block type="Wall" x="1" y="7"></Block>
 	<Block type="Wall" x="1" y="8"></Block>
 	<Block type="Wall" x="1" y="9"></Block>
+	<Block type="Wall" x="1" y="10"></Block>
+	<Block type="Wall" x="1" y="11"></Block>
+	
 	<Block type="Wall" x="2" y="0"></Block>
 	<Block type="Wall" x="2" y="1"></Block>
 	<Block type="Wall" x="2" y="2"></Block>
@@ -41,6 +49,8 @@
 	<Block type="Wall" x="2" y="7"></Block>
 	<Block type="Wall" x="2" y="8"></Block>
 	<Block type="Wall" x="2" y="9"></Block>
+	<Block type="Wall" x="2" y="10"></Block>
+	<Block type="Wall" x="2" y="11"></Block>
 	
 	<Block type="Wall" x="3" y="0"></Block>
 	<Block type="Wall" x="3" y="1"></Block>
@@ -52,6 +62,9 @@
 	<Block type="Wall" x="3" y="7"></Block>
 	<Block type="Wall" x="3" y="8"></Block>
 	<Block type="Wall" x="3" y="9"></Block>
+	<Block type="Wall" x="3" y="10"></Block>
+	<Block type="Wall" x="3" y="11"></Block>
+	
 	<Block type="Wall" x="4" y="0"></Block>
 	<Block type="Wall" x="4" y="1"></Block>
 	<Block type="Wall" x="4" y="2"></Block>
@@ -62,6 +75,8 @@
 	<Block type="Wall" x="4" y="7"></Block>
 	<Block type="Wall" x="4" y="8"></Block>
 	<Block type="Wall" x="4" y="9"></Block>
+	<Block type="Wall" x="4" y="10"></Block>
+	<Block type="Wall" x="4" y="11"></Block>
 	
 	<Block type="Wall" x="5" y="0"></Block>
 	<Block type="Wall" x="5" y="1"></Block>
@@ -73,6 +88,9 @@
 	<Block type="Wall" x="5" y="7"></Block>
 	<Block type="Wall" x="5" y="8"></Block>
 	<Block type="Wall" x="5" y="9"></Block>
+	<Block type="Wall" x="5" y="10"></Block>
+	<Block type="Wall" x="5" y="11"></Block>
+	
 	<Block type="Wall" x="6" y="0"></Block>
 	<Block type="Wall" x="6" y="1"></Block>
 	<Block type="Wall" x="6" y="2"></Block>
@@ -83,6 +101,8 @@
 	<Block type="Wall" x="6" y="7"></Block>
 	<Block type="Wall" x="6" y="8"></Block>
 	<Block type="Wall" x="6" y="9"></Block>
+	<Block type="Wall" x="6" y="10"></Block>
+	<Block type="Wall" x="6" y="11"></Block>
 	
 	<Block type="Wall" x="7" y="0"></Block>
 	<Block type="Wall" x="7" y="1"></Block>
@@ -94,6 +114,9 @@
 	<Block type="Wall" x="7" y="7"></Block>
 	<Block type="Wall" x="7" y="8"></Block>
 	<Block type="Wall" x="7" y="9"></Block>
+	<Block type="Wall" x="7" y="10"></Block>
+	<Block type="Wall" x="7" y="11"></Block>
+	
 	<Block type="Wall" x="8" y="0"></Block>
 	<Block type="Wall" x="8" y="1"></Block>
 	<Block type="Wall" x="8" y="2"></Block>
@@ -104,4 +127,33 @@
 	<Block type="Wall" x="8" y="7"></Block>
 	<Block type="Wall" x="8" y="8"></Block>
 	<Block type="Wall" x="8" y="9"></Block>
+	<Block type="Wall" x="8" y="10"></Block>
+	<Block type="Wall" x="8" y="11"></Block>
+	
+	<Block type="Wall" x="11" y="0"></Block>
+	<Block type="Wall" x="11" y="1"></Block>
+	<Block type="Wall" x="11" y="2"></Block>
+	<Block type="Wall" x="11" y="3"></Block>
+	<Block type="Wall" x="11" y="4"></Block>
+	<Block type="Wall" x="11" y="5"></Block>
+	<Block type="Wall" x="11" y="6"></Block>
+	<Block type="Wall" x="11" y="7"></Block>
+	<Block type="Wall" x="11" y="8"></Block>
+	<Block type="Wall" x="11" y="9"></Block>
+	<Block type="Wall" x="11" y="10"></Block>
+	<Block type="Wall" x="11" y="11"></Block>
+	
+	<Block type="Wall" x="10" y="0"></Block>
+	<Block type="Wall" x="10" y="1"></Block>
+	<Block type="Wall" x="10" y="2"></Block>
+	<Block type="Wall" x="10" y="3"></Block>
+	<Block type="Wall" x="10" y="4"></Block>
+	<Block type="Wall" x="10" y="5"></Block>
+	<Block type="Wall" x="10" y="6"></Block>
+	<Block type="Wall" x="10" y="7"></Block>
+	<Block type="Wall" x="10" y="8"></Block>
+	<Block type="Wall" x="10" y="9"></Block>
+	<Block type="Wall" x="10" y="10"></Block>
+	<Block type="Wall" x="10" y="11"></Block>
+	
 </Chunk>
