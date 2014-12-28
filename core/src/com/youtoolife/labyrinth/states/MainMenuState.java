@@ -78,7 +78,7 @@ public class MainMenuState extends GameState {
 			}
 			if (quit_btn.getBoundingRectangle().contains(x,y)) {
 				System.out.println("quit_btn");
-				System.exit(0);
+				Gdx.app.exit();
 			}
 		}
 	}

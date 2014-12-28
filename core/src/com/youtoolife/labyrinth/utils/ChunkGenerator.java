@@ -33,16 +33,15 @@ public class ChunkGenerator {
 
 	public static void init() {
 		FileHandle dir = Gdx.files.internal("chunks/");
-		String[] files = dir.readString().split("\n");
+		FileHandle[] files = dir.list();
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
-		for (String file : files) {
-			if (file.contains(".chunk")) {
+		for (FileHandle file : files) {
+			if (file.name().contains(".chunk")) {
 				DocumentBuilder db;
 				try {
 					db = dbf.newDocumentBuilder();
-					Document dom = db.parse(Gdx.files.internal(
-							"bin/chunks/" + file).file());
+					Document dom = db.parse(file.file());
 					Element chunk = dom.getDocumentElement();
 					addChunk(chunk);
 				} catch (ParserConfigurationException e) {

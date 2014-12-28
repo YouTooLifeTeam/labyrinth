@@ -20,7 +20,7 @@ public class Assets {
 		
 		textures = new Array<Texture>();
 		textureNames = new Array<String>();
-		getSubDir("textures");
+		getSubDir(Gdx.files.internal("textures/"));
 	}
 	
 	public static Texture getTexture(String name) {
@@ -29,20 +29,20 @@ public class Assets {
 		return texture;
 	}
 
-	private static void getSubDir(String s){
-		FileHandle dir = Gdx.files.internal(s);
-		String[] files = dir.readString().split("\n");
-		for (String file: files) {	
-			if(file.lastIndexOf('.')==-1)
-				getSubDir(s+"/"+file);
-			if (file.contains(".png")
-					||file.contains(".jpg")
-					||file.contains(".PNG")
-					||file.contains(".JPG")) {
+	private static void getSubDir(FileHandle s){
+		FileHandle dir = s;
+		FileHandle[] files = dir.list();
+		for (FileHandle file: files) {	
+			if(file.isDirectory())
+				getSubDir(file);
+			if (file.name().contains(".png")
+					||file.name().contains(".jpg")
+					||file.name().contains(".PNG")
+					||file.name().contains(".JPG")) {
 				
-				Texture texture = new Texture(Gdx.files.internal(s+"/"+file));
+				Texture texture = new Texture(file);
 				textures.add(texture);
-				textureNames.add(s+"/"+file.substring(0, file.lastIndexOf(".")));
+				textureNames.add(s+"/"+file.nameWithoutExtension());
 			}
 		}
 	}

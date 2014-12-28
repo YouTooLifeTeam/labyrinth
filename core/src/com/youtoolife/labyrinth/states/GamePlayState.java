@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.Chunk;
+import com.youtoolife.labyrinth.Gui;
 import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.MiniMap;
 import com.youtoolife.labyrinth.controller.KeyBoardController;
@@ -30,6 +31,7 @@ public class GamePlayState extends GameState {
 	public static Player player1, player2;
 	KeyBoardController control1, control2;
 
+	Gui gui;
 	MiniMap minimap;
 	boolean isMap = false;
 
@@ -50,7 +52,8 @@ public class GamePlayState extends GameState {
 					* Chunk.SIZE);
 			player2.draw(batch, XOffset * 50 * Chunk.SIZE, YOffset * 50
 					* Chunk.SIZE);
-		}else
+			gui.draw(batch);
+		} else
 			minimap.draw(batch);
 	}
 
@@ -140,6 +143,7 @@ public class GamePlayState extends GameState {
 		minimap = new MiniMap(SIZE);
 		minimap.setViewed(positions[0], positions[1]);
 		minimap.setViewed(positions[2], positions[3]);
+		gui = new Gui(player1, player2);
 	}
 
 	@Override

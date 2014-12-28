@@ -14,6 +14,8 @@ public abstract class Player {
 	float xOffset = 0;
 	float yOffset = 0;
 
+	public int hp = 4;
+	
 	public int ChunkX;
 	public int ChunkY;
 	public int x = 5, y = 5;

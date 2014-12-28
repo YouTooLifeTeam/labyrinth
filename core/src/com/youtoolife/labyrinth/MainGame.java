@@ -59,9 +59,9 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 		batch.begin();
 		this.render(batch);
 		font.setScale(2f);
-		font.draw(batch,
-				"FPS: " + String.valueOf(Gdx.graphics.getFramesPerSecond()),
-				-w / 2 + 5, h / 2 - 5);
+		//font.draw(batch,
+			//	"FPS: " + String.valueOf(Gdx.graphics.getFramesPerSecond()),
+				//-w / 2 + 5, h / 2 - 5);
 		font.setScale(1);
 		batch.end();
 	}

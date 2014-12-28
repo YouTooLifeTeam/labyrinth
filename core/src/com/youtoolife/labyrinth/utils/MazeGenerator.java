@@ -73,18 +73,23 @@ public class MazeGenerator {
 	}
 
 	private boolean check_maze(char[][] lab) {
-		char[][] buf = lab.clone();
+		char[][] buf = new char[lab.length][];
 		int single_count = 0;
 		boolean searched = false;
-		for (int i = 1; i < buf.length - 1; i++)
-			for (int j = 1; j < buf.length - 1; j++) {
-				int exits = 4 - (buf[i - 1][j] + buf[i + 1][j] + buf[i][j + 1] + buf[i - 1][j - 1]);
+		buf[0] = lab[0].clone();
+		buf[lab.length-1] = lab[lab.length-1].clone();
+		for (int i = 1; i < lab.length - 1; i++){
+			for (int j = 1; j < lab.length - 1; j++) {
+				int exits = 4 - (lab[i - 1][j] + lab[i + 1][j] + lab[i][j + 1] + lab[i - 1][j - 1]);
 				if (exits == 1)
 					single_count++;
 			}
+			buf[i] = lab[i].clone();
+		}
 		if (single_count < 2)
 			return false;
 
+		
 		for (int i = 1; i < buf.length - 1; i++)
 			for (int j = 1; j < buf.length - 1; j++)
 				if (buf[i][j] == 0 && !searched) {
