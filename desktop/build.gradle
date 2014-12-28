@@ -4,7 +4,8 @@ sourceCompatibility = 1.6
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 project.ext.mainClassName = "com.youtoolife.labyrinth.desktop.DesktopLauncher"
-project.ext.assetsDir = new File("../core/assets");
+//project.ext.assetsDir = new File("../core/assets"); for build
+project.ext.assetsDir = new File("../desktop");
 
 task run(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName

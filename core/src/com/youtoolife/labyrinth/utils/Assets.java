@@ -20,12 +20,12 @@ public class Assets {
 		
 		textures = new Array<Texture>();
 		textureNames = new Array<String>();
-		getSubDir(Gdx.files.internal("textures/"));
+		getSubDir(Gdx.files.local("bin/textures/"));
 	}
 	
 	public static Texture getTexture(String name) {
 		Texture texture;
-		texture = textures.get(textureNames.indexOf("textures/"+name, false));
+		texture = textures.get(textureNames.indexOf("bin/textures/"+name, false));
 		return texture;
 	}
 

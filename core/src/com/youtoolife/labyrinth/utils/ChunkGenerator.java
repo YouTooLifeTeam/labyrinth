@@ -32,7 +32,7 @@ public class ChunkGenerator {
 	}
 
 	public static void init() {
-		FileHandle dir = Gdx.files.internal("chunks/");
+		FileHandle dir = Gdx.files.internal("bin/chunks/");
 		FileHandle[] files = dir.list();
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
