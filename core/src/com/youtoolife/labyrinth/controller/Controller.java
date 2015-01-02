@@ -5,7 +5,7 @@ import java.util.Vector;
 public abstract class Controller {
 
 	public enum Action{
-		Left, Right, Up, Down, None
+		Left, Right, Up, Down, None, SpecAction, NormAction
 	}
 	
 	Vector<Action> queue = new Vector<Action>();

@@ -102,6 +102,10 @@ public abstract class Player {
 				}
 			}
 		}
+		if(action == Action.SpecAction)
+			useAbility();
 	}
 
+	public abstract void useAbility();
+	
 }

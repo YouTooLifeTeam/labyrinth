@@ -39,11 +39,7 @@ public class GameObject {
 	
 	public static GameObject getObject(Element block){
 		BlockType type = BlockType.valueOf(block.getAttribute("type"));
-		Texture texture;
-		if(type==BlockType.Floor)
-			texture = Assets.getTexture("floor");
-		else
-			texture = Assets.getTexture("wall");
+		Texture texture = Assets.getTexture(block.getAttribute("img"));
 		return new GameObject(type, texture);
 	}
 	

@@ -9,6 +9,8 @@ import com.youtoolife.labyrinth.Chunk;
 import com.youtoolife.labyrinth.Gui;
 import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.MiniMap;
+import com.youtoolife.labyrinth.controller.Controller;
+import com.youtoolife.labyrinth.controller.GamePadController;
 import com.youtoolife.labyrinth.controller.KeyBoardController;
 import com.youtoolife.labyrinth.player.Name1Player;
 import com.youtoolife.labyrinth.player.Name2Player;
@@ -29,7 +31,7 @@ public class GamePlayState extends GameState {
 	float YOffset = 0;
 
 	public static Player player1, player2;
-	KeyBoardController control1, control2;
+	Controller control1, control2;
 
 	Gui gui;
 	MiniMap minimap;
@@ -115,6 +117,7 @@ public class GamePlayState extends GameState {
 		if (Gdx.input.isKeyJustPressed(Keys.M)) {
 			isMap = !isMap;
 		}
+
 	}
 
 	@Override
@@ -137,7 +140,7 @@ public class GamePlayState extends GameState {
 		xChunk = positions[0];
 		yChunk = positions[1];
 		control1 = new KeyBoardController(KeyBoardController.ARROWS);
-		control2 = new KeyBoardController(KeyBoardController.WASD);
+		control2 = new GamePadController();
 		player1 = new Name1Player(xChunk, yChunk, control1);
 		player2 = new Name2Player(xChunk, yChunk, control2);
 		minimap = new MiniMap(SIZE);
