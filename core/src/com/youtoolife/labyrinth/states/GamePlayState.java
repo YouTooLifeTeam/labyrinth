@@ -25,7 +25,7 @@ public class GamePlayState extends GameState {
 	public static int SIZE = 10;
 
 	ShadowRender shadow;
-	
+
 	public static Chunk[][] chunks;
 	public int xChunk = 1;
 	public int yChunk = 1;
@@ -105,6 +105,8 @@ public class GamePlayState extends GameState {
 			if (YOffset * speedY > 0)
 				YOffset = 0;
 		}
+
+		chunks[yChunk][xChunk].update();
 
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			game.enterState(MAINMENUSTATE);

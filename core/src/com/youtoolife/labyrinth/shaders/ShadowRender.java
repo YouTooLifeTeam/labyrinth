@@ -27,7 +27,7 @@ public class ShadowRender {
 			throw new GdxRuntimeException("could not compile shader: "
 					+ prog.getLog());
 		if (prog.getLog().length() != 0)
-			Gdx.app.log("GpuShadows", prog.getLog());
+			System.out.println("GpuShadows "+ prog.getLog());
 		return prog;
 	}
 
@@ -46,7 +46,7 @@ public class ShadowRender {
 	FrameBuffer shadowMapFBO;
 	FrameBuffer occludersFBO;
 
-	ShaderProgram shadowMapShader, shadowRenderShader;
+	ShaderProgram shadowMapShader, shadowRenderShader, blockShader;
 
 	boolean additive = true;
 	boolean softShadows = true;
@@ -62,6 +62,8 @@ public class ShadowRender {
 				Gdx.files.local("bin/shader/shadowMap.frag").readString());
 		shadowRenderShader = createShader(VERT_SRC,
 				Gdx.files.local("bin/shader/shadowRender.frag").readString());
+		blockShader = createShader(Gdx.files.local("bin/shader/passthrough.vert").readString(),
+				Gdx.files.local("bin/shader/blockShader.frag").readString());
 
 		occludersFBO = new FrameBuffer(Format.RGBA8888, lightSize, lightSize,
 				false);
@@ -90,10 +92,9 @@ public class ShadowRender {
 		if (additive)
 			batch.setBlendFunction(GL20.GL_SRC_ALPHA,
 					GL20.GL_ONE_MINUS_SRC_ALPHA);
-
 		batch.begin();
-		batch.setShader(null); // default shader
-		batch.setColor(0.3f, 0.3f, 0.3f, 1f);
+		batch.setColor(1, 1, 1, 1);
+		batch.setShader(blockShader);
 		for (int i = -2; i <= 2; i++)
 			for (int j = -2; j <= 2; j++)
 				if (i + game.yChunk >= 0

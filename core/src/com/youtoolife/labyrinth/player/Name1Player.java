@@ -1,14 +1,19 @@
 package com.youtoolife.labyrinth.player;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.youtoolife.labyrinth.Chunk;
+import com.youtoolife.labyrinth.GameObjects.GameObject;
+import com.youtoolife.labyrinth.GameObjects.Mine;
 import com.youtoolife.labyrinth.controller.Controller;
+import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.utils.AnimatedSprite;
 import com.youtoolife.labyrinth.utils.Assets;
 
 public class Name1Player extends Player {
 
-	public final float COOLDOWN = 5;
+	public final float COOLDOWN = 6;
 	public float mine_coolDown = COOLDOWN;
 
 	public Name1Player(int ChunkX, int ChunkY, Controller control) {
@@ -19,6 +24,7 @@ public class Name1Player extends Player {
 		sprite.setAnimStart(0);
 		sprite.setAnimStop(3);
 		hp = 3;
+		torch_color = new Color(0.8f,0.7f,0,0.6f);
 	}
 
 	@Override
@@ -33,6 +39,8 @@ public class Name1Player extends Player {
 	public void useAbility() {
 		if(mine_coolDown<=0){
 			mine_coolDown = COOLDOWN;
+			GameObject buf = GamePlayState.chunks[ChunkX][ChunkX].map[Chunk.SIZE- y - 1][x];
+			GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE- y - 1][x] = new Mine(buf.type,buf.texture);
 		}
 	}
 

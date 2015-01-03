@@ -23,6 +23,8 @@ public abstract class Player {
 	public int ChunkY;
 	public int x = 5, y = 5;
 
+	Color torch_color = new Color(1,0.75f,0,0.6f);
+	
 	AnimatedSprite sprite;
 	Controller control;
 
@@ -112,7 +114,7 @@ public abstract class Player {
 	public Light getLight(float x, float y){
 		return new Light(this.x * 50 + xOffset + x - 50*Chunk.SIZE/2 + MainGame.w/2 + 25
 				, this.y * 50 + yOffset + y - 50*Chunk.SIZE/2 + MainGame.h/2 + 25,
-				new Color(1,0.75f,0,0.6f));
+				torch_color);
 	}
 	
 	public abstract void useAbility();

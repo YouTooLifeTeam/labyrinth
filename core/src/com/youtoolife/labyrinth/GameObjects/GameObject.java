@@ -29,9 +29,7 @@ public class GameObject {
 		batch.draw(texture, x, y, 50, 50);
 	}
 	
-	public void update(){
-		
-	}
+	public void update(){}
 	
 	public GameObject copy(){
 		return new GameObject(type, texture);
