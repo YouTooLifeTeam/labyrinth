@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.youtoolife.labyrinth.Chunk;
+import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.player.Player;
 import com.youtoolife.labyrinth.states.GamePlayState;
 
@@ -30,9 +31,9 @@ public class ShadowRender {
 		return prog;
 	}
 
-	private int lightSize = 800;
+	private int lightSize = 500;
 
-	private float upScale = 1f; // for example; try lightSize=128, upScale=1.5f
+	private float upScale = 1.1f; // for example; try lightSize=128, upScale=1.5f
 
 	SpriteBatch batch;
 	OrthographicCamera cam;
@@ -78,8 +79,7 @@ public class ShadowRender {
 
 		font = new BitmapFont();
 
-		cam = new OrthographicCamera(Gdx.graphics.getWidth(),
-				Gdx.graphics.getHeight());
+		cam = new OrthographicCamera(MainGame.w, MainGame.h);
 		cam.setToOrtho(false);
 	}
 
@@ -146,7 +146,7 @@ public class ShadowRender {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		cam.setToOrtho(false, occludersFBO.getWidth(), occludersFBO.getHeight());
-
+		
 		cam.translate(mx - lightSize / 2f, my - lightSize / 2f);
 		cam.update();
 
@@ -195,7 +195,7 @@ public class ShadowRender {
 
 		shadowMapFBO.end();
 
-		cam.setToOrtho(false);
+		cam.setToOrtho(false, MainGame.w, MainGame.h);
 		batch.setProjectionMatrix(cam.combined);
 
 		batch.setShader(shadowRenderShader);
