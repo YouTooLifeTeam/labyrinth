@@ -55,13 +55,13 @@ public class ShadowRender {
 		batch = new SpriteBatch();
 		ShaderProgram.pedantic = false;
 
-		final String VERT_SRC = Gdx.files.local("bin/shader/pass.vert")
+		final String VERT_SRC = Gdx.files.internal("shader/pass.vert")
 				.readString();
 
 		shadowMapShader = createShader(VERT_SRC,
-				Gdx.files.local("bin/shader/shadowMap.frag").readString());
+				Gdx.files.internal("shader/shadowMap.frag").readString());
 		shadowRenderShader = createShader(VERT_SRC,
-				Gdx.files.local("bin/shader/shadowRender.frag").readString());
+				Gdx.files.internal("shader/shadowRender.frag").readString());
 
 		occludersFBO = new FrameBuffer(Format.RGBA8888, lightSize, lightSize,
 				false);
