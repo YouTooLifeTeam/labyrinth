@@ -112,7 +112,7 @@ public abstract class Player {
 	public Light getLight(float xOffset, float yOffset){
 		return new Light(this.x * 50 + xOffset + x - 50*Chunk.SIZE/2 + MainGame.w/2 + 25
 				, this.y * 50 + yOffset + y - 50*Chunk.SIZE/2 + MainGame.h/2 + 25,
-				new Color(1,1,0,1f));
+				new Color(1,1,0,0.4f));
 	}
 	
 	public abstract void useAbility();

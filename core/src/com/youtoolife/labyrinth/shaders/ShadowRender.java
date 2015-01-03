@@ -30,7 +30,7 @@ public class ShadowRender {
 		return prog;
 	}
 
-	private int lightSize = 600;
+	private int lightSize = 800;
 
 	private float upScale = 1f; // for example; try lightSize=128, upScale=1.5f
 
