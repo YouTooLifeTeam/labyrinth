@@ -31,9 +31,9 @@ public class ShadowRender {
 		return prog;
 	}
 
-	private int lightSize = 500;
+	private int lightSize = 400;
 
-	private float upScale = 1.1f; // for example; try lightSize=128, upScale=1.5f
+	private float upScale = 1f; // for example; try lightSize=128, upScale=1.5f
 
 	SpriteBatch batch;
 	OrthographicCamera cam;
@@ -84,7 +84,7 @@ public class ShadowRender {
 	}
 
 	public void render(GamePlayState game) {
-		Gdx.gl.glClearColor(0, 0, 0, 1f);
+		Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		if (additive)
@@ -93,7 +93,7 @@ public class ShadowRender {
 
 		batch.begin();
 		batch.setShader(null); // default shader
-
+		batch.setColor(0.3f, 0.3f, 0.3f, 1f);
 		for (int i = -2; i <= 2; i++)
 			for (int j = -2; j <= 2; j++)
 				if (i + game.yChunk >= 0
@@ -109,11 +109,13 @@ public class ShadowRender {
 		if (additive)
 			batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
 
-		renderLight(GamePlayState.player1.getLight(game.XOffset * 50 * Chunk.SIZE, game.YOffset * 50 * Chunk.SIZE), game,
+		renderLight(GamePlayState.player1.getLight(game.XOffset * 50
+				* Chunk.SIZE, game.YOffset * 50 * Chunk.SIZE), game,
 				GamePlayState.player1);
-		renderLight(GamePlayState.player2.getLight(game.XOffset * 50 * Chunk.SIZE, game.YOffset * 50 * Chunk.SIZE), game,
+		renderLight(GamePlayState.player2.getLight(game.XOffset * 50
+				* Chunk.SIZE, game.YOffset * 50 * Chunk.SIZE), game,
 				GamePlayState.player2);
-		
+
 		if (additive)
 			batch.setBlendFunction(GL20.GL_SRC_ALPHA,
 					GL20.GL_ONE_MINUS_SRC_ALPHA);
@@ -126,7 +128,6 @@ public class ShadowRender {
 				game.YOffset * 50 * Chunk.SIZE);
 		game.gui.draw(batch);
 		batch.end();
-		
 
 	}
 
@@ -146,7 +147,7 @@ public class ShadowRender {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		cam.setToOrtho(false, occludersFBO.getWidth(), occludersFBO.getHeight());
-		
+
 		cam.translate(mx - lightSize / 2f, my - lightSize / 2f);
 		cam.update();
 

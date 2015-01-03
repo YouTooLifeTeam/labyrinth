@@ -25,7 +25,7 @@ public class GameObject {
 	}
 	
 	public void draw(SpriteBatch batch, float x, float y){
-		batch.setColor(color);
+		//batch.setColor(color);
 		batch.draw(texture, x, y, 50, 50);
 	}
 	
