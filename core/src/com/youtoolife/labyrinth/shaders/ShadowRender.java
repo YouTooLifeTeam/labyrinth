@@ -14,8 +14,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.GdxRuntimeException;
-import com.youtoolife.labyrinth.Chunk;
 import com.youtoolife.labyrinth.MainGame;
+import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.player.Player;
 import com.youtoolife.labyrinth.states.GamePlayState;
 

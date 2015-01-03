@@ -3,7 +3,7 @@ package com.youtoolife.labyrinth;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.youtoolife.labyrinth.Chunk.Exits;
+import com.youtoolife.labyrinth.chunk.Chunk.Exits;
 import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.utils.Assets;
 

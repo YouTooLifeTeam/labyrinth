@@ -1,4 +1,4 @@
-package com.youtoolife.labyrinth.utils;
+package com.youtoolife.labyrinth.chunk;
 
 import java.io.IOException;
 import java.util.Random;
@@ -15,9 +15,9 @@ import org.xml.sax.SAXException;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.youtoolife.labyrinth.Chunk;
-import com.youtoolife.labyrinth.Chunk.Exits;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
+import com.youtoolife.labyrinth.chunk.Chunk.Exits;
+import com.youtoolife.labyrinth.events.Event;
 
 public class ChunkGenerator {
 
@@ -67,7 +67,8 @@ public class ChunkGenerator {
 					.getAttribute("y"))][Integer.valueOf(block.getAttribute("x"))] = buf_block;
 		}
 
-		Chunk buf = new Chunk(type, name, map);
+		Vector<Event> events = EventsResolver.getEvents(chunk.getElementsByTagName("Eventlist").item(0));
+		Chunk buf = new Chunk(type, name, map,events);
 		chunks.add(buf);
 	}
 }

@@ -8,10 +8,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.youtoolife.labyrinth.chunk.ChunkGenerator;
 import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.states.MainMenuState;
 import com.youtoolife.labyrinth.utils.Assets;
-import com.youtoolife.labyrinth.utils.ChunkGenerator;
 import com.youtoolife.labyrinth.utils.StateBasedGame;
 
 public class MainGame extends StateBasedGame implements ApplicationListener {

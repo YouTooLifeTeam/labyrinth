@@ -2,8 +2,9 @@ package com.youtoolife.labyrinth.utils;
 
 import java.util.Random;
 
-import com.youtoolife.labyrinth.Chunk;
-import com.youtoolife.labyrinth.Chunk.Exits;
+import com.youtoolife.labyrinth.chunk.Chunk;
+import com.youtoolife.labyrinth.chunk.Chunk.Exits;
+import com.youtoolife.labyrinth.chunk.ChunkGenerator;
 
 public class MazeGenerator {
 

@@ -1,8 +1,12 @@
-package com.youtoolife.labyrinth;
+package com.youtoolife.labyrinth.chunk;
+
+import java.util.Vector;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
+import com.youtoolife.labyrinth.events.Event;
 
 public class Chunk {
 
@@ -17,10 +21,13 @@ public class Chunk {
 	public GameObject[][] map = new GameObject[SIZE][SIZE];
 	public int rotates = 0;
 
-	public Chunk(Exits type, String name, GameObject[][] map) {
+	Vector<Event> events;
+	
+	public Chunk(Exits type, String name, GameObject[][] map, Vector<Event> events) {
 		this.name = name;
 		this.type = type;
 		this.map = map;
+		this.events = events;
 	}
 
 	public void rotateClockwise(int times) {
@@ -40,7 +47,10 @@ public class Chunk {
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)
 				buf[i][j] = map[i][j].copy();
-		return new Chunk(this.type, this.name, buf);
+		Vector<Event> bufev = new Vector<Event>();
+		for(Event ev: events)
+			bufev.add(ev.copy());
+		return new Chunk(this.type, this.name, buf, bufev);
 	}
 
 	public void draw(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {

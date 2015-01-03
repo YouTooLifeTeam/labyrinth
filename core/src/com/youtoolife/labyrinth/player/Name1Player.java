@@ -3,9 +3,9 @@ package com.youtoolife.labyrinth.player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.youtoolife.labyrinth.Chunk;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.GameObjects.Mine;
+import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.controller.Controller;
 import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.utils.AnimatedSprite;
@@ -20,7 +20,7 @@ public class Name1Player extends Player {
 		super(ChunkX, ChunkY, control);
 		sprite = new AnimatedSprite(0, 0, 50, 50, new Sprite(
 				Assets.getTexture("player2")), 0);
-		sprite.setPreferedDelta(0.15f);
+		sprite.setPreferedDelta(50/moveSpeed/4);
 		sprite.setAnimStart(0);
 		sprite.setAnimStop(3);
 		hp = 3;
@@ -39,7 +39,7 @@ public class Name1Player extends Player {
 	public void useAbility() {
 		if(mine_coolDown<=0){
 			mine_coolDown = COOLDOWN;
-			GameObject buf = GamePlayState.chunks[ChunkX][ChunkX].map[Chunk.SIZE- y - 1][x];
+			GameObject buf = GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE- y - 1][x];
 			GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE- y - 1][x] = new Mine(buf.type,buf.texture);
 		}
 	}

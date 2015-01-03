@@ -16,7 +16,7 @@ public class Name2Player extends Player {
 		sprite = new AnimatedSprite(0, 0, 50, 75, new Sprite(
 				Assets.getTexture("player")), 0);
 		sprite.setSize(50, 50);
-		sprite.setPreferedDelta(0.15f);
+		sprite.setPreferedDelta(50/moveSpeed/4);
 		sprite.setAnimStart(0);
 		sprite.setAnimStop(3);
 		x = 6;

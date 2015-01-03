@@ -4,11 +4,12 @@ import static com.youtoolife.labyrinth.MainGame.MAINMENUSTATE;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.youtoolife.labyrinth.Chunk;
 import com.youtoolife.labyrinth.Gui;
 import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.MiniMap;
+import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.controller.Controller;
 import com.youtoolife.labyrinth.controller.GamePadController;
 import com.youtoolife.labyrinth.controller.KeyBoardController;
@@ -39,6 +40,7 @@ public class GamePlayState extends GameState {
 	public Gui gui;
 	MiniMap minimap;
 	boolean isMap = false;
+	float map_delay = 0.2f;
 
 	public GamePlayState(int StateId, MainGame game) {
 		super(StateId, game);
@@ -111,10 +113,20 @@ public class GamePlayState extends GameState {
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			game.enterState(MAINMENUSTATE);
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.M)) {
-			isMap = !isMap;
-		}
 
+		map_delay -= Gdx.graphics.getDeltaTime();
+		if (map_delay <= 0) {
+			if (Gdx.input.isKeyPressed(Keys.M)) {
+				isMap = !isMap;
+				map_delay = 0.2f;
+			}
+			for (com.badlogic.gdx.controllers.Controller c : Controllers
+					.getControllers())
+				if (c.getButton(com.badlogic.gdx.controllers.mappings.Ouya.AXIS_RIGHT_Y)) {
+					isMap = !isMap;
+					map_delay = 0.2f;
+				}
+		}
 	}
 
 	@Override

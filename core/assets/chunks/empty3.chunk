@@ -1,5 +1,8 @@
 <Chunk name="empty3" type="TriExit">
 <Block img="wall" type="Wall" x="0" y="0"></Block>
+
+	<Eventlist></Eventlist>
+
 	<Block img="wall" type="Wall" x="0" y="1"></Block>
 	<Block img="wall" type="Wall" x="0" y="2"></Block>
 	<Block img="wall" type="Wall" x="0" y="3"></Block>

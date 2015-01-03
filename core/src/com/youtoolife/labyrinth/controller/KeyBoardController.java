@@ -13,6 +13,8 @@ public class KeyBoardController extends Controller {
 
 	float dl = 0, dr = 0, du = 0, dd = 0, dsa = 0, dna = 0;
 
+	final float delta = 0.04f;
+	
 	public KeyBoardController(int[] key_map){
 		this.key_map = key_map;	}
 	
@@ -28,32 +30,32 @@ public class KeyBoardController extends Controller {
 		if (input.isKeyPressed(key_map[0]))
 			if (dl <= 0) {
 				queue.add(Action.Left);
-				dl = 0.1f;
+				dl = delta;
 			}
 		if (input.isKeyPressed(key_map[1]))
 			if (dr <= 0) {
 				queue.add(Action.Right);
-				dr = 0.1f;
+				dr = delta;
 			}
 		if (input.isKeyPressed(key_map[2]))
 			if (du <= 0) {
 				queue.add(Action.Up);
-				du = 0.1f;
+				du = delta;
 			}
 		if (input.isKeyPressed(key_map[3]))
 			if (dd <= 0) {
 				queue.add(Action.Down);
-				dd = 0.1f;
+				dd = delta;
 			}
 		if (input.isKeyPressed(key_map[4]))
 			if (dsa <= 0) {
 				queue.add(Action.SpecAction);
-				dsa = 0.1f;
+				dsa = delta;
 			}
 		if (input.isKeyPressed(key_map[5]))
 			if (dna <= 0) {
 				queue.add(Action.NormAction);
-				dna = 0.1f;
+				dna = delta;
 			}
 	}
 

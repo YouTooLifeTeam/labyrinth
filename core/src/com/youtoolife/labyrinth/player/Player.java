@@ -3,9 +3,9 @@ package com.youtoolife.labyrinth.player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.youtoolife.labyrinth.Chunk;
 import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
+import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.controller.Controller;
 import com.youtoolife.labyrinth.controller.Controller.Action;
 import com.youtoolife.labyrinth.shaders.Light;
@@ -23,6 +23,8 @@ public abstract class Player {
 	public int ChunkY;
 	public int x = 5, y = 5;
 
+	final float moveSpeed = 200; 
+	
 	Color torch_color = new Color(1,0.75f,0,0.6f);
 	
 	AnimatedSprite sprite;
@@ -49,8 +51,8 @@ public abstract class Player {
 			int speedY = yOffset < 0 ? 1 : -1;
 			speedY = yOffset == 0 ? 0 : speedY;
 
-			xOffset += speedX * 100 * Gdx.graphics.getDeltaTime();
-			yOffset += speedY * 100 * Gdx.graphics.getDeltaTime();
+			xOffset += speedX * moveSpeed * Gdx.graphics.getDeltaTime();
+			yOffset += speedY * moveSpeed * Gdx.graphics.getDeltaTime();
 
 			if (xOffset * speedX > 0)
 				xOffset = 0;
