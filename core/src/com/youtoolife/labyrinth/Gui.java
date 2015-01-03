@@ -21,7 +21,7 @@ public class Gui {
 		hearth = Assets.getTexture("gui/hearth");
 		mine = Assets.getTexture("gui/mine");
 		arrow = Assets.getTexture("gui/arrow");
-		gui.setPosition(-MainGame.w / 2, MainGame.h / 2 - gui.getHeight());
+		gui.setPosition(0, MainGame.h - gui.getHeight());
 	}
 
 	public void draw(SpriteBatch batch) {
@@ -29,20 +29,20 @@ public class Gui {
 		gui.draw(batch);
 
 		for (int i = 0; i < player1.hp; i++)
-			batch.draw(hearth, 100 - MainGame.w / 2 + i * 50, MainGame.h / 2
-					- gui.getHeight());
+			batch.draw(hearth, 100 - MainGame.w / 2 + i * 50 + MainGame.w/2, MainGame.h / 2
+					- gui.getHeight() + MainGame.h/2);
 		for (int i = 0; i < player2.hp; i++)
-			batch.draw(hearth, MainGame.w / 2 - 150 - i * 50, MainGame.h / 2
-					- gui.getHeight());
+			batch.draw(hearth, MainGame.w / 2 - 150 - i * 50 + MainGame.w/2, MainGame.h / 2
+					- gui.getHeight() + MainGame.h/2);
 
 			float scale = (player1.COOLDOWN-player1.mine_coolDown) / player1.COOLDOWN;
 			float coef = player1.mine_coolDown / player1.COOLDOWN;
-			batch.draw(mine, -100 + 25 * coef, MainGame.h / 2 - gui.getHeight()
+			batch.draw(mine, -100 + 25 * coef + MainGame.w/2, MainGame.h - gui.getHeight()
 					+ 25 * coef, 50 * scale, 50 * scale);
 
 			scale = (player2.COOLDOWN - player2.arrow_cooldown) / player2.COOLDOWN;
 			coef = player2.arrow_cooldown / player2.COOLDOWN;
-			batch.draw(arrow, 50 + 25 * coef, MainGame.h / 2 - gui.getHeight()
+			batch.draw(arrow, 50 + 25 * coef + MainGame.w/2, MainGame.h - gui.getHeight()
 					+ 25 * coef, 50 * scale, 50 * scale);
 	}
 }

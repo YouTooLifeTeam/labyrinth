@@ -2,6 +2,7 @@ package com.youtoolife.labyrinth;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
+import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
 
 public class Chunk {
 
@@ -43,8 +44,8 @@ public class Chunk {
 	}
 	
 	public void draw(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {
-		float XOffset = ChunkSubX*SIZE*50-50*SIZE/2;
-		float YOffset = ChunkSubY*SIZE*50-50*SIZE/2;
+		float XOffset = ChunkSubX*SIZE*50-50*SIZE/2 + MainGame.w/2;
+		float YOffset = ChunkSubY*SIZE*50-50*SIZE/2 + MainGame.h/2;
 		
 		for(int i = 0; i<SIZE;i++)
 			for(int j = 0; j<SIZE;j++)
@@ -52,6 +53,16 @@ public class Chunk {
 		
 		}
 
+	public void renderShadow(SpriteBatch batch, float ChunkSubX, float ChunkSubY){
+		float XOffset = ChunkSubX*SIZE*50-50*SIZE/2 + MainGame.w/2;
+		float YOffset = ChunkSubY*SIZE*50-50*SIZE/2 + MainGame.h/2;
+		
+		for(int i = 0; i<SIZE;i++)
+			for(int j = 0; j<SIZE;j++)
+				if(map[i][j].type==BlockType.Wall)
+					map[i][j].draw(batch, j*50+XOffset, (SIZE-1-i)*50+YOffset);
+	}
+	
 	public void update() {
 
 	}

@@ -15,6 +15,7 @@ import com.youtoolife.labyrinth.controller.KeyBoardController;
 import com.youtoolife.labyrinth.player.Name1Player;
 import com.youtoolife.labyrinth.player.Name2Player;
 import com.youtoolife.labyrinth.player.Player;
+import com.youtoolife.labyrinth.shaders.ShadowRender;
 import com.youtoolife.labyrinth.utils.GameState;
 import com.youtoolife.labyrinth.utils.MazeGenerator;
 import com.youtoolife.labyrinth.utils.StateBasedGame;
@@ -23,17 +24,19 @@ public class GamePlayState extends GameState {
 
 	public static int SIZE = 10;
 
+	ShadowRender shadow;
+	
 	public static Chunk[][] chunks;
-	int xChunk = 1;
-	int yChunk = 1;
+	public int xChunk = 1;
+	public int yChunk = 1;
 
-	float XOffset = 0;
-	float YOffset = 0;
+	public float XOffset = 0;
+	public float YOffset = 0;
 
 	public static Player player1, player2;
 	Controller control1, control2;
 
-	Gui gui;
+	public Gui gui;
 	MiniMap minimap;
 	boolean isMap = false;
 
@@ -44,17 +47,9 @@ public class GamePlayState extends GameState {
 	@Override
 	public void draw(SpriteBatch batch) {
 		if (!isMap) {
-			for (int i = -2; i <= 2; i++)
-				for (int j = -2; j <= 2; j++)
-					if (i + yChunk >= 0 && +yChunk + i < SIZE
-							&& xChunk + j >= 0 && +xChunk + j < SIZE)
-						chunks[i + yChunk][j + xChunk].draw(batch, j + XOffset,
-								i + YOffset);
-			player1.draw(batch, XOffset * 50 * Chunk.SIZE, YOffset * 50
-					* Chunk.SIZE);
-			player2.draw(batch, XOffset * 50 * Chunk.SIZE, YOffset * 50
-					* Chunk.SIZE);
-			gui.draw(batch);
+			batch.end();
+			shadow.render(this);
+			batch.begin();
 		} else
 			minimap.draw(batch);
 	}
@@ -147,6 +142,7 @@ public class GamePlayState extends GameState {
 		minimap.setViewed(positions[0], positions[1]);
 		minimap.setViewed(positions[2], positions[3]);
 		gui = new Gui(player1, player2);
+		shadow = new ShadowRender();
 	}
 
 	@Override

@@ -1,11 +1,14 @@
 package com.youtoolife.labyrinth.player;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.Chunk;
+import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
 import com.youtoolife.labyrinth.controller.Controller;
 import com.youtoolife.labyrinth.controller.Controller.Action;
+import com.youtoolife.labyrinth.shaders.Light;
 import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.utils.AnimatedSprite;
 
@@ -30,8 +33,8 @@ public abstract class Player {
 	}
 
 	public void draw(SpriteBatch batch, float x, float y) {
-		sprite.setPosition(this.x * 50 + xOffset + x - 50*Chunk.SIZE/2, this.y * 50
-				+ yOffset + y - 50*Chunk.SIZE/2);
+		sprite.setPosition(this.x * 50 + xOffset + x - 50*Chunk.SIZE/2 + MainGame.w/2, this.y * 50
+				+ yOffset + y - 50*Chunk.SIZE/2 + MainGame.h/2);
 		sprite.draw(batch);
 	}
 
@@ -106,6 +109,12 @@ public abstract class Player {
 			useAbility();
 	}
 
+	public Light getLight(float xOffset, float yOffset){
+		return new Light(this.x * 50 + xOffset + x - 50*Chunk.SIZE/2 + MainGame.w/2 + 25
+				, this.y * 50 + yOffset + y - 50*Chunk.SIZE/2 + MainGame.h/2 + 25,
+				new Color(1,1,0,1f));
+	}
+	
 	public abstract void useAbility();
 	
 }

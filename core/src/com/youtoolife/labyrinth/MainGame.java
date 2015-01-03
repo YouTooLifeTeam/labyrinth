@@ -19,6 +19,8 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 	public OrthographicCamera camera;
 	private SpriteBatch batch;
 
+	//ShaderProgram shader;
+	
 	public static final int GAMEPLAYSTATE = 1;
 	public static final int MAINMENUSTATE = 2;
 	public static float w = 800;
@@ -40,6 +42,11 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 		this.addState(new GamePlayState(GAMEPLAYSTATE, this));
 		this.enterState(MAINMENUSTATE);
 		this.init();
+		
+		//ShaderProgram.pedantic = false;
+		//shader = new ShaderProgram(Gdx.files.internal("shader/red.vsh"),Gdx.files.internal("shader/emboss.fsh"));
+		//System.out.println(shader.isCompiled()?"Shader compiled":shader.getLog());
+		//batch.setShader(shader);
 	}
 
 	@Override
@@ -52,17 +59,19 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 		super.update();
 		camera.update();
 		local_update();
+		
+		/*shader.begin();
+		//shader.setUniformf("u_distort", MathUtils.random(4),MathUtils.random(4),0);
+		shader.setUniformf("u_resolution", Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+		shader.end();*/
+		
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		this.render(batch);
-		font.setScale(2f);
-		//font.draw(batch,
-			//	"FPS: " + String.valueOf(Gdx.graphics.getFramesPerSecond()),
-				//-w / 2 + 5, h / 2 - 5);
-		font.setScale(1);
+		font.draw(batch, "FPS "+Gdx.graphics.getFramesPerSecond(), -400, 300);
 		batch.end();
 	}
 
