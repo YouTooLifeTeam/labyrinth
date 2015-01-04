@@ -1,6 +1,7 @@
 package com.youtoolife.labyrinth.player;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.youtoolife.labyrinth.controller.Controller;
 import com.youtoolife.labyrinth.utils.AnimatedSprite;
@@ -28,14 +29,18 @@ public class Name2Player extends Player {
 	public void update() {
 		super.update();
 		arrow_cooldown -= Gdx.graphics.getDeltaTime();
-		if(arrow_cooldown<0)
+		if(arrow_cooldown<0){
 			arrow_cooldown = 0;
+			torch_color = new Color(1,0.75f,0,0.6f);
+		}
+			
 	}
 	
 	@Override
 	public void useAbility() {
 		if(arrow_cooldown<=0){
 			arrow_cooldown = COOLDOWN;
+			torch_color = new Color(0.16f,0.72f,0.33f,0.6f);
 		}
 	}
 

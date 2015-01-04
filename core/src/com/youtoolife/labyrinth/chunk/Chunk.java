@@ -3,6 +3,7 @@ package com.youtoolife.labyrinth.chunk;
 import java.util.Vector;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
@@ -11,6 +12,8 @@ import com.youtoolife.labyrinth.events.Event;
 public class Chunk {
 
 	public static final int SIZE = 12;
+
+	private final float CHANCE = 0.1f;
 
 	public enum Exits {
 		SingleExit, DiNeighbour, DiOpposite, TriExit, QuadroExit, NoExit
@@ -51,7 +54,9 @@ public class Chunk {
 		Vector<Event> bufev = new Vector<Event>();
 		for (Event ev : events)
 			bufev.add(ev.copy());
-		return new Chunk(this.type, this.name, buf, bufev);
+		Chunk chunk = new Chunk(this.type, this.name, buf, bufev);
+		chunk.generateBlood();
+		return chunk;
 	}
 
 	public void draw(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {
@@ -64,6 +69,17 @@ public class Chunk {
 					map[i][j].draw(batch, j * 50 + XOffset, (SIZE - 1 - i) * 50
 							+ YOffset);
 
+	}
+
+	public void generateBlood(){
+		
+		for(int i = 2; i < SIZE-1;i++)
+			for(int j = 2; j < SIZE-1;j++){
+				if(map[i][j].type==BlockType.Floor)
+				if(MathUtils.random(1f)<=CHANCE)
+					map[i][j].addRandomBlood();
+			}
+		
 	}
 
 	public void renderShadow(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {
