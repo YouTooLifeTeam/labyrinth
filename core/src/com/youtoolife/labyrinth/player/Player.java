@@ -18,15 +18,15 @@ public abstract class Player {
 	float yOffset = 0;
 
 	public int hp = 4;
-	
+
 	public int ChunkX;
 	public int ChunkY;
 	public int x = 5, y = 5;
 
-	final float moveSpeed = 200; 
-	
-	Color torch_color = new Color(1,0.75f,0,0.6f);
-	
+	final float moveSpeed = 200;
+
+	Color torch_color = new Color(1, 0.75f, 0, 0.6f);
+
 	AnimatedSprite sprite;
 	Controller control;
 
@@ -37,8 +37,9 @@ public abstract class Player {
 	}
 
 	public void draw(SpriteBatch batch, float x, float y) {
-		sprite.setPosition(this.x * 50 + xOffset + x - 50*Chunk.SIZE/2 + MainGame.w/2, this.y * 50
-				+ yOffset + y - 50*Chunk.SIZE/2 + MainGame.h/2);
+		sprite.setPosition(this.x * 50 + xOffset + x - 50 * Chunk.SIZE / 2
+				+ MainGame.w / 2, this.y * 50 + yOffset + y - 50 * Chunk.SIZE
+				/ 2 + MainGame.h / 2);
 		sprite.draw(batch);
 	}
 
@@ -60,22 +61,32 @@ public abstract class Player {
 				yOffset = 0;
 		}
 		Action action = control.getAction();
-		
+
 		if (action != Action.None) {
 			if (xOffset == 0) {
 				int dir = 0;
-				if (action == Action.Left){
+				if (action == Action.Left) {
 					dir = -1;
 					sprite.setAnimStart(4);
 					sprite.setAnimStop(7);
+					if (x + dir >= 0 && x + dir <= Chunk.SIZE - 1)
+						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+								- y][x + dir].stepOnit(
+								GamePlayState.chunks[ChunkY][ChunkX], this, dir, 0);
 				}
-				if (action == Action.Right){
+				if (action == Action.Right) {
 					dir = 1;
 					sprite.setAnimStart(8);
 					sprite.setAnimStop(11);
+					if (x + dir >= 0 && x + dir <= Chunk.SIZE - 1)
+						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+								- y][x + dir].stepOnit(
+								GamePlayState.chunks[ChunkY][ChunkX], this, dir, 0);
 				}
+
 				if (x + dir >= 0 && x + dir <= Chunk.SIZE - 1) {
-					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x + dir].type == BlockType.Floor) {
+					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+							- y][x + dir].type == BlockType.Floor) {
 						x += dir;
 						xOffset = -dir * 50;
 					}
@@ -87,18 +98,27 @@ public abstract class Player {
 			}
 			if (yOffset == 0) {
 				int dir = 0;
-				if (action == Action.Up){
+				if (action == Action.Up) {
 					dir = 1;
 					sprite.setAnimStart(12);
 					sprite.setAnimStop(15);
+					if (y + dir >= 0 && y + dir <= Chunk.SIZE - 1)
+						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+								- (y + dir)][x].stepOnit(
+								GamePlayState.chunks[ChunkY][ChunkX], this, 0, dir);
 				}
-				if (action == Action.Down){
+				if (action == Action.Down) {
 					dir = -1;
 					sprite.setAnimStart(0);
 					sprite.setAnimStop(3);
+					if (y + dir >= 0 && y + dir <= Chunk.SIZE - 1)
+						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+								- (y + dir)][x].stepOnit(
+								GamePlayState.chunks[ChunkY][ChunkX], this, 0, dir);
 				}
 				if (y + dir >= 0 && y + dir <= Chunk.SIZE - 1) {
-					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - (y + dir)][x].type == BlockType.Floor) {
+					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+							- (y + dir)][x].type == BlockType.Floor) {
 						y += dir;
 						yOffset = -dir * 50;
 					}
@@ -109,16 +129,16 @@ public abstract class Player {
 				}
 			}
 		}
-		if(action == Action.SpecAction)
+		if (action == Action.SpecAction)
 			useAbility();
 	}
 
-	public Light getLight(float x, float y){
-		return new Light(this.x * 50 + xOffset + x - 50*Chunk.SIZE/2 + MainGame.w/2 + 25
-				, this.y * 50 + yOffset + y - 50*Chunk.SIZE/2 + MainGame.h/2 + 25,
-				torch_color);
+	public Light getLight(float x, float y) {
+		return new Light(this.x * 50 + xOffset + x - 50 * Chunk.SIZE / 2
+				+ MainGame.w / 2 + 25, this.y * 50 + yOffset + y - 50
+				* Chunk.SIZE / 2 + MainGame.h / 2 + 25, torch_color);
 	}
-	
+
 	public abstract void useAbility();
-	
+
 }

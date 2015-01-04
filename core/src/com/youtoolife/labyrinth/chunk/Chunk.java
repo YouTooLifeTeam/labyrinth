@@ -13,7 +13,7 @@ public class Chunk {
 
 	public static final int SIZE = 12;
 
-	private final float CHANCE = 0.1f;
+	private final float CHANCE = 0.05f;
 
 	public enum Exits {
 		SingleExit, DiNeighbour, DiOpposite, TriExit, QuadroExit, NoExit
@@ -78,6 +78,9 @@ public class Chunk {
 				if(map[i][j].type==BlockType.Floor)
 				if(MathUtils.random(1f)<=CHANCE)
 					map[i][j].addRandomBlood();
+				else
+					if(MathUtils.random(1f)<=CHANCE)
+						map[i][j].addRandomGap();
 			}
 		
 	}
@@ -97,6 +100,9 @@ public class Chunk {
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)
 				map[i][j].update();
+		
+		for(Event e: events)
+			e.check(this);
 	}
 
 }

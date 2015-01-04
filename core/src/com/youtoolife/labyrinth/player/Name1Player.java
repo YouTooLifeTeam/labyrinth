@@ -40,7 +40,7 @@ public class Name1Player extends Player {
 		if(mine_coolDown<=0){
 			mine_coolDown = COOLDOWN;
 			GameObject buf = GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE- y - 1][x];
-			GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE- y - 1][x] = new Mine(buf.type,buf.texture);
+			GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE- y - 1][x] = new Mine(buf.type,buf.texture,x,y);
 		}
 	}
 
