@@ -22,8 +22,9 @@ public class Chunk {
 	public int rotates = 0;
 
 	Vector<Event> events;
-	
-	public Chunk(Exits type, String name, GameObject[][] map, Vector<Event> events) {
+
+	public Chunk(Exits type, String name, GameObject[][] map,
+			Vector<Event> events) {
 		this.name = name;
 		this.type = type;
 		this.map = map;
@@ -48,7 +49,7 @@ public class Chunk {
 			for (int j = 0; j < SIZE; j++)
 				buf[i][j] = map[i][j].copy();
 		Vector<Event> bufev = new Vector<Event>();
-		for(Event ev: events)
+		for (Event ev : events)
 			bufev.add(ev.copy());
 		return new Chunk(this.type, this.name, buf, bufev);
 	}
@@ -59,8 +60,9 @@ public class Chunk {
 
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)
-				map[i][j].draw(batch, j * 50 + XOffset, (SIZE - 1 - i) * 50
-						+ YOffset);
+				if (map[i][j].type != BlockType.Wall)
+					map[i][j].draw(batch, j * 50 + XOffset, (SIZE - 1 - i) * 50
+							+ YOffset);
 
 	}
 

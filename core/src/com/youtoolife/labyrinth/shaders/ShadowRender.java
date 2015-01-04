@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.chunk.Chunk;
@@ -27,11 +28,13 @@ public class ShadowRender {
 			throw new GdxRuntimeException("could not compile shader: "
 					+ prog.getLog());
 		if (prog.getLog().length() != 0)
-			System.out.println("GpuShadows "+ prog.getLog());
+			System.out.println("GpuShadows " + prog.getLog());
 		return prog;
 	}
 
 	private int lightSize = 400;
+	private float deltaSize = 0;
+	private float deltaNeed = 0;
 
 	private float upScale = 1f; // for example; try lightSize=128, upScale=1.5f
 
@@ -62,7 +65,8 @@ public class ShadowRender {
 				Gdx.files.local("bin/shader/shadowMap.frag").readString());
 		shadowRenderShader = createShader(VERT_SRC,
 				Gdx.files.local("bin/shader/shadowRender.frag").readString());
-		blockShader = createShader(Gdx.files.local("bin/shader/passthrough.vert").readString(),
+		blockShader = createShader(
+				Gdx.files.local("bin/shader/passthrough.vert").readString(),
 				Gdx.files.local("bin/shader/blockShader.frag").readString());
 
 		occludersFBO = new FrameBuffer(Format.RGBA8888, lightSize, lightSize,
@@ -83,6 +87,9 @@ public class ShadowRender {
 
 		cam = new OrthographicCamera(MainGame.w, MainGame.h);
 		cam.setToOrtho(false);
+		deltaNeed = MathUtils.random(-30, 30);
+		while (deltaNeed == 0)
+			deltaNeed = MathUtils.random(-30, 30);
 	}
 
 	public void render(GamePlayState game) {
@@ -95,6 +102,7 @@ public class ShadowRender {
 		batch.begin();
 		batch.setColor(1, 1, 1, 1);
 		batch.setShader(blockShader);
+
 		for (int i = -2; i <= 2; i++)
 			for (int j = -2; j <= 2; j++)
 				if (i + game.yChunk >= 0
@@ -103,7 +111,6 @@ public class ShadowRender {
 						&& +game.xChunk + j < GamePlayState.SIZE)
 					GamePlayState.chunks[i + game.yChunk][j + game.xChunk]
 							.draw(batch, j + game.XOffset, i + game.YOffset);
-		game.gui.draw(batch);
 
 		batch.end();
 
@@ -122,6 +129,20 @@ public class ShadowRender {
 					GL20.GL_ONE_MINUS_SRC_ALPHA);
 
 		batch.begin();
+
+		batch.setColor(1, 1, 1, 1);
+		batch.setShader(blockShader);
+		for (int i = -2; i <= 2; i++)
+			for (int j = -2; j <= 2; j++)
+				if (i + game.yChunk >= 0
+						&& +game.yChunk + i < GamePlayState.SIZE
+						&& game.xChunk + j >= 0
+						&& +game.xChunk + j < GamePlayState.SIZE)
+					GamePlayState.chunks[i + game.yChunk][j + game.xChunk]
+							.renderShadow(batch, j + game.XOffset, i
+									+ game.YOffset);
+		game.gui.draw(batch);
+
 		batch.setShader(null); // default shader
 		GamePlayState.player1.draw(batch, game.XOffset * 50 * Chunk.SIZE,
 				game.YOffset * 50 * Chunk.SIZE);
@@ -197,6 +218,16 @@ public class ShadowRender {
 
 		shadowMapFBO.end();
 
+		// dynamic light length
+		boolean isPos = deltaNeed>deltaSize;
+		if(isPos)
+			deltaSize += MathUtils.random(1f);
+		else
+			deltaSize -= MathUtils.random(1f);
+		if(deltaNeed>deltaSize!=isPos)
+			deltaNeed = MathUtils.random(0, 20f);
+		// end of dynamic length
+
 		cam.setToOrtho(false, MainGame.w, MainGame.h);
 		batch.setProjectionMatrix(cam.combined);
 
@@ -205,9 +236,10 @@ public class ShadowRender {
 
 		shadowRenderShader.setUniformf("resolution", lightSize, lightSize);
 		shadowRenderShader.setUniformf("softShadows", softShadows ? 1f : 0f);
+		shadowRenderShader.setUniformf("u_noise", MathUtils.random(.3f) + 1);
 		batch.setColor(o.color);
 
-		float finalSize = lightSize * upScale;
+		float finalSize = lightSize * upScale + deltaSize;
 
 		batch.draw(shadowMap1D.getTexture(), mx - finalSize / 2f, my
 				- finalSize / 2f, finalSize, finalSize);

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Chunk name="empty2o" type="DiOpposite">
+
+	<Eventlist></Eventlist>
+
 	<Block img="wall" type="Wall" x="0" y="0"></Block>
 	<Block img="wall" type="Wall" x="0" y="1"></Block>
 	<Block img="wall" type="Wall" x="0" y="2"></Block>
