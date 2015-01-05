@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.chunk.Chunk;
-import com.youtoolife.labyrinth.events.Event;
 import com.youtoolife.labyrinth.events.Explosion;
 import com.youtoolife.labyrinth.player.Player;
 import com.youtoolife.labyrinth.utils.Assets;
@@ -14,8 +13,6 @@ public class Mine extends GameObject {
 	Texture mine;
 	boolean isActive = false;
 	float activating = 5f;
-
-	Event explosion;
 
 	public Mine(BlockType type, Texture texture, int x, int y) {
 		super(type, texture);

@@ -3,7 +3,9 @@ package com.youtoolife.labyrinth.player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.controller.Controller;
+import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.utils.AnimatedSprite;
 import com.youtoolife.labyrinth.utils.Assets;
 
@@ -21,6 +23,8 @@ public class Name2Player extends Player {
 		sprite.setAnimStart(0);
 		sprite.setAnimStop(3);
 		x = 6;
+		GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+			         								- y][x].here = this;
 	}
 
 

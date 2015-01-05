@@ -20,11 +20,13 @@ public class Name1Player extends Player {
 		super(ChunkX, ChunkY, control);
 		sprite = new AnimatedSprite(0, 0, 50, 50, new Sprite(
 				Assets.getTexture("player2")), 0);
-		sprite.setPreferedDelta(50/moveSpeed/4);
+		sprite.setPreferedDelta(50/moveSpeed/3);
 		sprite.setAnimStart(0);
 		sprite.setAnimStop(3);
 		hp = 3;
 		torch_color = new Color(0.8f,0.7f,0,0.6f);
+		GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+			         								- y][x].here = this;
 	}
 
 	@Override

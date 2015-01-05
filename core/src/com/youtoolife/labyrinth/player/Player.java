@@ -8,11 +8,12 @@ import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
 import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.controller.Controller;
 import com.youtoolife.labyrinth.controller.Controller.Action;
+import com.youtoolife.labyrinth.mob.Unit;
 import com.youtoolife.labyrinth.shaders.Light;
 import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.utils.AnimatedSprite;
 
-public abstract class Player {
+public abstract class Player implements Unit {
 
 	float xOffset = 0;
 	float yOffset = 0;
@@ -63,74 +64,76 @@ public abstract class Player {
 		Action action = control.getAction();
 
 		if (action != Action.None) {
+
+			int dirx = 0;
+			int diry = 0;
+			boolean isMove = false;
 			if (xOffset == 0) {
-				int dir = 0;
 				if (action == Action.Left) {
-					dir = -1;
+					dirx = -1;
 					sprite.setAnimStart(4);
 					sprite.setAnimStop(7);
-					if (x + dir >= 0 && x + dir <= Chunk.SIZE - 1)
-						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
-								- y][x + dir].stepOnit(
-								GamePlayState.chunks[ChunkY][ChunkX], this, dir, 0);
+					isMove = true;
 				}
 				if (action == Action.Right) {
-					dir = 1;
+					dirx = 1;
 					sprite.setAnimStart(8);
 					sprite.setAnimStop(11);
-					if (x + dir >= 0 && x + dir <= Chunk.SIZE - 1)
-						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
-								- y][x + dir].stepOnit(
-								GamePlayState.chunks[ChunkY][ChunkX], this, dir, 0);
-				}
-
-				if (x + dir >= 0 && x + dir <= Chunk.SIZE - 1) {
-					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
-							- y][x + dir].type == BlockType.Floor) {
-						x += dir;
-						xOffset = -dir * 50;
-					}
-				} else {
-					ChunkX += dir;
-					x = Chunk.SIZE - 1 - x;
-					xOffset = -dir * 50;
+					isMove = true;
 				}
 			}
 			if (yOffset == 0) {
-				int dir = 0;
 				if (action == Action.Up) {
-					dir = 1;
+					diry = 1;
 					sprite.setAnimStart(12);
 					sprite.setAnimStop(15);
-					if (y + dir >= 0 && y + dir <= Chunk.SIZE - 1)
-						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
-								- (y + dir)][x].stepOnit(
-								GamePlayState.chunks[ChunkY][ChunkX], this, 0, dir);
+					isMove = true;
 				}
 				if (action == Action.Down) {
-					dir = -1;
+					diry = -1;
 					sprite.setAnimStart(0);
 					sprite.setAnimStop(3);
-					if (y + dir >= 0 && y + dir <= Chunk.SIZE - 1)
-						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
-								- (y + dir)][x].stepOnit(
-								GamePlayState.chunks[ChunkY][ChunkX], this, 0, dir);
-				}
-				if (y + dir >= 0 && y + dir <= Chunk.SIZE - 1) {
-					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
-							- (y + dir)][x].type == BlockType.Floor) {
-						y += dir;
-						yOffset = -dir * 50;
-					}
-				} else {
-					ChunkY += dir;
-					y = Chunk.SIZE - 1 - y;
-					yOffset = -dir * 50;
+					isMove = true;
 				}
 			}
+			if (isMove) {
+				if (x + dirx >= 0 && x + dirx <= Chunk.SIZE - 1
+						&& y + diry >= 0 && y + diry <= Chunk.SIZE - 1)
+					GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+							- (y + diry)][x + dirx].stepOnit(
+							GamePlayState.chunks[ChunkY][ChunkX], this, dirx,
+							diry);
+
+				if (x + dirx >= 0 && x + dirx <= Chunk.SIZE - 1
+						&& y + diry >= 0 && y + diry <= Chunk.SIZE - 1) {
+					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+							- (y + diry)][x + dirx].type == BlockType.Floor
+							&& GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE
+									- 1 - (y + diry)][x + dirx].here == null) {
+						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+								- y][x].here = null;
+						x += dirx;
+						xOffset += -dirx * 50;
+						y += diry;
+						yOffset += -diry * 50;
+						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+								- y][x].here = this;
+					}
+				} else {
+					GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = null;
+					ChunkX += dirx;
+					x = Chunk.SIZE - 1 - x;
+					xOffset += -dirx * 50;
+					ChunkY += diry;
+					y = Chunk.SIZE - 1 - y;
+					yOffset += -diry * 50;
+					GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = this;
+				}
+			} else {
+				if (action == Action.SpecAction)
+					useAbility();
+			}
 		}
-		if (action == Action.SpecAction)
-			useAbility();
 	}
 
 	public Light getLight(float x, float y) {

@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.youtoolife.labyrinth.chunk.Chunk;
+import com.youtoolife.labyrinth.events.Event;
+import com.youtoolife.labyrinth.mob.Unit;
 import com.youtoolife.labyrinth.player.Player;
 import com.youtoolife.labyrinth.utils.Assets;
 
@@ -17,6 +19,10 @@ public class GameObject {
 
 	public Color color = Color.WHITE;
 
+	Event explosion;
+	
+	public Unit here = null;
+	
 	public enum BlockType {
 		Wall, Floor
 	}
