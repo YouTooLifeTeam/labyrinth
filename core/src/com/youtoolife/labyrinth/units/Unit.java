@@ -1,22 +1,18 @@
-package com.youtoolife.labyrinth.player;
+package com.youtoolife.labyrinth.units;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.MainGame;
-import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
 import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.controller.Controller;
 import com.youtoolife.labyrinth.controller.Controller.Action;
-import com.youtoolife.labyrinth.mob.Unit;
-import com.youtoolife.labyrinth.shaders.Light;
 import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.utils.AnimatedSprite;
 
-public abstract class Player implements Unit {
+public abstract class Unit {
 
-	float xOffset = 0;
-	float yOffset = 0;
+	public float xOffset = 0;
+	public float yOffset = 0;
 
 	public int hp = 4;
 
@@ -24,14 +20,12 @@ public abstract class Player implements Unit {
 	public int ChunkY;
 	public int x = 5, y = 5;
 
-	final float moveSpeed = 200;
-
-	Color torch_color = new Color(1, 0.75f, 0, 0.6f);
+	float moveSpeed = 200;
 
 	AnimatedSprite sprite;
 	Controller control;
 
-	public Player(int ChunkX, int ChunkY, Controller control) {
+	public Unit(int ChunkX, int ChunkY, Controller control) {
 		this.ChunkX = ChunkX;
 		this.ChunkY = ChunkY;
 		this.control = control;
@@ -107,7 +101,7 @@ public abstract class Player implements Unit {
 				if (x + dirx >= 0 && x + dirx <= Chunk.SIZE - 1
 						&& y + diry >= 0 && y + diry <= Chunk.SIZE - 1) {
 					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
-							- (y + diry)][x + dirx].type == BlockType.Floor
+							- (y + diry)][x + dirx].canStep()
 							&& GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE
 									- 1 - (y + diry)][x + dirx].here == null) {
 						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
@@ -134,12 +128,6 @@ public abstract class Player implements Unit {
 					useAbility();
 			}
 		}
-	}
-
-	public Light getLight(float x, float y) {
-		return new Light(this.x * 50 + xOffset + x - 50 * Chunk.SIZE / 2
-				+ MainGame.w / 2 + 25, this.y * 50 + yOffset + y - 50
-				* Chunk.SIZE / 2 + MainGame.h / 2 + 25, torch_color);
 	}
 
 	public abstract void useAbility();

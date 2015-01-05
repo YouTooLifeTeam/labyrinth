@@ -1,4 +1,4 @@
-package com.youtoolife.labyrinth.player;
+package com.youtoolife.labyrinth.units;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

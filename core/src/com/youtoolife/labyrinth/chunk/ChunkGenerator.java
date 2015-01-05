@@ -67,7 +67,7 @@ public class ChunkGenerator {
 					.getAttribute("y"))][Integer.valueOf(block.getAttribute("x"))] = buf_block;
 		}
 
-		Vector<Event> events = EventsResolver.getEvents(chunk.getElementsByTagName("Eventlist").item(0));
+		Vector<Event> events = EventsResolver.getEvents((Element) chunk.getElementsByTagName("Eventlist").item(0));
 		Chunk buf = new Chunk(type, name, map,events);
 		chunks.add(buf);
 	}

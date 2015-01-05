@@ -8,6 +8,8 @@ import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
 import com.youtoolife.labyrinth.events.Event;
+import com.youtoolife.labyrinth.states.GamePlayState;
+import com.youtoolife.labyrinth.units.Mob;
 
 public class Chunk {
 
@@ -24,7 +26,8 @@ public class Chunk {
 	public GameObject[][] map = new GameObject[SIZE][SIZE];
 	public int rotates = 0;
 
-	Vector<Event> events;
+	public Vector<Mob> mobs;
+	public Vector<Event> events;
 
 	public Chunk(Exits type, String name, GameObject[][] map,
 			Vector<Event> events) {
@@ -32,6 +35,7 @@ public class Chunk {
 		this.type = type;
 		this.map = map;
 		this.events = events;
+		mobs = new Vector<Mob>();
 	}
 
 	public void rotateClockwise(int times) {
@@ -42,6 +46,8 @@ public class Chunk {
 					buf[i][j] = map[SIZE - 1 - j][i];
 			map = buf;
 			buf = new GameObject[SIZE][SIZE];
+			for(Event e: events)
+				e.rotateClockwise();
 		}
 		rotates += times;
 	}
@@ -71,6 +77,21 @@ public class Chunk {
 
 	}
 
+	public void renderShadow(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {
+		float XOffset = ChunkSubX * SIZE * 50 - 50 * SIZE / 2 + MainGame.w / 2;
+		float YOffset = ChunkSubY * SIZE * 50 - 50 * SIZE / 2 + MainGame.h / 2;
+
+		for (int i = 0; i < SIZE; i++)
+			for (int j = 0; j < SIZE; j++)
+				if (map[i][j].type == BlockType.Wall)
+					map[i][j].draw(batch, j * 50 + XOffset, (SIZE - 1 - i) * 50
+							+ YOffset);
+		
+		for(Mob m: mobs)
+			m.draw(batch, ChunkSubX*50*SIZE, ChunkSubY*50*SIZE);
+		
+	}
+	
 	public void generateBlood(){
 		
 		for(int i = 2; i < SIZE-1;i++)
@@ -85,17 +106,6 @@ public class Chunk {
 		
 	}
 
-	public void renderShadow(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {
-		float XOffset = ChunkSubX * SIZE * 50 - 50 * SIZE / 2 + MainGame.w / 2;
-		float YOffset = ChunkSubY * SIZE * 50 - 50 * SIZE / 2 + MainGame.h / 2;
-
-		for (int i = 0; i < SIZE; i++)
-			for (int j = 0; j < SIZE; j++)
-				if (map[i][j].type == BlockType.Wall)
-					map[i][j].draw(batch, j * 50 + XOffset, (SIZE - 1 - i) * 50
-							+ YOffset);
-	}
-
 	public void update() {
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)
@@ -103,6 +113,9 @@ public class Chunk {
 		
 		for(Event e: events)
 			e.check(this);
+		
+		for(Mob m: mobs)
+			m.update(this, GamePlayState.player1, GamePlayState.player2);
 	}
 
 }

@@ -3,9 +3,9 @@ package com.youtoolife.labyrinth;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.youtoolife.labyrinth.player.Name1Player;
-import com.youtoolife.labyrinth.player.Name2Player;
-import com.youtoolife.labyrinth.player.Player;
+import com.youtoolife.labyrinth.units.Name1Player;
+import com.youtoolife.labyrinth.units.Name2Player;
+import com.youtoolife.labyrinth.units.Player;
 import com.youtoolife.labyrinth.utils.Assets;
 
 public class Gui {

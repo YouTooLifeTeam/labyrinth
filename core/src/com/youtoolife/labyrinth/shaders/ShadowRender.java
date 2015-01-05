@@ -17,8 +17,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.chunk.Chunk;
-import com.youtoolife.labyrinth.player.Player;
 import com.youtoolife.labyrinth.states.GamePlayState;
+import com.youtoolife.labyrinth.units.Player;
 
 public class ShadowRender {
 
@@ -36,7 +36,7 @@ public class ShadowRender {
 	private float deltaSize = 0;
 	private float deltaNeed = 0;
 
-	private float upScale = 1f; // for example; try lightSize=128, upScale=1.5f
+	private float upScale = 1f;
 
 	SpriteBatch batch;
 	OrthographicCamera cam;

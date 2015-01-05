@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.events.Explosion;
-import com.youtoolife.labyrinth.player.Player;
+import com.youtoolife.labyrinth.units.Unit;
 import com.youtoolife.labyrinth.utils.Assets;
 
 public class Mine extends GameObject {
@@ -17,7 +17,7 @@ public class Mine extends GameObject {
 	public Mine(BlockType type, Texture texture, int x, int y) {
 		super(type, texture);
 		mine = Assets.getTexture("mine");
-		explosion = new Explosion(x, y, 1);
+		event = new Explosion(x, y, 1);
 	}
 
 	@Override
@@ -32,9 +32,9 @@ public class Mine extends GameObject {
 	}
 
 	@Override
-	public void stepOnit(Chunk chunk, Player player, int dx, int dy) {
+	public void stepOnit(Chunk chunk, Unit player, int dx, int dy) {
 		if (isActive)
-			explosion.invoke(chunk, player, dx, dy);
+			event.invoke(chunk, player, dx, dy);
 	}
 
 	@Override

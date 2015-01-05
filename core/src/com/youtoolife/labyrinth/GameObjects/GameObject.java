@@ -11,15 +11,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.events.Event;
-import com.youtoolife.labyrinth.mob.Unit;
-import com.youtoolife.labyrinth.player.Player;
+import com.youtoolife.labyrinth.units.Unit;
 import com.youtoolife.labyrinth.utils.Assets;
 
 public class GameObject {
 
 	public Color color = Color.WHITE;
 
-	Event explosion;
+	Event event;
 	
 	public Unit here = null;
 	
@@ -48,6 +47,12 @@ public class GameObject {
 		}
 	}
 
+	public boolean canStep(){
+		if(type == BlockType.Floor)
+			return true;
+		return false;
+	}
+	
 	public void update() {
 	}
 
@@ -61,8 +66,8 @@ public class GameObject {
 		return new GameObject(type, texture);
 	}
 
-	public void stepOnit(Chunk chunk , Player player, int dx, int dy){
-		
+	public void stepOnit(Chunk chunk , Unit player, int dx, int dy){
+
 	}
 	
 	public void addRandomBlood() {

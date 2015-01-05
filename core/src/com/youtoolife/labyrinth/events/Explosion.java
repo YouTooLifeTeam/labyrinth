@@ -2,7 +2,7 @@ package com.youtoolife.labyrinth.events;
 
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.chunk.Chunk;
-import com.youtoolife.labyrinth.player.Player;
+import com.youtoolife.labyrinth.units.Unit;
 
 public class Explosion extends Event {
 
@@ -16,7 +16,7 @@ public class Explosion extends Event {
 	}
 
 	@Override
-	public void invoke(Chunk chunk, Player invoker, int dx, int dy) {
+	public void invoke(Chunk chunk, Unit invoker, int dx, int dy) {
 		invoker.hp -= damage;
 		GameObject buf = chunk.map[Chunk.SIZE - 1 - invoker.y - dy][invoker.x+ dx]
 				.copy();
@@ -33,6 +33,12 @@ public class Explosion extends Event {
 	@Override
 	public void check(Chunk chunk) {
 
+	}
+
+	@Override
+	public void rotateClockwise() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

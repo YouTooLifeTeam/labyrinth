@@ -1,8 +1,11 @@
 <Chunk name="empty3" type="TriExit">
 <Block img="wall" type="Wall" x="0" y="0"></Block>
 
-	<Eventlist></Eventlist>
+	<Eventlist>
+		<Event type="Spawn" x="5" y="5" mob="Sad" destX="1" destY="1"></Event>
+	</Eventlist>
 
+	<Block img="wall" type="Wall" x="0" y="0"></Block>
 	<Block img="wall" type="Wall" x="0" y="1"></Block>
 	<Block img="wall" type="Wall" x="0" y="2"></Block>
 	<Block img="wall" type="Wall" x="0" y="3"></Block>
@@ -17,7 +20,7 @@
 	
 	
 	<Block img="wall" type="Wall" x="1" y="0"></Block>
-	<Block img="floor" type="Floor" x="1" y="1"></Block>
+	<Block img="button" type="Floor" x="1" y="1"></Block>
 	<Block img="floor" type="Floor" x="1" y="2"></Block>
 	<Block img="floor" type="Floor" x="1" y="3"></Block>
 	<Block img="floor" type="Floor" x="1" y="4"></Block>
@@ -73,7 +76,7 @@
 	<Block img="floor" type="Floor" x="5" y="2"></Block>
 	<Block img="floor" type="Floor" x="5" y="3"></Block>
 	<Block img="floor" type="Floor" x="5" y="4"></Block>
-	<Block img="floor" type="Floor" x="5" y="5"></Block>
+	<Block img="button" type="Floor" x="5" y="5"></Block>
 	<Block img="floor" type="Floor" x="5" y="6"></Block>
 	<Block img="floor" type="Floor" x="5" y="7"></Block>
 	<Block img="floor" type="Floor" x="5" y="8"></Block>
