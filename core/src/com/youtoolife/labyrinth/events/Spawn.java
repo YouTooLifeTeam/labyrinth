@@ -42,23 +42,30 @@ public class Spawn extends Event {
 
 		if (rotations % 2 == 0) {
 			Player p = GamePlayState.player1;
-			if (p.x == x && (Chunk.SIZE - 1 - p.y) == y) {
+			if (p.x == x && (Chunk.SIZE - 1 - p.y) == y)
 				invoke(chunk, p, 0, 0);
-				return;
-			}
+
 			p = GamePlayState.player2;
-			if (p.x == x && (Chunk.SIZE - 1 - p.y) == y) {
+			if (p.x == x && (Chunk.SIZE - 1 - p.y) == y)
 				invoke(chunk, p, 0, 0);
+
+			for (int i = 0; i < chunk.mobs.size(); i++) {
+				Mob m = chunk.mobs.get(i);
+				if (m.x == x && (Chunk.SIZE - 1 - m.y) == y)
+					invoke(chunk, m, 0, 0);
 			}
-		}else{
+		} else {
 			Player p = GamePlayState.player1;
-			if (Chunk.SIZE - 1 - p.x == x && p.y == y) {
+			if (Chunk.SIZE - 1 - p.x == x && p.y == y)
 				invoke(chunk, p, 0, 0);
-				return;
-			}
 			p = GamePlayState.player2;
-			if (Chunk.SIZE - 1 - p.x == x && p.y == y) {
+			if (Chunk.SIZE - 1 - p.x == x && p.y == y)
 				invoke(chunk, p, 0, 0);
+
+			for (int i = 0; i < chunk.mobs.size(); i++) {
+				Mob m = chunk.mobs.get(i);
+				if (Chunk.SIZE - 1 - m.x == x && m.y == y)
+					invoke(chunk, m, 0, 0);
 			}
 		}
 	}
@@ -66,15 +73,15 @@ public class Spawn extends Event {
 	@Override
 	public void invoke(Chunk chunk, Unit invoker, int dx, int dy) {
 		if (respawning <= 0) {
-			
+
 			int ddx = destX;
 			int ddy = destY;
-			
+
 			if (rotations % 2 == 0)
 				ddy = Chunk.SIZE - 1 - ddy;
 			else
 				ddx = Chunk.SIZE - 1 - ddx;
-				
+
 			Mob buf = null;
 			if (mob.equals("Sad"))
 				buf = new SadMob(invoker.ChunkX, invoker.ChunkY,

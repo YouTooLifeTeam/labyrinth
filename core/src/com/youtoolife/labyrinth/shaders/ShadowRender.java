@@ -110,7 +110,7 @@ public class ShadowRender {
 						&& game.xChunk + j >= 0
 						&& +game.xChunk + j < GamePlayState.SIZE)
 					GamePlayState.chunks[i + game.yChunk][j + game.xChunk]
-							.draw(batch, j + game.XOffset, i + game.YOffset);
+							.renderAll(batch, j + game.XOffset, i + game.YOffset);
 
 		batch.end();
 
@@ -139,7 +139,7 @@ public class ShadowRender {
 						&& game.xChunk + j >= 0
 						&& +game.xChunk + j < GamePlayState.SIZE)
 					GamePlayState.chunks[i + game.yChunk][j + game.xChunk]
-							.renderShadow(batch, j + game.XOffset, i
+							.renderWalls(batch, j + game.XOffset, i
 									+ game.YOffset);
 		game.gui.draw(batch);
 
@@ -184,7 +184,7 @@ public class ShadowRender {
 						&& game.xChunk + j >= 0
 						&& +game.xChunk + j < GamePlayState.SIZE)
 					GamePlayState.chunks[i + game.yChunk][j + game.xChunk]
-							.renderShadow(batch, j + game.XOffset, i
+							.renderWalls(batch, j + game.XOffset, i
 									+ game.YOffset);
 
 		if (exclude != GamePlayState.player1)

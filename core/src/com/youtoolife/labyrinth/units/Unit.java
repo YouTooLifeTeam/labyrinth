@@ -116,10 +116,10 @@ public abstract class Unit {
 				} else {
 					GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = null;
 					ChunkX += dirx;
-					x = Chunk.SIZE - 1 - x;
+					x = dirx==0?x:Chunk.SIZE - 1 - x;
 					xOffset += -dirx * 50;
 					ChunkY += diry;
-					y = Chunk.SIZE - 1 - y;
+					y = diry==0?y:Chunk.SIZE - 1 - y;
 					yOffset += -diry * 50;
 					GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = this;
 				}

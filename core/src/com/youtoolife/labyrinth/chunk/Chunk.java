@@ -65,7 +65,7 @@ public class Chunk {
 		return chunk;
 	}
 
-	public void draw(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {
+	public void renderAll(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {
 		float XOffset = ChunkSubX * SIZE * 50 - 50 * SIZE / 2 + MainGame.w / 2;
 		float YOffset = ChunkSubY * SIZE * 50 - 50 * SIZE / 2 + MainGame.h / 2;
 
@@ -77,7 +77,7 @@ public class Chunk {
 
 	}
 
-	public void renderShadow(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {
+	public void renderWalls(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {
 		float XOffset = ChunkSubX * SIZE * 50 - 50 * SIZE / 2 + MainGame.w / 2;
 		float YOffset = ChunkSubY * SIZE * 50 - 50 * SIZE / 2 + MainGame.h / 2;
 
@@ -106,6 +106,13 @@ public class Chunk {
 		
 	}
 
+	public void exit(){
+		for (int i = 0; i < SIZE; i++)
+			for (int j = 0; j < SIZE; j++)
+				map[i][j].here = null;
+		mobs = new Vector<Mob>();
+	}
+	
 	public void update() {
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)
