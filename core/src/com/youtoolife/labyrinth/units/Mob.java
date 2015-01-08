@@ -15,9 +15,9 @@ public abstract class Mob extends Unit{
 		this.y = y;
 	}
 	
-	public void update(Chunk chunk, Player player1, Player player2){
+	public void update(Chunk chunk){
 		super.update();
-		control.update(chunk, player1, player2);
+		control.update(chunk, this);
 	}
 	
 }

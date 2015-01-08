@@ -48,7 +48,7 @@ public class GameObject {
 	}
 
 	public boolean canStep(){
-		if(type == BlockType.Floor)
+		if(type == BlockType.Floor&&here==null)
 			return true;
 		return false;
 	}

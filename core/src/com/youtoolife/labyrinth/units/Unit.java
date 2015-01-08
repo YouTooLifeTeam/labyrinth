@@ -101,9 +101,7 @@ public abstract class Unit {
 				if (x + dirx >= 0 && x + dirx <= Chunk.SIZE - 1
 						&& y + diry >= 0 && y + diry <= Chunk.SIZE - 1) {
 					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
-							- (y + diry)][x + dirx].canStep()
-							&& GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE
-									- 1 - (y + diry)][x + dirx].here == null) {
+							- (y + diry)][x + dirx].canStep()) {
 						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
 								- y][x].here = null;
 						x += dirx;

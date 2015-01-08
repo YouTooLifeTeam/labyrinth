@@ -8,7 +8,6 @@ import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
 import com.youtoolife.labyrinth.events.Event;
-import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.units.Mob;
 
 public class Chunk {
@@ -122,7 +121,7 @@ public class Chunk {
 			e.check(this);
 		
 		for(Mob m: mobs)
-			m.update(this, GamePlayState.player1, GamePlayState.player2);
+			m.update(this);
 	}
 
 }

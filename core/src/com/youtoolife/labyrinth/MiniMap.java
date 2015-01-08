@@ -1,5 +1,9 @@
 package com.youtoolife.labyrinth;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.controllers.Controllers;
+import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -13,6 +17,8 @@ public class MiniMap {
 
 	Texture[] room = new Texture[6];// 0 - wall;1-exit;2o - exit; 3 - 3exitl 4 -
 									// 4 exit, 5 - 2b - exit
+
+	float dx = 0, dy = 0;
 
 	public MiniMap(int SIZE) {
 		map = new boolean[SIZE][SIZE];
@@ -32,13 +38,12 @@ public class MiniMap {
 	}
 
 	public void draw(SpriteBatch batch) {
-		float chunk_size = 500 / GamePlayState.SIZE;
 		for (int i = 0; i < GamePlayState.SIZE; i++)
 			for (int j = 0; j < GamePlayState.SIZE; j++)
 				if (map[i][j]) {
 					TextureRegion texture = new TextureRegion(room[0]);
 					if (GamePlayState.chunks[i][j].type == Exits.SingleExit)
-						texture = new TextureRegion(room[1]); 
+						texture = new TextureRegion(room[1]);
 					if (GamePlayState.chunks[i][j].type == Exits.DiOpposite)
 						texture = new TextureRegion(room[2]);
 					if (GamePlayState.chunks[i][j].type == Exits.TriExit)
@@ -47,13 +52,52 @@ public class MiniMap {
 						texture = new TextureRegion(room[4]);
 					if (GamePlayState.chunks[i][j].type == Exits.DiNeighbour)
 						texture = new TextureRegion(room[5]);
-					batch.draw(texture, j * chunk_size - GamePlayState.SIZE
-							* chunk_size / 2, i * chunk_size  
-							- GamePlayState.SIZE * chunk_size / 2,
-							chunk_size / 2, chunk_size / 2, chunk_size,
-							chunk_size, 1, 1, -90
+					batch.draw(texture, j * 50 - GamePlayState.SIZE * 50 + dx,
+							i * 50 - GamePlayState.SIZE * 50 / 2 + dy, 50 / 2,
+							50 / 2, 50, 50, 1, 1, -90
 									* GamePlayState.chunks[i][j].rotates);
-				 }
+				}
+	}
+
+	public void update() {
+		if(Gdx.input.isKeyPressed(Input.Keys.UP))
+			dy-=Gdx.graphics.getDeltaTime()*500;
+		if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
+			dy+=Gdx.graphics.getDeltaTime()*500;
+		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+			dx-=Gdx.graphics.getDeltaTime()*500;
+		if(Gdx.input.isKeyPressed(Input.Keys.LEFT))
+			dx+=Gdx.graphics.getDeltaTime()*500;
+		
+		for (com.badlogic.gdx.controllers.Controller c : Controllers
+				.getControllers()){
+			if (c.getPov(0)==PovDirection.north)
+				dy-=Gdx.graphics.getDeltaTime()*500;
+			if (c.getPov(0)==PovDirection.south)
+				dy+=Gdx.graphics.getDeltaTime()*500;
+			if (c.getPov(0)==PovDirection.east)
+				dx-=Gdx.graphics.getDeltaTime()*500;
+			if (c.getPov(0)==PovDirection.west)
+				dx+=Gdx.graphics.getDeltaTime()*500;
+			
+			if (c.getPov(0)==PovDirection.northEast){
+				dy-=Gdx.graphics.getDeltaTime()*500;
+				dx-=Gdx.graphics.getDeltaTime()*500;
+			}
+			if (c.getPov(0)==PovDirection.southEast){
+				dy+=Gdx.graphics.getDeltaTime()*500;
+				dx-=Gdx.graphics.getDeltaTime()*500;
+			}
+			if (c.getPov(0)==PovDirection.northWest){
+				dy-=Gdx.graphics.getDeltaTime()*500;
+				dx+=Gdx.graphics.getDeltaTime()*500;
+			}
+			if (c.getPov(0)==PovDirection.southWest){
+				dy+=Gdx.graphics.getDeltaTime()*500;
+				dx+=Gdx.graphics.getDeltaTime()*500;
+			}
+			
+		}
 	}
 
 }

@@ -58,70 +58,74 @@ public class GamePlayState extends GameState {
 
 	@Override
 	public void update(StateBasedGame game) {
-		control1.update();
-		control2.update();
-		player1.update();
-		player2.update();
-		if (xChunk != player1.ChunkX) {
-			chunks[yChunk][xChunk].exit();
-			XOffset = player1.ChunkX - xChunk;
-			xChunk = player1.ChunkX;
-			player2.ChunkX = player1.ChunkX;
-			player2.x = player1.x;
-			player2.y = Chunk.SIZE - player1.y - 1;
-			chunks[player2.ChunkY][player2.ChunkX].map[Chunk.SIZE - 1
-					- player2.y][player2.x].here = player2;
+
+		if (isMap) {
+			minimap.update();
+		} else {
+			control1.update();
+			control2.update();
+			player1.update();
+			player2.update();
+			if (xChunk != player1.ChunkX) {
+				chunks[yChunk][xChunk].exit();
+				XOffset = player1.ChunkX - xChunk;
+				xChunk = player1.ChunkX;
+				player2.ChunkX = player1.ChunkX;
+				player2.x = player1.x;
+				player2.y = Chunk.SIZE - player1.y - 1;
+				chunks[player2.ChunkY][player2.ChunkX].map[Chunk.SIZE - 1
+						- player2.y][player2.x].here = player2;
+			}
+			if (yChunk != player1.ChunkY) {
+				chunks[yChunk][xChunk].exit();
+				YOffset = player1.ChunkY - yChunk;
+				yChunk = player1.ChunkY;
+				player2.ChunkY = player1.ChunkY;
+				player2.y = player1.y;
+				player2.x = Chunk.SIZE - player1.x - 1;
+				chunks[player2.ChunkY][player2.ChunkX].map[Chunk.SIZE - 1
+						- player2.y][player2.x].here = player2;
+			}
+
+			if (xChunk != player2.ChunkX) {
+				chunks[yChunk][xChunk].exit();
+				XOffset = player2.ChunkX - xChunk;
+				xChunk = player2.ChunkX;
+				player1.ChunkX = player2.ChunkX;
+				player1.x = player2.x;
+				player1.y = Chunk.SIZE - player2.y - 1;
+				chunks[player1.ChunkY][player1.ChunkX].map[Chunk.SIZE - 1
+						- player1.y][player1.x].here = player1;
+			}
+			if (yChunk != player2.ChunkY) {
+				chunks[yChunk][xChunk].exit();
+				YOffset = player2.ChunkY - yChunk;
+				yChunk = player2.ChunkY;
+				player1.ChunkY = player2.ChunkY;
+				player1.y = player2.y;
+				player1.x = Chunk.SIZE - player2.x - 1;
+				chunks[player1.ChunkY][player1.ChunkX].map[Chunk.SIZE - 1
+						- player1.y][player1.x].here = player1;
+			}
+			minimap.setViewed(xChunk, yChunk);
+
+			if ((XOffset != 0) || (YOffset != 0)) {
+				int speedX = XOffset < 0 ? 1 : -1;
+				speedX = XOffset == 0 ? 0 : speedX;
+				int speedY = YOffset < 0 ? 1 : -1;
+				speedY = YOffset == 0 ? 0 : speedY;
+
+				XOffset += speedX * Gdx.graphics.getDeltaTime();
+				YOffset += speedY * Gdx.graphics.getDeltaTime();
+
+				if (XOffset * speedX > 0)
+					XOffset = 0;
+				if (YOffset * speedY > 0)
+					YOffset = 0;
+			}
+
+			chunks[yChunk][xChunk].update();
 		}
-		if (yChunk != player1.ChunkY) {
-			chunks[yChunk][xChunk].exit();
-			YOffset = player1.ChunkY - yChunk;
-			yChunk = player1.ChunkY;
-			player2.ChunkY = player1.ChunkY;
-			player2.y = player1.y;
-			player2.x = Chunk.SIZE - player1.x - 1;
-			chunks[player2.ChunkY][player2.ChunkX].map[Chunk.SIZE - 1
-					- player2.y][player2.x].here = player2;
-		}
-
-		if (xChunk != player2.ChunkX) {
-			chunks[yChunk][xChunk].exit();
-			XOffset = player2.ChunkX - xChunk;
-			xChunk = player2.ChunkX;
-			player1.ChunkX = player2.ChunkX;
-			player1.x = player2.x;
-			player1.y = Chunk.SIZE - player2.y - 1;
-			chunks[player1.ChunkY][player1.ChunkX].map[Chunk.SIZE - 1
-					- player1.y][player1.x].here = player1;
-		}
-		if (yChunk != player2.ChunkY) {
-			chunks[yChunk][xChunk].exit();
-			YOffset = player2.ChunkY - yChunk;
-			yChunk = player2.ChunkY;
-			player1.ChunkY = player2.ChunkY;
-			player1.y = player2.y;
-			player1.x = Chunk.SIZE - player2.x - 1;
-			chunks[player1.ChunkY][player1.ChunkX].map[Chunk.SIZE - 1
-					- player1.y][player1.x].here = player1;
-		}
-		minimap.setViewed(xChunk, yChunk);
-
-		if ((XOffset != 0) || (YOffset != 0)) {
-			int speedX = XOffset < 0 ? 1 : -1;
-			speedX = XOffset == 0 ? 0 : speedX;
-			int speedY = YOffset < 0 ? 1 : -1;
-			speedY = YOffset == 0 ? 0 : speedY;
-
-			XOffset += speedX * Gdx.graphics.getDeltaTime();
-			YOffset += speedY * Gdx.graphics.getDeltaTime();
-
-			if (XOffset * speedX > 0)
-				XOffset = 0;
-			if (YOffset * speedY > 0)
-				YOffset = 0;
-		}
-
-		chunks[yChunk][xChunk].update();
-
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			game.enterState(MAINMENUSTATE);
 		}
