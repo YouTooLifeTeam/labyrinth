@@ -54,7 +54,7 @@ public class IIController extends Controller {
 					a = Action.Down;
 					continue;
 				}
-			if (ty < Chunk.SIZE)
+			if (ty < Chunk.SIZE-1)
 				if (map[ty + 1][tx] == step - 1) {
 					ty++;
 					step--;
@@ -68,7 +68,7 @@ public class IIController extends Controller {
 					a = Action.Right;
 					continue;
 				}
-			if (tx < Chunk.SIZE)
+			if (tx < Chunk.SIZE-1)
 				if (map[ty][tx + 1] == step - 1) {
 					tx++;
 					step--;
@@ -86,37 +86,35 @@ public class IIController extends Controller {
 		boolean isMoved = true;
 		while (isMoved) {
 			isMoved = false;
-			for (int i = 1; i < Chunk.SIZE - 1; i++)
-				for (int j = 1; j < Chunk.SIZE - 1; j++)
+			for (int i = 0; i < Chunk.SIZE; i++)
+				for (int j = 0; j < Chunk.SIZE; j++)
 					if (a[i][j] == step) {
-						if (a[i - 1][j] > step + 1) {
-							a[i - 1][j] = step + 1;
-							isMoved = true;
-						}
-						if (a[i + 1][j] > step + 1) {
-							a[i + 1][j] = step + 1;
-							isMoved = true;
-						}
-						if (a[i][j - 1] > step + 1) {
-							a[i][j - 1] = step + 1;
-							isMoved = true;
-						}
-						if (a[i][j + 1] > step + 1) {
-							a[i][j + 1] = step + 1;
-							isMoved = true;
-						}
+						if (i > 0)
+							if (a[i - 1][j] > step + 1) {
+								a[i - 1][j] = step + 1;
+								isMoved = true;
+							}
+						if (i < Chunk.SIZE-1)
+							if (a[i + 1][j] > step + 1) {
+								a[i + 1][j] = step + 1;
+								isMoved = true;
+							}
+						if (j > 0)
+							if (a[i][j - 1] > step + 1) {
+								a[i][j - 1] = step + 1;
+								isMoved = true;
+							}
+						if (j < Chunk.SIZE-1)
+							if (a[i][j + 1] > step + 1) {
+								a[i][j + 1] = step + 1;
+								isMoved = true;
+							}
 
 					}
 			if (isMoved)
 				step++;
 		}
-		
-		for (int i = 0; i < Chunk.SIZE; i++){
-			for (int j = 0; j < Chunk.SIZE; j++)
-				System.out.print(a[i][j]+" ");
-			System.out.println();
-		}
-		
+
 		return a;
 	}
 

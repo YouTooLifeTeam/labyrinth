@@ -1,6 +1,5 @@
 package com.youtoolife.labyrinth;
 
-
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -17,12 +16,13 @@ import com.youtoolife.labyrinth.utils.StateBasedGame;
 public class MainGame extends StateBasedGame implements ApplicationListener {
 
 	public OrthographicCamera camera;
-	private SpriteBatch batch;
+	public SpriteBatch batch;
 
 	//ShaderProgram shader;
 	
 	public static final int GAMEPLAYSTATE = 1;
 	public static final int MAINMENUSTATE = 2;
+	//public static final int TESTSTATE = 3;
 	public static float w = 800;
 	public static float h = 600;
 
@@ -40,6 +40,8 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 
 		this.addState(new MainMenuState(MAINMENUSTATE, this));
 		this.addState(new GamePlayState(GAMEPLAYSTATE, this));
+		//this.addState(new TestState(TESTSTATE, this));
+		//this.enterState(TESTSTATE);
 		this.enterState(MAINMENUSTATE);
 		this.init();
 		

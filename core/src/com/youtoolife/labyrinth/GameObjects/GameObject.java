@@ -26,7 +26,7 @@ public class GameObject {
 		Wall, Floor
 	}
 
-	public Texture texture;
+	public Texture texture, normal;
 
 	private Vector<Sprite> additions;
 
@@ -35,6 +35,7 @@ public class GameObject {
 	public GameObject(BlockType type, Texture texture) {
 		this.type = type;
 		this.texture = texture;
+		normal = Assets.getTexture("normal_map/floor_normal");
 		additions = new Vector<Sprite>();
 	}
 
@@ -68,6 +69,11 @@ public class GameObject {
 
 	public void stepOnit(Chunk chunk , Unit player, int dx, int dy){
 
+	}
+	
+	public void bindBiNormal(){
+		normal.bind(1);
+		texture.bind(0);
 	}
 	
 	public void addRandomBlood() {

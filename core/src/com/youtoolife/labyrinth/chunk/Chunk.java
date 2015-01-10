@@ -70,9 +70,11 @@ public class Chunk {
 
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)
-				if (map[i][j].type != BlockType.Wall)
+				if (map[i][j].type != BlockType.Wall){
+					map[i][j].bindBiNormal();
 					map[i][j].draw(batch, j * 50 + XOffset, (SIZE - 1 - i) * 50
 							+ YOffset);
+				}
 
 	}
 

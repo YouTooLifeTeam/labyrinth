@@ -35,7 +35,7 @@ public class Name2Player extends Player {
 		arrow_cooldown -= Gdx.graphics.getDeltaTime();
 		if(arrow_cooldown<0){
 			arrow_cooldown = 0;
-			torch_color = new Color(1,0.75f,0,0.6f);
+			torch_color = new Color(1,0.75f,0,0.1f);
 		}
 			
 	}
@@ -44,7 +44,7 @@ public class Name2Player extends Player {
 	public void useAbility() {
 		if(arrow_cooldown<=0){
 			arrow_cooldown = COOLDOWN;
-			torch_color = new Color(0.16f,0.72f,0.33f,0.6f);
+			torch_color = new Color(0.16f,0.72f,0.33f,0.1f);
 		}
 	}
 

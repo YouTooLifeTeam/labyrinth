@@ -114,10 +114,10 @@ public abstract class Unit {
 				} else {
 					GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = null;
 					ChunkX += dirx;
-					x = dirx==0?x:Chunk.SIZE - 1 - x;
+					x = dirx == 0 ? x : Chunk.SIZE - 1 - x;
 					xOffset += -dirx * 50;
 					ChunkY += diry;
-					y = diry==0?y:Chunk.SIZE - 1 - y;
+					y = diry == 0 ? y : Chunk.SIZE - 1 - y;
 					yOffset += -diry * 50;
 					GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = this;
 				}
@@ -126,6 +126,17 @@ public abstract class Unit {
 					useAbility();
 			}
 		}
+	}
+
+	public float[] getPosition(float x, float y) {
+		float[] pos = new float[2];
+
+		pos[0] = this.x * 50 + xOffset + x - 50 * Chunk.SIZE / 2 + MainGame.w
+				/ 2 + 25;
+		pos[1] = this.y * 50 + yOffset + y - 50 * Chunk.SIZE / 2 + MainGame.h
+				/ 2 + 25;
+
+		return pos;
 	}
 
 	public abstract void useAbility();

@@ -49,14 +49,18 @@ public class ShadowRender {
 	FrameBuffer shadowMapFBO;
 	FrameBuffer occludersFBO;
 
-	ShaderProgram shadowMapShader, shadowRenderShader, blockShader;
+	ShaderProgram shadowMapShader, shadowRenderShader;
 
 	boolean additive = true;
 	boolean softShadows = true;
 
+	LightRendering lightRender;
+
 	public ShadowRender() {
 		batch = new SpriteBatch();
 		ShaderProgram.pedantic = false;
+
+		lightRender = new LightRendering();
 
 		final String VERT_SRC = Gdx.files.local("bin/shader/pass.vert")
 				.readString();
@@ -65,9 +69,6 @@ public class ShadowRender {
 				Gdx.files.local("bin/shader/shadowMap.frag").readString());
 		shadowRenderShader = createShader(VERT_SRC,
 				Gdx.files.local("bin/shader/shadowRender.frag").readString());
-		blockShader = createShader(
-				Gdx.files.local("bin/shader/passthrough.vert").readString(),
-				Gdx.files.local("bin/shader/blockShader.frag").readString());
 
 		occludersFBO = new FrameBuffer(Format.RGBA8888, lightSize, lightSize,
 				false);
@@ -101,17 +102,7 @@ public class ShadowRender {
 					GL20.GL_ONE_MINUS_SRC_ALPHA);
 		batch.begin();
 		batch.setColor(1, 1, 1, 1);
-		batch.setShader(blockShader);
-
-		for (int i = -2; i <= 2; i++)
-			for (int j = -2; j <= 2; j++)
-				if (i + game.yChunk >= 0
-						&& +game.yChunk + i < GamePlayState.SIZE
-						&& game.xChunk + j >= 0
-						&& +game.xChunk + j < GamePlayState.SIZE)
-					GamePlayState.chunks[i + game.yChunk][j + game.xChunk]
-							.renderAll(batch, j + game.XOffset, i + game.YOffset);
-
+		lightRender.render(batch, game);
 		batch.end();
 
 		if (additive)
@@ -120,6 +111,7 @@ public class ShadowRender {
 		renderLight(GamePlayState.player1.getLight(game.XOffset * 50
 				* Chunk.SIZE, game.YOffset * 50 * Chunk.SIZE), game,
 				GamePlayState.player1);
+
 		renderLight(GamePlayState.player2.getLight(game.XOffset * 50
 				* Chunk.SIZE, game.YOffset * 50 * Chunk.SIZE), game,
 				GamePlayState.player2);
@@ -129,9 +121,8 @@ public class ShadowRender {
 					GL20.GL_ONE_MINUS_SRC_ALPHA);
 
 		batch.begin();
-
-		batch.setColor(1, 1, 1, 1);
-		batch.setShader(blockShader);
+		batch.setShader(null);
+		batch.setColor(0.3f, 0.3f, 0.3f, 1f);
 		for (int i = -2; i <= 2; i++)
 			for (int j = -2; j <= 2; j++)
 				if (i + game.yChunk >= 0
@@ -141,22 +132,16 @@ public class ShadowRender {
 					GamePlayState.chunks[i + game.yChunk][j + game.xChunk]
 							.renderWalls(batch, j + game.XOffset, i
 									+ game.YOffset);
-		game.gui.draw(batch);
 
 		batch.setShader(null); // default shader
 		GamePlayState.player1.draw(batch, game.XOffset * 50 * Chunk.SIZE,
 				game.YOffset * 50 * Chunk.SIZE);
 		GamePlayState.player2.draw(batch, game.XOffset * 50 * Chunk.SIZE,
 				game.YOffset * 50 * Chunk.SIZE);
+		batch.setColor(1, 1, 1, 1f);
 		game.gui.draw(batch);
 		batch.end();
 
-	}
-
-	static Color randomColor() {
-		float intensity = (float) Math.random() * 0.5f + 0.5f;
-		return new Color((float) Math.random(), (float) Math.random(),
-				(float) Math.random(), intensity);
 	}
 
 	void renderLight(Light o, GamePlayState game, Player exclude) {
@@ -219,16 +204,17 @@ public class ShadowRender {
 		shadowMapFBO.end();
 
 		// dynamic light length
-		boolean isPos = deltaNeed>deltaSize;
-		if(isPos)
+		boolean isPos = deltaNeed > deltaSize;
+		if (isPos)
 			deltaSize += MathUtils.random(1f);
 		else
 			deltaSize -= MathUtils.random(1f);
-		if(deltaNeed>deltaSize!=isPos)
+		if (deltaNeed > deltaSize != isPos)
 			deltaNeed = MathUtils.random(0, 20f);
 		// end of dynamic length
 
 		cam.setToOrtho(false, MainGame.w, MainGame.h);
+		cam.update();
 		batch.setProjectionMatrix(cam.combined);
 
 		batch.setShader(shadowRenderShader);

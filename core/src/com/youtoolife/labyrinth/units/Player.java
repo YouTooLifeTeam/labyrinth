@@ -14,7 +14,7 @@ public abstract class Player extends Unit {
 
 	final float moveSpeed = 200;
 
-	Color torch_color = new Color(1, 0.75f, 0, 0.6f);
+	Color torch_color = new Color(1, 0.75f, 0, 0.1f);
 
 	public Light getLight(float x, float y) {
 		return new Light(this.x * 50 + xOffset + x - 50 * Chunk.SIZE / 2
