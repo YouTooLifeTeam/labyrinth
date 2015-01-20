@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui name="MainMenu">
+	<background img="MainMenu" />
+	<div top="0" x="0" y="0">
+		<container top="30" x="0" y="0" type="left" indent_top="0" indent_left="0">
+			<sprite x="143.5" y="0" img="title" autoSize="YES" width="230" height="132" id="" action="" align="" />
+		</container>
+		<container top="3" x="0" y="0" type="left" indent_top="0" indent_left="52">
+			<sprite x="143.5" y="0" img="single" autoSize="YES" width="230" height="132" id="" action="single" align="" />
+			<sprite x="143.5" y="0" img="multiplayer" autoSize="YES" width="230" height="132" id="" action="multiplayer" align="" />
+		</container>
+		<container top="3" x="0" y="0" type="left" indent_top="0" indent_left="22.5">
+			<sprite x="143.5" y="0" img="settings" autoSize="YES" width="230" height="132" id="" action="settings" align="" />
+			<sprite x="143.5" y="0" img="score" autoSize="YES" width="230" height="132" id="" action="score" align="" />
+			<sprite x="143.5" y="0" img="about" autoSize="YES" width="230" height="132" id="" action="about" align="" />
+		</container>
+		<container top="30" x="0" y="0" type="left" indent_top="0" indent_left="0">
+			<sprite x="317.5" y="15" img="quit" autoSize="YES" width="230" height="132" id="" action="quit" align="" />
+		</container>
+	</div>
+</gui>
