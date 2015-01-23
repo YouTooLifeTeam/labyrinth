@@ -20,7 +20,7 @@
 	
 	
 	<Block img="wall" type="Wall" x="1" y="0"></Block>
-	<Block img="button" type="Floor" x="1" y="1"></Block>
+	<Block img="Button" type="Floor" x="1" y="1"></Block>
 	<Block img="floor" type="Floor" x="1" y="2"></Block>
 	<Block img="floor" type="Floor" x="1" y="3"></Block>
 	<Block img="floor" type="Floor" x="1" y="4"></Block>
@@ -76,7 +76,7 @@
 	<Block img="floor" type="Floor" x="5" y="2"></Block>
 	<Block img="floor" type="Floor" x="5" y="3"></Block>
 	<Block img="floor" type="Floor" x="5" y="4"></Block>
-	<Block img="button" type="Floor" x="5" y="5"></Block>
+	<Block img="Button" type="Floor" x="5" y="5"></Block>
 	<Block img="floor" type="Floor" x="5" y="6"></Block>
 	<Block img="floor" type="Floor" x="5" y="7"></Block>
 	<Block img="floor" type="Floor" x="5" y="8"></Block>

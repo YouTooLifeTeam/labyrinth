@@ -7,6 +7,10 @@ import com.youtoolife.labyrinth.units.Unit;
 
 public abstract class Event {
 
+	Element source;
+	
+	public int rotations;
+	
 	public abstract void check(Chunk chunk);
 
 	public abstract void invoke(Chunk chunk, Unit invoker, int dx, int dy);

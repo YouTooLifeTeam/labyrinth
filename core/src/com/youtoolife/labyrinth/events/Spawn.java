@@ -20,10 +20,6 @@ public class Spawn extends Event {
 	float COOLDOWN = 5;
 	float respawning = 0;
 
-	int rotations = 0;
-
-	Element source;
-
 	public Spawn(Element mob) {
 		x = Integer.valueOf(mob.getAttribute("x"));
 		y = Integer.valueOf(mob.getAttribute("y"));

@@ -6,6 +6,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.youtoolife.labyrinth.events.Event;
+import com.youtoolife.labyrinth.events.EventList;
 
 public class EventsResolver {
 
@@ -17,6 +18,14 @@ public class EventsResolver {
 			if(buf!=null)
 				list.add(buf);
 		}
+		
+		ev = events.getElementsByTagName("EventList");
+		for (int i = 0; i < ev.getLength(); i++) {
+			Event buf = EventList.getEvent((Element) ev.item(i));
+			if(buf!=null)
+				list.add(buf);
+		}
+		
 		return list;
 	}
 	

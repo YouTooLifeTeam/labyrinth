@@ -24,8 +24,12 @@ public class Assets {
 	}
 	
 	public static Texture getTexture(String name) {
-		Texture texture;
+		Texture texture = null;
+		try{
 		texture = textures.get(textureNames.indexOf("bin/textures/"+name, false));
+		}catch(ArrayIndexOutOfBoundsException e){
+			System.out.println(name);
+		}
 		return texture;
 	}
 
