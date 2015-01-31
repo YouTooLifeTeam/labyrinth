@@ -1,5 +1,7 @@
 package com.youtoolife.labyrinth.states;
 
+import static com.youtoolife.labyrinth.MainGame.GAMEPLAYSTATE;
+
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -7,22 +9,15 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.gui.GUI;
 import com.youtoolife.labyrinth.gui.SpriteGUI;
-import com.youtoolife.labyrinth.utils.Assets;
 import com.youtoolife.labyrinth.utils.GameState;
 import com.youtoolife.labyrinth.utils.StateBasedGame;
 
-import static com.youtoolife.labyrinth.MainGame.GAMEPLAYSTATE;
-
 public class MainMenuState extends GameState {
 	
-	/*Sprite single_btn, multi_btn, 
-	score_btn, about_btn, settings_btn,
-	quit_btn, title, cursor, background;*/
 	GUI mainMenu = new GUI(800, 600);
 
 	public MainMenuState(int StateId, MainGame game) {
@@ -32,47 +27,19 @@ public class MainMenuState extends GameState {
 	}
 	
 	public void createMenu() {
-		/*title = new Sprite(Assets.getTexture("title"));
-		title.setSize(512, 128);
-		title.setPosition(800/2-512/2, 600-128-30);
-		single_btn = new Sprite(Assets.getTexture("single"));
-		single_btn.setPosition(title.getX(), title.getY()-128-3);
-		multi_btn = new Sprite(Assets.getTexture("multiplayer"));
-		multi_btn.setPosition(title.getX()+254+8, title.getY()-128-3);
-		settings_btn = new Sprite(Assets.getTexture("settings"));
-		settings_btn.setPosition(title.getX(), title.getY()-128*2-3);
-		score_btn = new Sprite(Assets.getTexture("score"));
-		score_btn.setPosition(title.getX()+168+4, title.getY()-128*2-3);
-		about_btn = new Sprite(Assets.getTexture("about"));
-		about_btn.setPosition(title.getX()+168*2+4*2, title.getY()-128*2-3);
-		quit_btn = new Sprite(Assets.getTexture("quit"));
-		quit_btn.setPosition(800/2-254/2, title.getY()-128*3+3);
-		background = new Sprite(Assets.getTexture("MainMenu"));
-		background.setPosition(0,0);*/
 		try {
 			mainMenu.loadGui("bin/gui/MainMenu.gui");
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void draw(SpriteBatch batch) {
-		/*background.draw(batch);
-		title.draw(batch);
-		single_btn.draw(batch);
-		multi_btn.draw(batch);
-		settings_btn.draw(batch);
-		score_btn.draw(batch);
-		about_btn.draw(batch);
-		quit_btn.draw(batch);*/
 		mainMenu.draw(batch);
 	}
 
@@ -119,14 +86,10 @@ public class MainMenuState extends GameState {
 	}
 
 	@Override
-	public void init(StateBasedGame game) {
-	}
+	public void init(StateBasedGame game) {	}
 
 	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-
-	}
+	public void dispose() {	}
 
 	@Override
 	public void enter(StateBasedGame game) {
@@ -134,15 +97,9 @@ public class MainMenuState extends GameState {
 	}
 
 	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-
-	}
+	public void pause() {	}
 
 	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-
-	}
+	public void resume() {	}
 
 }
