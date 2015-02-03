@@ -13,10 +13,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
+import com.youtoolife.labyrinth.states.inputHandler.InputHandler;
 import com.youtoolife.labyrinth.utils.Assets;
 import com.youtoolife.labyrinth.utils.StateBasedGame;
 
@@ -24,14 +26,16 @@ public class GUI {
 	
 	Sprite bg;
 	public Array<SpriteGUI> sprites = new Array<SpriteGUI>();
-	public Array<DividerGUI> divs = new Array<DividerGUI>();
 	public Array<ContainerGUI> conts = new Array<ContainerGUI>();
 	
 	public int width = 800, height = 600;
 	
-	public GUI(int width, int height) {
+	private InputHandler inputHandler;
+	
+	public GUI(int width, int height, InputHandler inputHandler) {
 		this.width = width;
 		this.height = height;
+		this.inputHandler = inputHandler;
 	}
 	
 	public void loadGui(String fileXML) throws ParserConfigurationException, SAXException, IOException {
@@ -51,40 +55,32 @@ public class GUI {
 				System.out.println("1");
 				bg = new Sprite(Assets.getTexture(eElement.getAttribute("img")));
 				bg.setPosition(0, 0);
-				bg.setSize(800, 600);
+				bg.setSize(this.width, this.height);
 			}
 		}
-		
-		NodeList divList = doc.getElementsByTagName("div");
-		for (int temp = 0; temp < divList.getLength(); temp++) {
-			Node nDiv = divList.item(temp);
-			if (nDiv.getNodeType() == Node.ELEMENT_NODE) {
-				Element eElement = (Element) nDiv;
-				DividerGUI div = new DividerGUI();
-				div.top = Float.parseFloat(eElement.getAttribute("top"));
-				div.x = Float.parseFloat(eElement.getAttribute("x"));
-				div.y = height-div.top-Float.parseFloat(eElement.getAttribute("y"))-(divs.size>0?divs.get(divs.size-1).size:0);
-				
-				System.out.println(div.top+" "+div.x+" "+div.y);
-				
-				NodeList contList = eElement.getElementsByTagName("container");
+				NodeList contList = doc.getElementsByTagName("container");
 				for (int temp2 = 0; temp2 < contList.getLength(); temp2++) {
 					Node nCont = contList.item(temp2);
 					if (nCont.getNodeType() == Node.ELEMENT_NODE) {
-						Element eElement2 = (Element) nCont;
+						Element eElement = (Element) nCont;
 						
 						ContainerGUI cont = new ContainerGUI();
-						cont.top = Float.parseFloat(eElement2.getAttribute("top"));
-						cont.sizeY+=cont.top;
-						cont.x = div.x + Float.parseFloat(eElement2.getAttribute("x"));
-						cont.y = div.y-cont.top-Float.parseFloat(eElement2.getAttribute("y"))-(conts.size>0?(conts.get(conts.size-1).sizeY):0);
-						cont.type = eElement2.getAttribute("type");
-						cont.indent_left = Float.parseFloat(eElement2.getAttribute("indent_left"));
-						cont.indent_top = Float.parseFloat(eElement2.getAttribute("indent_top"));
+						cont.x = (eElement.getAttribute("type").equalsIgnoreCase("relativeX")?
+								(conts.size>0?conts.get(conts.size-1).x+conts.get(conts.size-1).getWidth():0):0)
+								-Float.parseFloat(eElement.getAttribute("x"));
 						
-						System.out.println(cont.top+" "+cont.x+" "+cont.y+" "+cont.type+" "+cont.indent_left+" "+cont.indent_top);
+						//System.out.println(temp2+" X:"+cont.x);
+						cont.y =(eElement.getAttribute("type").equalsIgnoreCase("absolute")||conts.size<=0?this.height:0);
+						//System.out.println(temp2+" Y:"+cont.y);
+						if (eElement.getAttribute("type").equalsIgnoreCase("relativeY"))
+						cont.y=(conts.size>0?conts.get(conts.size-1).y-conts.get(conts.size-1).getHeigth():0);
+						//System.out.println(temp2+" Y:"+cont.y);
+						cont.y-=Float.parseFloat(eElement.getAttribute("y"));
+						System.out.println(temp2+" Y:"+cont.y);
+						cont.type = eElement.getAttribute("contType");
+						cont.indent = Float.parseFloat(eElement.getAttribute("indent"));
 						
-						NodeList spriteList = eElement2.getElementsByTagName("sprite");
+						NodeList spriteList = eElement.getElementsByTagName("sprite");
 						for (int temp3 = 0; temp3 < spriteList.getLength(); temp3++) {
 							Node nSprite = spriteList.item(temp3);
 							if (nSprite.getNodeType() == Node.ELEMENT_NODE) {
@@ -98,16 +94,13 @@ public class GUI {
 										texture.getHeight()
 								:Float.parseFloat(eElement3.getAttribute("height")));
 			
-								float x = 0;
 								//if (eElement3.getAttribute("align").equalsIgnoreCase("center"))
-								x = cont.x + ((cont.type.equalsIgnoreCase("left")&&temp3>0)?(cont.size+cont.indent_left*temp3):0)
+								float x = cont.x + ((cont.type.equalsIgnoreCase("left")&&temp3>0)?(cont.getWidth()+cont.indent):0)
 										+Float.parseFloat(eElement3.getAttribute("x"));
-								float y = cont.y - heightS - Float.parseFloat(eElement3.getAttribute("y"))
-										-((cont.type.equalsIgnoreCase("top")&&temp3>0)?(cont.sizeY+cont.indent_top*temp3-cont.top):0);
-								System.out.println(x+" "+y);
-								//System.out.println(eElement3.getAttribute("img"));
-								System.out.println("2");
-								System.out.println(eElement3.getAttribute("action"));
+								float y = cont.y - Float.parseFloat(eElement3.getAttribute("y")) - heightS
+										-((cont.type.equalsIgnoreCase("top")&&temp3>0)?(cont.getHeigth()+cont.indent):0);
+				
+								//System.out.println(eElement3.getAttribute("action"));
 								SpriteGUI sprite = new SpriteGUI(texture,
 										x,
 										y,
@@ -115,17 +108,15 @@ public class GUI {
 										heightS);
 								sprite.id = eElement3.getAttribute("id");
 								sprite.action = eElement3.getAttribute("action");
+								//System.out.println((temp3==0?true:false));
 								cont.addSprite(sprite);
 								sprites.add(sprite);
 							}
 						}
-						div.addContainer(cont);
 						conts.add(cont);
+						//System.out.println(temp2+" W:"+cont.getWidth()+" H:"+cont.getHeigth());
 					}
 				}
-				divs.add(div);
-			}
-		}
 	}
 	
 	public SpriteGUI getSpriteAtName(String id) {
@@ -142,7 +133,14 @@ public class GUI {
 	}
 	
 	public void update(StateBasedGame game) {
-		
+		if (Gdx.input.justTouched()) {
+		float w = Gdx.graphics.getWidth(), h = Gdx.graphics.getHeight(), 
+				dw = w/800, dh = h/600, 
+				cX = Gdx.input.getX(), cY = Gdx.input.getY(),
+				x = cX/dw, y = 600 - cY/dh;
+				System.out.println(x+" - "+y);
+		inputHandler.update(game, this, x, y);
+		}
 	}
 	
 }
