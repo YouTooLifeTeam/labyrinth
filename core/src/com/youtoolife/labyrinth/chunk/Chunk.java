@@ -45,7 +45,7 @@ public class Chunk {
 					buf[i][j] = map[SIZE - 1 - j][i];
 			map = buf;
 			buf = new GameObject[SIZE][SIZE];
-			for(Event e: events)
+			for (Event e : events)
 				e.rotateClockwise();
 		}
 		rotates += times;
@@ -70,12 +70,14 @@ public class Chunk {
 
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)
-				if (map[i][j].type != BlockType.Wall){
+				if (map[i][j].type != BlockType.Wall) {
 					map[i][j].bindBiNormal();
 					map[i][j].draw(batch, j * 50 + XOffset, (SIZE - 1 - i) * 50
 							+ YOffset);
 				}
 
+		for (Mob m : mobs)
+			m.draw(batch, ChunkSubX * 50 * SIZE, ChunkSubY * 50 * SIZE);
 	}
 
 	public void renderWalls(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {
@@ -87,43 +89,43 @@ public class Chunk {
 				if (map[i][j].type == BlockType.Wall)
 					map[i][j].draw(batch, j * 50 + XOffset, (SIZE - 1 - i) * 50
 							+ YOffset);
-		
-		for(Mob m: mobs)
-			m.draw(batch, ChunkSubX*50*SIZE, ChunkSubY*50*SIZE);
-		
-	}
-	
-	public void generateBlood(){
-		
-		for(int i = 2; i < SIZE-1;i++)
-			for(int j = 2; j < SIZE-1;j++){
-				if(map[i][j].type==BlockType.Floor)
-				if(MathUtils.random(1f)<=CHANCE)
-					map[i][j].addRandomBlood();
-				else
-					if(MathUtils.random(1f)<=CHANCE)
-						map[i][j].addRandomGap();
-			}
-		
 	}
 
-	public void exit(){
+	public void generateBlood() {
+
+		for (int i = 2; i < SIZE - 1; i++)
+			for (int j = 2; j < SIZE - 1; j++) {
+				if (map[i][j].type == BlockType.Floor)
+					if (MathUtils.random(1f) <= CHANCE)
+						map[i][j].addRandomBlood();
+					else if (MathUtils.random(1f) <= CHANCE)
+						map[i][j].addRandomGap();
+			}
+
+	}
+
+	public void exit() {
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)
 				map[i][j].here = null;
 		mobs = new Vector<Mob>();
 	}
-	
+
 	public void update() {
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)
 				map[i][j].update();
-		
-		for(Event e: events)
+
+		for (Event e : events)
 			e.check(this);
-		
-		for(Mob m: mobs)
+
+		for (Mob m : mobs)
 			m.update(this);
+	}
+
+	public void drawMobs(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {
+		for (Mob m : mobs)
+			m.draw(batch, ChunkSubX * 50 * SIZE, ChunkSubY * 50 * SIZE);
 	}
 
 }

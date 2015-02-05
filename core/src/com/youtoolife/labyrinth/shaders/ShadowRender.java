@@ -54,13 +54,13 @@ public class ShadowRender {
 	boolean additive = true;
 	boolean softShadows = true;
 
-	LightRendering lightRender;
+	LightRenderer lightRender;
 
 	public ShadowRender() {
 		batch = new SpriteBatch();
 		ShaderProgram.pedantic = false;
 
-		lightRender = new LightRendering();
+		lightRender = new LightRenderer();
 
 		final String VERT_SRC = Gdx.files.local("bin/shader/pass.vert")
 				.readString();
@@ -171,6 +171,9 @@ public class ShadowRender {
 					GamePlayState.chunks[i + game.yChunk][j + game.xChunk]
 							.renderWalls(batch, j + game.XOffset, i
 									+ game.YOffset);
+		
+		GamePlayState.chunks[game.yChunk][game.xChunk].drawMobs(batch,
+				game.XOffset, game.YOffset);
 
 		if (exclude != GamePlayState.player1)
 			GamePlayState.player1.draw(batch, game.XOffset * 50 * Chunk.SIZE,
