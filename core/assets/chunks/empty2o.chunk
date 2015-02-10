@@ -69,7 +69,7 @@
 	<Block img="floor" type="Floor" x="4" y="10"></Block>
 	<Block img="wall" type="Wall" x="4" y="11"></Block>
 	             
-	<Block img="door" type="Door" x="5" y="0"></Block>
+	<Block img="door" type="Door" x="5" y="0" id="1"></Block>
 	<Block img="floor" type="Floor" x="5" y="1"></Block>
 	<Block img="floor" type="Floor" x="5" y="2"></Block>
 	<Block img="floor" type="Floor" x="5" y="3"></Block>
@@ -80,9 +80,9 @@
 	<Block img="floor" type="Floor" x="5" y="8"></Block>
 	<Block img="floor" type="Floor" x="5" y="9"></Block>
 	<Block img="floor" type="Floor" x="5" y="10"></Block>
-	<Block img="door" type="Door" x="5" y="11"></Block>
+	<Block img="door" type="Door" x="5" y="11" id="1"></Block>
 	             
-	<Block img="door" type="Door" x="6" y="0"></Block>
+	<Block img="door" type="Door" x="6" y="0" id="1"></Block>
 	<Block img="floor" type="Floor" x="6" y="1"></Block>
 	<Block img="floor" type="Floor" x="6" y="2"></Block>
 	<Block img="floor" type="Floor" x="6" y="3"></Block>
@@ -93,7 +93,7 @@
 	<Block img="floor" type="Floor" x="6" y="8"></Block>
 	<Block img="floor" type="Floor" x="6" y="9"></Block>
 	<Block img="floor" type="Floor" x="6" y="10"></Block>
-	<Block img="door" type="Door" x="6" y="11"></Block>
+	<Block img="door" type="Door" x="6" y="11" id="1"></Block>
 	             
 	<Block img="wall" type="Wall" x="7" y="0"></Block>
 	<Block img="floor" type="Floor" x="7" y="1"></Block>

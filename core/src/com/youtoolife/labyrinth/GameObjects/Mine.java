@@ -13,11 +13,14 @@ public class Mine extends GameObject {
 	Texture mine;
 	boolean isActive = false;
 	float activating = 5f;
-
-	public Mine(BlockType type, Texture texture, int x, int y) {
-		super(type, texture);
+	int BaseX,BaseY;
+	
+	public Mine(Texture texture, int x, int y) {
+		super(BlockType.Mine, texture, 0);
 		mine = Assets.getTexture("mine");
 		event = new Explosion(x, y, 1);
+		BaseX = x;
+		BaseY = y;
 	}
 
 	@Override
@@ -43,6 +46,16 @@ public class Mine extends GameObject {
 			activating -= Gdx.graphics.getDeltaTime();
 		if (activating <= 0)
 			isActive = true;
+	}
+
+	@Override
+	public boolean canStep() {
+		return here==null;
+	}
+
+	@Override
+	public GameObject copy() {
+		return new Mine(this.main_texture, BaseX, BaseY);
 	}
 
 }

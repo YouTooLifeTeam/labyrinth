@@ -13,6 +13,7 @@ public class SadMob extends Mob{
 		super(ChunkX, ChunkY, control, x , y);
 		sprite = new AnimatedSprite(0, 0, 50, 50, new Sprite(
 				Assets.getTexture("mob/sad")), 0);
+		moveSpeed = moveSpeed*0.6f;
 		sprite.setPreferedDelta(50/moveSpeed/3);
 		sprite.setAnimStart(0);
 		sprite.setAnimStop(3);

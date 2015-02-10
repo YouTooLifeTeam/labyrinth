@@ -5,6 +5,7 @@ import java.util.Vector;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.youtoolife.labyrinth.MainGame;
+import com.youtoolife.labyrinth.GameObjects.Floor;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
 import com.youtoolife.labyrinth.events.Event;
@@ -71,7 +72,6 @@ public class Chunk {
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)
 				if (map[i][j].type != BlockType.Wall) {
-					map[i][j].bindBiNormal();
 					map[i][j].draw(batch, j * 50 + XOffset, (SIZE - 1 - i) * 50
 							+ YOffset);
 				}
@@ -92,16 +92,14 @@ public class Chunk {
 	}
 
 	public void generateBlood() {
-
 		for (int i = 2; i < SIZE - 1; i++)
 			for (int j = 2; j < SIZE - 1; j++) {
 				if (map[i][j].type == BlockType.Floor)
 					if (MathUtils.random(1f) <= CHANCE)
-						map[i][j].addRandomBlood();
+						((Floor)map[i][j]).addRandomBlood();
 					else if (MathUtils.random(1f) <= CHANCE)
-						map[i][j].addRandomGap();
+						((Floor)map[i][j]).addRandomGap();
 			}
-
 	}
 
 	public void exit() {

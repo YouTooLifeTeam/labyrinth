@@ -1,5 +1,6 @@
 package com.youtoolife.labyrinth.events;
 
+import com.youtoolife.labyrinth.GameObjects.Floor;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.units.Unit;
@@ -20,7 +21,8 @@ public class Explosion extends Event {
 		invoker.hp -= damage;
 		GameObject buf = chunk.map[Chunk.SIZE - 1 - invoker.y - dy][invoker.x+ dx]
 				.copy();
-		buf.addRandomBlood();
+		if(buf instanceof Floor)
+			((Floor)buf).addRandomBlood();
 		chunk.map[Chunk.SIZE - 1 - invoker.y - dy][invoker.x+ dx] = buf;
 
 	}

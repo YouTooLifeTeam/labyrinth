@@ -2,14 +2,15 @@ package com.youtoolife.labyrinth.GameObjects;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.youtoolife.labyrinth.chunk.Chunk;
+import com.youtoolife.labyrinth.units.Unit;
 
 public class Door extends GameObject {
 
 	boolean isOpen = true;
 	
-	public Door(Texture texture) {
-		super(BlockType.Door, texture);
-
+	public Door(Texture texture, int id) {
+		super(BlockType.Door, texture,id);
 	}
 
 	@Override
@@ -29,7 +30,19 @@ public class Door extends GameObject {
 	
 	@Override
 	public GameObject copy(){
-		return new Door(this.texture);
+		return new Door(this.main_texture,this.getId());
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void stepOnit(Chunk chunk, Unit player, int dx, int dy) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

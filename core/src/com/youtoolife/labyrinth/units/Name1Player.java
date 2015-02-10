@@ -43,7 +43,7 @@ public class Name1Player extends Player {
 			GameObject buf = GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE
 					- y - 1][x];
 			GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - y - 1][x] = new Mine(
-					buf.type, buf.texture, x, y);
+					buf.main_texture, x, y);
 			GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - y - 1][x].here = this;
 		}
 	}
