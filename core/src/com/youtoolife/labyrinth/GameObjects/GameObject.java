@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import org.w3c.dom.Element;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,14 +15,12 @@ import com.youtoolife.labyrinth.utils.Assets;
 
 public class GameObject {
 
-	public Color color = Color.WHITE;
-
 	Event event;
 	
 	public Unit here = null;
 	
 	public enum BlockType {
-		Wall, Floor
+		Wall, Floor, Door
 	}
 
 	public Texture texture, normal;
@@ -40,7 +37,6 @@ public class GameObject {
 	}
 
 	public void draw(SpriteBatch batch, float x, float y) {
-		// batch.setColor(color);
 		batch.draw(texture, x, y, 50, 50);
 		for (Sprite t : additions) {
 			t.setPosition(x - 50, y + 50);
@@ -49,7 +45,7 @@ public class GameObject {
 	}
 
 	public boolean canStep(){
-		if(type == BlockType.Floor&&here==null)
+		if(type != BlockType.Wall&&here==null)
 			return true;
 		return false;
 	}
@@ -64,6 +60,8 @@ public class GameObject {
 	public static GameObject getObject(Element block) {
 		BlockType type = BlockType.valueOf(block.getAttribute("type"));
 		Texture texture = Assets.getTexture(block.getAttribute("img"));
+		if(type==BlockType.Door)
+			return new Door(texture);
 		return new GameObject(type, texture);
 	}
 

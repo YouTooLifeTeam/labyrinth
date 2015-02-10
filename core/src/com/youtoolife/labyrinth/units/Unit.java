@@ -92,14 +92,13 @@ public abstract class Unit {
 			}
 			if (isMove) {
 				if (x + dirx >= 0 && x + dirx <= Chunk.SIZE - 1
-						&& y + diry >= 0 && y + diry <= Chunk.SIZE - 1)
+						&& y + diry >= 0 && y + diry <= Chunk.SIZE - 1) {
 					GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
 							- (y + diry)][x + dirx].stepOnit(
 							GamePlayState.chunks[ChunkY][ChunkX], this, dirx,
 							diry);
 
-				if (x + dirx >= 0 && x + dirx <= Chunk.SIZE - 1
-						&& y + diry >= 0 && y + diry <= Chunk.SIZE - 1) {
+			
 					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
 							- (y + diry)][x + dirx].canStep()) {
 						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1

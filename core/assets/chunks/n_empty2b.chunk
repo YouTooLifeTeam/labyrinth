@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Chunk name="empty2o" type="DiOpposite">
+<Chunk name="empty2b" type="DiNeighbour">
 
-	<Eventlist></Eventlist>
+	<Eventlist>
+		<EventList type="Step" x="5" y="5">
+			<Event type="Spawn" x="5" y="5" mob="Sad" destX="1" destY="1"></Event>
+			<Event type="Spawn" x="5" y="5" mob="Sad" destX="1" destY="2"></Event>
+			<Event type="Spawn" x="5" y="5" mob="Sad" destX="1" destY="3"></Event>
+		</EventList>
+	</Eventlist>
 
 	<Block img="wall" type="Wall" x="0" y="0"></Block>
 	<Block img="wall" type="Wall" x="0" y="1"></Block>
 	<Block img="wall" type="Wall" x="0" y="2"></Block>
 	<Block img="wall" type="Wall" x="0" y="3"></Block>
 	<Block img="wall" type="Wall" x="0" y="4"></Block>
-	<Block img="wall" type="Wall" x="0" y="5"></Block>
-	<Block img="wall" type="Wall" x="0" y="6"></Block>
+	<Block img="floor" type="Floor" x="0" y="5"></Block>
+	<Block img="floor" type="Floor" x="0" y="6"></Block>
 	<Block img="wall" type="Wall" x="0" y="7"></Block>
 	<Block img="wall" type="Wall" x="0" y="8"></Block>
 	<Block img="wall" type="Wall" x="0" y="9"></Block>
@@ -34,12 +40,12 @@
 	<Block img="floor" type="Floor" x="2" y="1"></Block>
 	<Block img="floor" type="Floor" x="2" y="2"></Block>
 	<Block img="floor" type="Floor" x="2" y="3"></Block>
-	<Block img="floor" type="Floor" x="2" y="4"></Block>
-	<Block img="floor" type="Floor" x="2" y="5"></Block>
-	<Block img="floor" type="Floor" x="2" y="6"></Block>
-	<Block img="floor" type="Floor" x="2" y="7"></Block>
-	<Block img="floor" type="Floor" x="2" y="8"></Block>
-	<Block img="floor" type="Floor" x="2" y="9"></Block>
+	<Block img="wall" type="Wall" x="2" y="4"></Block>
+	<Block img="wall" type="Wall" x="2" y="5"></Block>
+	<Block img="wall" type="Wall" x="2" y="6"></Block>
+	<Block img="wall" type="Wall" x="2" y="7"></Block>
+	<Block img="wall" type="Wall" x="2" y="8"></Block>
+	<Block img="wall" type="Wall" x="2" y="9"></Block>
 	<Block img="floor" type="Floor" x="2" y="10"></Block>
 	<Block img="wall" type="Wall" x="2" y="11"></Block>
 	             
@@ -52,7 +58,7 @@
 	<Block img="floor" type="Floor" x="3" y="6"></Block>
 	<Block img="floor" type="Floor" x="3" y="7"></Block>
 	<Block img="floor" type="Floor" x="3" y="8"></Block>
-	<Block img="floor" type="Floor" x="3" y="9"></Block>
+	<Block img="wall" type="Wall" x="3" y="9"></Block>
 	<Block img="floor" type="Floor" x="3" y="10"></Block>
 	<Block img="wall" type="Wall" x="3" y="11"></Block>
 	             
@@ -65,24 +71,24 @@
 	<Block img="floor" type="Floor" x="4" y="6"></Block>
 	<Block img="floor" type="Floor" x="4" y="7"></Block>
 	<Block img="floor" type="Floor" x="4" y="8"></Block>
-	<Block img="floor" type="Floor" x="4" y="9"></Block>
+	<Block img="wall" type="Wall" x="4" y="9"></Block>
 	<Block img="floor" type="Floor" x="4" y="10"></Block>
 	<Block img="wall" type="Wall" x="4" y="11"></Block>
 	             
-	<Block img="door" type="Door" x="5" y="0"></Block>
+	<Block img="wall" type="Wall" x="5" y="0"></Block>
 	<Block img="floor" type="Floor" x="5" y="1"></Block>
 	<Block img="floor" type="Floor" x="5" y="2"></Block>
 	<Block img="floor" type="Floor" x="5" y="3"></Block>
 	<Block img="floor" type="Floor" x="5" y="4"></Block>
-	<Block img="floor" type="Floor" x="5" y="5"></Block>
+	<Block img="Button" type="Floor" x="5" y="5"></Block>
 	<Block img="floor" type="Floor" x="5" y="6"></Block>
 	<Block img="floor" type="Floor" x="5" y="7"></Block>
 	<Block img="floor" type="Floor" x="5" y="8"></Block>
 	<Block img="floor" type="Floor" x="5" y="9"></Block>
 	<Block img="floor" type="Floor" x="5" y="10"></Block>
-	<Block img="door" type="Door" x="5" y="11"></Block>
+	<Block img="floor" type="Floor" x="5" y="11"></Block>
 	             
-	<Block img="door" type="Door" x="6" y="0"></Block>
+	<Block img="wall" type="Wall" x="6" y="0"></Block>
 	<Block img="floor" type="Floor" x="6" y="1"></Block>
 	<Block img="floor" type="Floor" x="6" y="2"></Block>
 	<Block img="floor" type="Floor" x="6" y="3"></Block>
@@ -93,7 +99,7 @@
 	<Block img="floor" type="Floor" x="6" y="8"></Block>
 	<Block img="floor" type="Floor" x="6" y="9"></Block>
 	<Block img="floor" type="Floor" x="6" y="10"></Block>
-	<Block img="door" type="Door" x="6" y="11"></Block>
+	<Block img="floor" type="Floor" x="6" y="11"></Block>
 	             
 	<Block img="wall" type="Wall" x="7" y="0"></Block>
 	<Block img="floor" type="Floor" x="7" y="1"></Block>

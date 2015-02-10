@@ -11,7 +11,6 @@ import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.MiniMap;
 import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.controller.Controller;
-import com.youtoolife.labyrinth.controller.GamePadController;
 import com.youtoolife.labyrinth.controller.KeyBoardController;
 import com.youtoolife.labyrinth.shaders.ShadowRender;
 import com.youtoolife.labyrinth.units.Name1Player;
@@ -68,7 +67,10 @@ public class GamePlayState extends GameState {
 			player2.update();
 			if (xChunk != player1.ChunkX) {
 				chunks[yChunk][xChunk].exit();
-				XOffset = player1.ChunkX - xChunk;
+				if(XOffset==0)
+					XOffset = player1.ChunkX - xChunk;
+				else
+					XOffset = (1-Math.abs(XOffset))*(-XOffset/Math.abs(XOffset));
 				xChunk = player1.ChunkX;
 				player2.ChunkX = player1.ChunkX;
 				player2.x = player1.x;
@@ -78,7 +80,10 @@ public class GamePlayState extends GameState {
 			}
 			if (yChunk != player1.ChunkY) {
 				chunks[yChunk][xChunk].exit();
-				YOffset = player1.ChunkY - yChunk;
+				if(YOffset==0)
+					YOffset = player1.ChunkY - yChunk;
+				else
+					YOffset = (1-Math.abs(YOffset))*(-YOffset/Math.abs(YOffset));
 				yChunk = player1.ChunkY;
 				player2.ChunkY = player1.ChunkY;
 				player2.y = player1.y;
@@ -89,7 +94,10 @@ public class GamePlayState extends GameState {
 
 			if (xChunk != player2.ChunkX) {
 				chunks[yChunk][xChunk].exit();
-				XOffset = player2.ChunkX - xChunk;
+				if(XOffset==0)
+					XOffset = player2.ChunkX - xChunk;
+				else
+					XOffset = (1-Math.abs(XOffset))*(-XOffset/Math.abs(XOffset));
 				xChunk = player2.ChunkX;
 				player1.ChunkX = player2.ChunkX;
 				player1.x = player2.x;
@@ -99,7 +107,10 @@ public class GamePlayState extends GameState {
 			}
 			if (yChunk != player2.ChunkY) {
 				chunks[yChunk][xChunk].exit();
-				YOffset = player2.ChunkY - yChunk;
+				if(YOffset==0)
+					YOffset = player2.ChunkY - yChunk;
+				else
+					YOffset = (1-Math.abs(YOffset))*(-YOffset/Math.abs(YOffset));
 				yChunk = player2.ChunkY;
 				player1.ChunkY = player2.ChunkY;
 				player1.y = player2.y;
@@ -165,7 +176,8 @@ public class GamePlayState extends GameState {
 		xChunk = positions[0];
 		yChunk = positions[1];
 		control1 = new KeyBoardController(KeyBoardController.ARROWS);
-		control2 = new GamePadController();
+		//control2 = new GamePadController();
+		control2 = new KeyBoardController(KeyBoardController.WASD);
 		player1 = new Name1Player(xChunk, yChunk, control1);
 		player2 = new Name2Player(xChunk, yChunk, control2);
 		minimap = new MiniMap(SIZE);

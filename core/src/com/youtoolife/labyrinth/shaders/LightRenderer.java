@@ -14,7 +14,7 @@ public class LightRenderer {
 	ShaderProgram shader;
 
 	public static final float DEFAULT_LIGHT_Z = 0.1f;
-	public static final float AMBIENT_INTENSITY = 0.015f;
+	public static final float AMBIENT_INTENSITY = 0.15f;
 	public static final float LIGHT_INTENSITY = 1.5f;
 
 	public static final Vector3 LIGHT_POS = new Vector3(0f, 0f, DEFAULT_LIGHT_Z);
