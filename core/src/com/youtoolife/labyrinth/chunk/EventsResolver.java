@@ -5,23 +5,17 @@ import java.util.Vector;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.youtoolife.labyrinth.events.Event;
-import com.youtoolife.labyrinth.events.EventList;
+import com.youtoolife.labyrinth.events.test.InvokeEvent;
+import com.youtoolife.labyrinth.events.test.InvokeResolver;
 
 public class EventsResolver {
 
-	public static Vector<Event> getEvents(Element events){
-		Vector<Event> list = new Vector<Event>();
-		NodeList ev = events.getElementsByTagName("Event");
-		for (int i = 0; i < ev.getLength(); i++) {
-			Event buf = Event.getEvent((Element) ev.item(i));
-			if(buf!=null)
-				list.add(buf);
-		}
+	public static Vector<InvokeEvent> getEvents(Element events){
+		Vector<InvokeEvent> list = new Vector<InvokeEvent>();
 		
-		ev = events.getElementsByTagName("EventList");
+		NodeList ev = events.getElementsByTagName("InvokeEvent");
 		for (int i = 0; i < ev.getLength(); i++) {
-			Event buf = EventList.getEvent((Element) ev.item(i));
+			IvokeEvent buf = InvokeResolver.getEvent((Element) ev.item(i));
 			if(buf!=null)
 				list.add(buf);
 		}

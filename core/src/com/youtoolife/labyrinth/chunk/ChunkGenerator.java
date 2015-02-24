@@ -17,7 +17,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.chunk.Chunk.Exits;
-import com.youtoolife.labyrinth.events.Event;
+import com.youtoolife.labyrinth.events.test.InvokeEvent;
 
 public class ChunkGenerator {
 
@@ -67,7 +67,7 @@ public class ChunkGenerator {
 					.getAttribute("y"))][Integer.valueOf(block.getAttribute("x"))] = buf_block;
 		}
 
-		Vector<Event> events = EventsResolver.getEvents((Element) chunk.getElementsByTagName("Eventlist").item(0));
+		Vector<InvokeEvent> events = EventsResolver.getEvents((Element) chunk.getElementsByTagName("Eventlist").item(0));
 		Chunk buf = new Chunk(type, name, map,events);
 		chunks.add(buf);
 	}

@@ -20,9 +20,9 @@ public abstract class Unit {
 	public int ChunkY;
 	public int x = 5, y = 5;
 
-	float moveSpeed = 200;
+	public float moveSpeed = 200;
 
-	AnimatedSprite sprite;
+	public AnimatedSprite sprite;
 	Controller control;
 
 	public Unit(int ChunkX, int ChunkY, Controller control) {

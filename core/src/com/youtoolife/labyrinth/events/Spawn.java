@@ -25,6 +25,7 @@ public class Spawn extends Event {
 		y = Integer.valueOf(mob.getAttribute("y"));
 		destX = Integer.valueOf(mob.getAttribute("destY"));
 		destY = Integer.valueOf(mob.getAttribute("destY"));
+		COOLDOWN = Integer.valueOf(mob.getAttribute("Cooldown"));
 
 		this.mob = mob.getAttribute("mob");
 		source = mob;
@@ -64,53 +65,6 @@ public class Spawn extends Event {
 					invoke(chunk, m, 0, 0);
 			}
 		}
-	}
-
-	@Override
-	public void invoke(Chunk chunk, Unit invoker, int dx, int dy) {
-		if (respawning <= 0) {
-
-			int ddx = destX;
-			int ddy = destY;
-
-			if (rotations % 2 == 0)
-				ddy = Chunk.SIZE - 1 - ddy;
-			else
-				ddx = Chunk.SIZE - 1 - ddx;
-
-			Mob buf = null;
-			if (mob.equals("Sad"))
-				buf = new SadMob(invoker.ChunkX, invoker.ChunkY,
-						new IIController(), ddx, ddy);
-			chunk.mobs.add(buf);
-			respawning = COOLDOWN;
-		}
-	}
-
-	@Override
-	public void rotateClockwise() {
-		int by = Chunk.SIZE - 1 - destX;
-		int bx = destY;
-		destY = by;
-		destX = bx;
-
-		by = Chunk.SIZE - 1 - x;
-		bx = y;
-		y = by;
-		x = bx;
-
-		rotations++;
-	}
-
-	@Override
-	public Event copy() {
-		source.setAttribute("x", String.valueOf(x));
-		source.setAttribute("y", String.valueOf(y));
-		source.setAttribute("destX", String.valueOf(destX));
-		source.setAttribute("destY", String.valueOf(destY));
-		Spawn a = new Spawn(source);
-		a.rotations = rotations;
-		return a;
 	}
 
 }

@@ -8,8 +8,8 @@ import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.GameObjects.Floor;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
-import com.youtoolife.labyrinth.events.Event;
-import com.youtoolife.labyrinth.units.Mob;
+import com.youtoolife.labyrinth.events.test.InvokeEvent;
+import com.youtoolife.labyrinth.units.mob.Mob;
 
 public class Chunk {
 
@@ -27,10 +27,10 @@ public class Chunk {
 	public int rotates = 0;
 
 	public Vector<Mob> mobs;
-	public Vector<Event> events;
+	public Vector<InvokeEvent> events;
 
 	public Chunk(Exits type, String name, GameObject[][] map,
-			Vector<Event> events) {
+			Vector<InvokeEvent> events) {
 		this.name = name;
 		this.type = type;
 		this.map = map;
@@ -46,8 +46,8 @@ public class Chunk {
 					buf[i][j] = map[SIZE - 1 - j][i];
 			map = buf;
 			buf = new GameObject[SIZE][SIZE];
-			for (Event e : events)
-				e.rotateClockwise();
+			for (InvokeEvent e : events)
+				e.rotate();
 		}
 		rotates += times;
 	}
@@ -57,8 +57,8 @@ public class Chunk {
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)
 				buf[i][j] = map[i][j].copy();
-		Vector<Event> bufev = new Vector<Event>();
-		for (Event ev : events)
+		Vector<InvokeEvent> bufev = new Vector<InvokeEvent>();
+		for (InvokeEvent ev : events)
 			bufev.add(ev.copy());
 		Chunk chunk = new Chunk(this.type, this.name, buf, bufev);
 		chunk.generateBlood();
@@ -114,7 +114,7 @@ public class Chunk {
 			for (int j = 0; j < SIZE; j++)
 				map[i][j].update();
 
-		for (Event e : events)
+		for (InvokeEvent e : events)
 			e.check(this);
 
 		for (Mob m : mobs)
