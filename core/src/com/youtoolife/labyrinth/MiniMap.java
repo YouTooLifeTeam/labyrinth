@@ -57,13 +57,13 @@ public class MiniMap {
 
 	public void draw(SpriteBatch batch) {
 		for (int i = 0; i < GamePlayState.SIZE; i++)
-			for (int j = 0; j < GamePlayState.SIZE; j++) {
-				batch.draw(map_tex[i][j],
-						j * 50 - GamePlayState.SIZE * 50 + dx, i * 50
-								- GamePlayState.SIZE * 50 / 2 + dy, 50 / 2,
-						50 / 2, 50, 50, 1, 1, -90
-								* GamePlayState.chunks[i][j].rotates);
-			}
+			for (int j = 0; j < GamePlayState.SIZE; j++)
+				if (map[i][j]) {
+					batch.draw(map_tex[i][j], j * 50 - GamePlayState.SIZE * 50
+							+ dx, i * 50 - GamePlayState.SIZE * 50 / 2 + dy,
+							50 / 2, 50 / 2, 50, 50, 1, 1, -90
+									* GamePlayState.chunks[i][j].rotates);
+				}
 	}
 
 	public void update() {

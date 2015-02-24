@@ -15,7 +15,7 @@ public class EventsResolver {
 		
 		NodeList ev = events.getElementsByTagName("InvokeEvent");
 		for (int i = 0; i < ev.getLength(); i++) {
-			IvokeEvent buf = InvokeResolver.getEvent((Element) ev.item(i));
+			InvokeEvent buf = InvokeResolver.getEvent((Element) ev.item(i));
 			if(buf!=null)
 				list.add(buf);
 		}

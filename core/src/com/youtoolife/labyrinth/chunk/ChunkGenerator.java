@@ -63,12 +63,15 @@ public class ChunkGenerator {
 		for (int i = 0; i < blocks.getLength(); i++) {
 			Element block = (Element) blocks.item(i);
 			GameObject buf_block = GameObject.getObject(block);
-			map[Integer.valueOf(block
-					.getAttribute("y"))][Integer.valueOf(block.getAttribute("x"))] = buf_block;
+			map[Integer.valueOf(block.getAttribute("y"))][Integer.valueOf(block
+					.getAttribute("x"))] = buf_block;
 		}
+		Vector<InvokeEvent> events = new Vector<InvokeEvent>();
+		if (chunk.getElementsByTagName("Eventlist").item(0)!=null)
+			events = EventsResolver.getEvents((Element) chunk
+					.getElementsByTagName("Eventlist").item(0));
 
-		Vector<InvokeEvent> events = EventsResolver.getEvents((Element) chunk.getElementsByTagName("Eventlist").item(0));
-		Chunk buf = new Chunk(type, name, map,events);
+		Chunk buf = new Chunk(type, name, map, events);
 		chunks.add(buf);
 	}
 }

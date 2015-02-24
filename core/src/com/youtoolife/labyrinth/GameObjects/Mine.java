@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.chunk.Chunk;
-import com.youtoolife.labyrinth.events.Explosion;
 import com.youtoolife.labyrinth.units.Unit;
 import com.youtoolife.labyrinth.utils.Assets;
 
@@ -14,13 +13,16 @@ public class Mine extends GameObject {
 	boolean isActive = false;
 	float activating = 5f;
 	int BaseX,BaseY;
+	int damage = 1;
 	
-	public Mine(Texture texture, int x, int y) {
+	GameObject prev;
+	
+	public Mine(Texture texture, int x, int y, GameObject prev) {
 		super(BlockType.Mine, texture, 0);
 		mine = Assets.getTexture("mine");
-		event = new Explosion(x, y, 1);
 		BaseX = x;
 		BaseY = y;
+		this.prev = prev;
 	}
 
 	@Override
@@ -36,8 +38,12 @@ public class Mine extends GameObject {
 
 	@Override
 	public void stepOnit(Chunk chunk, Unit player, int dx, int dy) {
-		if (isActive)
-			event.invoke(chunk, player, dx, dy);
+		if(isActive&&canStep()){
+			player.hp-=damage;
+			prev.addRandomBlood();
+			prev.here = null;
+			chunk.map[Chunk.SIZE - 1 - player.y - dy][player.x+ dx] = prev;
+		}
 	}
 
 	@Override
@@ -55,7 +61,7 @@ public class Mine extends GameObject {
 
 	@Override
 	public GameObject copy() {
-		return new Mine(this.main_texture, BaseX, BaseY);
+		return new Mine(this.main_texture, BaseX, BaseY, prev);
 	}
 
 }
