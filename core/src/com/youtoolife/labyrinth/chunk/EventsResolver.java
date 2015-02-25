@@ -5,8 +5,8 @@ import java.util.Vector;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.youtoolife.labyrinth.events.test.InvokeEvent;
-import com.youtoolife.labyrinth.events.test.InvokeResolver;
+import com.youtoolife.labyrinth.events.InvokeEvent;
+import com.youtoolife.labyrinth.events.InvokeResolver;
 
 public class EventsResolver {
 

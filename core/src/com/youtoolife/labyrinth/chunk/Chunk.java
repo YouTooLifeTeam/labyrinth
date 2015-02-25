@@ -8,7 +8,7 @@ import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.GameObjects.Floor;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
-import com.youtoolife.labyrinth.events.test.InvokeEvent;
+import com.youtoolife.labyrinth.events.InvokeEvent;
 import com.youtoolife.labyrinth.units.mob.Mob;
 
 public class Chunk {

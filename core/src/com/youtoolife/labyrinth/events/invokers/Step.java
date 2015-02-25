@@ -4,8 +4,8 @@ import org.w3c.dom.Element;
 
 import com.badlogic.gdx.Gdx;
 import com.youtoolife.labyrinth.chunk.Chunk;
-import com.youtoolife.labyrinth.events.test.ActionEvent;
-import com.youtoolife.labyrinth.events.test.InvokeEvent;
+import com.youtoolife.labyrinth.events.ActionEvent;
+import com.youtoolife.labyrinth.events.InvokeEvent;
 import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.units.Player;
 import com.youtoolife.labyrinth.units.Unit;

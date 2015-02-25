@@ -17,7 +17,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.chunk.Chunk.Exits;
-import com.youtoolife.labyrinth.events.test.InvokeEvent;
+import com.youtoolife.labyrinth.events.InvokeEvent;
 
 public class ChunkGenerator {
 
