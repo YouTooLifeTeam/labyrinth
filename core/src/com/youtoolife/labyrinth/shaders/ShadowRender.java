@@ -1,7 +1,6 @@
 package com.youtoolife.labyrinth.shaders;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap.Format;
@@ -33,8 +32,6 @@ public class ShadowRender {
 	}
 
 	private int lightSize = 400;
-	private float deltaSize = 0;
-	private float deltaNeed = 0;
 
 	private float upScale = 1f;
 
@@ -62,13 +59,12 @@ public class ShadowRender {
 
 		lightRender = new LightRenderer();
 
-		final String VERT_SRC = Gdx.files.local("bin/shader/pass.vert")
-				.readString();
-
-		shadowMapShader = createShader(VERT_SRC,
-				Gdx.files.local("bin/shader/shadowMap.frag").readString());
-		shadowRenderShader = createShader(VERT_SRC,
-				Gdx.files.local("bin/shader/shadowRender.frag").readString());
+		shadowMapShader = createShader(Gdx.files.local("bin/shader/pass.vert")
+				.readString(), Gdx.files.local("bin/shader/shadowMap.frag")
+				.readString());
+		shadowRenderShader = createShader(
+				Gdx.files.local("bin/shader/pass.vert").readString(), Gdx.files
+						.local("bin/shader/shadowRender.frag").readString());
 
 		occludersFBO = new FrameBuffer(Format.RGBA8888, lightSize, lightSize,
 				false);
@@ -88,9 +84,6 @@ public class ShadowRender {
 
 		cam = new OrthographicCamera(MainGame.w, MainGame.h);
 		cam.setToOrtho(false);
-		deltaNeed = MathUtils.random(-30, 30);
-		while (deltaNeed == 0)
-			deltaNeed = MathUtils.random(-30, 30);
 	}
 
 	public void render(GamePlayState game) {
@@ -100,6 +93,7 @@ public class ShadowRender {
 		if (additive)
 			batch.setBlendFunction(GL20.GL_SRC_ALPHA,
 					GL20.GL_ONE_MINUS_SRC_ALPHA);
+
 		batch.begin();
 		batch.setColor(1, 1, 1, 1);
 		lightRender.render(batch, game);
@@ -119,12 +113,11 @@ public class ShadowRender {
 		if (additive)
 			batch.setBlendFunction(GL20.GL_SRC_ALPHA,
 					GL20.GL_ONE_MINUS_SRC_ALPHA);
-
 		batch.begin();
+		batch.setColor(0.99f, 0.99f, 0.99f, 1f);
 		batch.setShader(null);
-		batch.setColor(0.3f, 0.3f, 0.3f, 1f);
-		for (int i = -2; i <= 2; i++)
-			for (int j = -2; j <= 2; j++)
+		for (int j = -2; j <= 2; j++)
+			for (int i = -2; i <= 2; i++)
 				if (i + game.yChunk >= 0
 						&& +game.yChunk + i < GamePlayState.SIZE
 						&& game.xChunk + j >= 0
@@ -133,7 +126,6 @@ public class ShadowRender {
 							.renderWalls(batch, j + game.XOffset, i
 									+ game.YOffset);
 
-		batch.setShader(null); // default shader
 		GamePlayState.player1.draw(batch, game.XOffset * 50 * Chunk.SIZE,
 				game.YOffset * 50 * Chunk.SIZE);
 		GamePlayState.player2.draw(batch, game.XOffset * 50 * Chunk.SIZE,
@@ -171,7 +163,7 @@ public class ShadowRender {
 					GamePlayState.chunks[i + game.yChunk][j + game.xChunk]
 							.renderWalls(batch, j + game.XOffset, i
 									+ game.YOffset);
-		
+
 		GamePlayState.chunks[game.yChunk][game.xChunk].drawMobs(batch,
 				game.XOffset, game.YOffset);
 
@@ -206,16 +198,6 @@ public class ShadowRender {
 
 		shadowMapFBO.end();
 
-		// dynamic light length
-		boolean isPos = deltaNeed > deltaSize;
-		if (isPos)
-			deltaSize += MathUtils.random(1f);
-		else
-			deltaSize -= MathUtils.random(1f);
-		if (deltaNeed > deltaSize != isPos)
-			deltaNeed = MathUtils.random(0, 20f);
-		// end of dynamic length
-
 		cam.setToOrtho(false, MainGame.w, MainGame.h);
 		cam.update();
 		batch.setProjectionMatrix(cam.combined);
@@ -228,14 +210,14 @@ public class ShadowRender {
 		shadowRenderShader.setUniformf("u_noise", MathUtils.random(.3f) + 1);
 		batch.setColor(o.color);
 
-		float finalSize = lightSize * upScale + deltaSize;
+		float finalSize = lightSize * upScale;
 
 		batch.draw(shadowMap1D.getTexture(), mx - finalSize / 2f, my
 				- finalSize / 2f, finalSize, finalSize);
 
 		batch.end();
 
-		batch.setColor(Color.WHITE);
+		batch.setColor(1, 1, 1, 1);
 	}
 
 }

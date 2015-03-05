@@ -96,9 +96,9 @@ public class Chunk {
 			for (int j = 2; j < SIZE - 1; j++) {
 				if (map[i][j].type == BlockType.Floor)
 					if (MathUtils.random(1f) <= CHANCE)
-						((Floor)map[i][j]).addRandomBlood();
+						((Floor) map[i][j]).addRandomBlood();
 					else if (MathUtils.random(1f) <= CHANCE)
-						((Floor)map[i][j]).addRandomGap();
+						((Floor) map[i][j]).addRandomGap();
 			}
 	}
 

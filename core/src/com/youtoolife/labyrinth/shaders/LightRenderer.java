@@ -54,34 +54,30 @@ public class LightRenderer {
 	public void render(SpriteBatch batch, GamePlayState game) {
 
 		batch.setShader(shader);
-		
+
 		Light l = GamePlayState.player1.getLight(
 				game.XOffset * 50 * Chunk.SIZE, game.YOffset * 50 * Chunk.SIZE);
-		Light l2 = GamePlayState.player2.getLight(
-				game.XOffset * 50 * Chunk.SIZE, game.YOffset * 50 * Chunk.SIZE);
-		
+		Light l2 = GamePlayState.player2.getLight(game.XOffset * 50
+				* Chunk.SIZE, game.YOffset * 50 * Chunk.SIZE);
+
 		LIGHT_POS.x = l.x / MainGame.w;
 		LIGHT_POS.y = l.y / MainGame.h;
-		Vector3 LIGHT_POS2 = new Vector3( l2.x / MainGame.w, l2.y / MainGame.h, LIGHT_POS.z);
-		float[] poses = {LIGHT_POS.x,LIGHT_POS.y,LIGHT_POS.z,LIGHT_POS2.x,LIGHT_POS2.y,LIGHT_POS2.z};
-		
-		float[] colors = {l.color.r,l.color.g,l.color.b,LIGHT_INTENSITY,l2.color.r,l2.color.g,l2.color.b,LIGHT_INTENSITY};
-		
+		Vector3 LIGHT_POS2 = new Vector3(l2.x / MainGame.w, l2.y / MainGame.h,
+				LIGHT_POS.z);
+		float[] poses = { LIGHT_POS.x, LIGHT_POS.y, LIGHT_POS.z, LIGHT_POS2.x,
+				LIGHT_POS2.y, LIGHT_POS2.z };
+
+		float[] colors = { l.color.r, l.color.g, l.color.b, LIGHT_INTENSITY,
+				l2.color.r, l2.color.g, l2.color.b, LIGHT_INTENSITY };
+
 		shader.setUniform3fv("LightPos", poses, 0, 6);
 		shader.setUniform4fv("LightColor", colors, 0, 8);
 		shader.setUniformf("Resolution", Gdx.graphics.getWidth(),
 				Gdx.graphics.getHeight());
 		shader.setUniformi("lights", 2);
 
-		for (int i = -2; i <= 2; i++)
-			for (int j = -2; j <= 2; j++)
-				if (i + game.yChunk >= 0
-						&& +game.yChunk + i < GamePlayState.SIZE
-						&& game.xChunk + j >= 0
-						&& +game.xChunk + j < GamePlayState.SIZE)
-					GamePlayState.chunks[i + game.yChunk][j + game.xChunk]
-							.renderAll(batch, j + game.XOffset, i
-									+ game.YOffset);
+		GamePlayState.chunks[game.yChunk][game.xChunk].renderAll(batch,
+				game.XOffset, game.YOffset);
 
 	}
 
