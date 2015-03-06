@@ -28,7 +28,7 @@ public class Assets {
 		try{
 		texture = textures.get(textureNames.indexOf("bin/textures/"+name, false));
 		}catch(ArrayIndexOutOfBoundsException e){
-			System.out.println(name);
+			System.out.println("Can't find image "+name);
 		}
 		return texture;
 	}

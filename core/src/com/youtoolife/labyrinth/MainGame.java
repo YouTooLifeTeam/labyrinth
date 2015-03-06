@@ -15,8 +15,8 @@ import com.youtoolife.labyrinth.utils.StateBasedGame;
 
 public class MainGame extends StateBasedGame implements ApplicationListener {
 
-	public OrthographicCamera camera;
-	public SpriteBatch batch;
+	public static OrthographicCamera camera;
+	public static SpriteBatch batch;
 
 	//ShaderProgram shader;
 	
@@ -44,11 +44,6 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 		//this.enterState(TESTSTATE);
 		this.enterState(MAINMENUSTATE);
 		this.init();
-		
-		//ShaderProgram.pedantic = false;
-		//shader = new ShaderProgram(Gdx.files.internal("shader/red.vsh"),Gdx.files.internal("shader/emboss.fsh"));
-		//System.out.println(shader.isCompiled()?"Shader compiled":shader.getLog());
-		//batch.setShader(shader);
 	}
 
 	@Override
@@ -62,19 +57,15 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 		camera.update();
 		local_update();
 		
-		/*shader.begin();
-		//shader.setUniformf("u_distort", MathUtils.random(4),MathUtils.random(4),0);
-		shader.setUniformf("u_resolution", Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-		shader.end();*/
-		
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		this.render(batch);
-		font.draw(batch, "FPS "+Gdx.graphics.getFramesPerSecond(), -400, 300);
+		font.draw(batch, "FPS "+Gdx.graphics.getFramesPerSecond(), 0, h);
 		batch.end();
+		batch.flush();
 	}
 
 	private void local_update() {

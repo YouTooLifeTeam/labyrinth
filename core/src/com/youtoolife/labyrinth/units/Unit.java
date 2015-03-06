@@ -119,6 +119,7 @@ public abstract class Unit {
 					y = diry == 0 ? y : Chunk.SIZE - 1 - y;
 					yOffset += -diry * 50;
 					GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = this;
+					GamePlayState.chunks[ChunkY][ChunkX].enter();
 				}
 			} else {
 				if (action == Action.SpecAction)

@@ -12,7 +12,7 @@ import com.youtoolife.labyrinth.MiniMap;
 import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.controller.Controller;
 import com.youtoolife.labyrinth.controller.KeyBoardController;
-import com.youtoolife.labyrinth.shaders.ShadowRender;
+import com.youtoolife.labyrinth.renderer.GameRenderer;
 import com.youtoolife.labyrinth.units.Name1Player;
 import com.youtoolife.labyrinth.units.Name2Player;
 import com.youtoolife.labyrinth.units.Player;
@@ -24,14 +24,14 @@ public class GamePlayState extends GameState {
 
 	public static int SIZE = 10;
 
-	ShadowRender shadow;
+	GameRenderer gameRenderer;
 
 	public static Chunk[][] chunks;
 	public int xChunk = 1;
 	public int yChunk = 1;
 
-	public float XOffset = 0;
-	public float YOffset = 0;
+	public static float XOffset = 0;
+	public static float YOffset = 0;
 
 	public static Player player1, player2;
 	Controller control1, control2;
@@ -49,7 +49,7 @@ public class GamePlayState extends GameState {
 	public void draw(SpriteBatch batch) {
 		if (!isMap) {
 			batch.end();
-			shadow.render(this);
+			gameRenderer.render(this);
 			batch.begin();
 		} else
 			minimap.draw(batch);
@@ -169,7 +169,7 @@ public class GamePlayState extends GameState {
 
 	@Override
 	public void enter(StateBasedGame game) {
-		((MainGame) game).camera.position.set(0, 0, 0);
+		MainGame.camera.position.set(0, 0, 0);
 		isMap = false;
 		int[] positions = new int[4];
 		chunks = MazeGenerator.getMaze(SIZE, positions);
@@ -180,11 +180,15 @@ public class GamePlayState extends GameState {
 		control2 = new KeyBoardController(KeyBoardController.WASD);
 		player1 = new Name1Player(xChunk, yChunk, control1);
 		player2 = new Name2Player(xChunk, yChunk, control2);
+		chunks[yChunk][xChunk].lights.add( GamePlayState.player1.getLight(
+				GamePlayState.XOffset * 50 * Chunk.SIZE, GamePlayState.YOffset * 50 * Chunk.SIZE));
+		chunks[yChunk][xChunk].lights.add( GamePlayState.player2.getLight(
+				GamePlayState.XOffset * 50 * Chunk.SIZE, GamePlayState.YOffset * 50 * Chunk.SIZE));
 		minimap = new MiniMap(SIZE);
 		minimap.setViewed(positions[0], positions[1]);
 		minimap.setViewed(positions[2], positions[3]);
 		gui = new Gui(player1, player2);
-		shadow = new ShadowRender();
+		gameRenderer = new GameRenderer();
 	}
 
 	@Override

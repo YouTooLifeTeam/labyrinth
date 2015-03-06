@@ -9,6 +9,8 @@ import com.youtoolife.labyrinth.GameObjects.Floor;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
 import com.youtoolife.labyrinth.events.InvokeEvent;
+import com.youtoolife.labyrinth.renderer.Light;
+import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.units.mob.Mob;
 
 public class Chunk {
@@ -29,6 +31,8 @@ public class Chunk {
 	public Vector<Mob> mobs;
 	public Vector<InvokeEvent> events;
 
+	public Vector<Light> lights = new Vector<Light>();
+	
 	public Chunk(Exits type, String name, GameObject[][] map,
 			Vector<InvokeEvent> events) {
 		this.name = name;
@@ -107,8 +111,17 @@ public class Chunk {
 			for (int j = 0; j < SIZE; j++)
 				map[i][j].here = null;
 		mobs = new Vector<Mob>();
+		lights.remove(lights.size()-1);
+		lights.remove(lights.size()-1);
 	}
 
+	public void enter(){
+		lights.add( GamePlayState.player1.getLight(
+				GamePlayState.XOffset * 50 * Chunk.SIZE, GamePlayState.YOffset * 50 * Chunk.SIZE));
+		lights.add( GamePlayState.player2.getLight(
+				GamePlayState.XOffset * 50 * Chunk.SIZE, GamePlayState.YOffset * 50 * Chunk.SIZE));
+	}
+	
 	public void update() {
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)

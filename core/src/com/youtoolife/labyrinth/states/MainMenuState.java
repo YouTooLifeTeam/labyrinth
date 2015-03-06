@@ -53,7 +53,7 @@ public class MainMenuState extends GameState {
 
 	@Override
 	public void enter(StateBasedGame game) {
-		((MainGame)game).camera.position.set(800/2, 600/2, 0);
+		MainGame.camera.position.set(800/2, 600/2, 0);
 	}
 
 	@Override

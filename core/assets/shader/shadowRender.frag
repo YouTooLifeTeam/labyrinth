@@ -31,7 +31,7 @@ void main(void) {
 	
 	float center = sample(vec2(tc.x, tc.y), r);        
 	
-	float blur = (u_noise/(resolution.x))  * smoothstep(0., 1., r); 
+	float blur = (1./(resolution.x))  * smoothstep(0., 1., r); 
 	
 	float sum = 0.0;
 	
