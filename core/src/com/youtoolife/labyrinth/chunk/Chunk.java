@@ -30,15 +30,15 @@ public class Chunk {
 
 	public Vector<Mob> mobs;
 	public Vector<InvokeEvent> events;
+	public Vector<Light> lights;
 
-	public Vector<Light> lights = new Vector<Light>();
-	
 	public Chunk(Exits type, String name, GameObject[][] map,
-			Vector<InvokeEvent> events) {
+			Vector<InvokeEvent> events, Vector<Light> lights) {
 		this.name = name;
 		this.type = type;
 		this.map = map;
 		this.events = events;
+		this.lights = lights;
 		mobs = new Vector<Mob>();
 	}
 
@@ -64,7 +64,7 @@ public class Chunk {
 		Vector<InvokeEvent> bufev = new Vector<InvokeEvent>();
 		for (InvokeEvent ev : events)
 			bufev.add(ev.copy());
-		Chunk chunk = new Chunk(this.type, this.name, buf, bufev);
+		Chunk chunk = new Chunk(this.type, this.name, buf, bufev, lights);
 		chunk.generateBlood();
 		return chunk;
 	}
@@ -111,17 +111,17 @@ public class Chunk {
 			for (int j = 0; j < SIZE; j++)
 				map[i][j].here = null;
 		mobs = new Vector<Mob>();
-		lights.remove(lights.size()-1);
-		lights.remove(lights.size()-1);
+		lights.remove(lights.size() - 1);
+		lights.remove(lights.size() - 1);
 	}
 
-	public void enter(){
-		lights.add( GamePlayState.player1.getLight(
-				GamePlayState.XOffset * 50 * Chunk.SIZE, GamePlayState.YOffset * 50 * Chunk.SIZE));
-		lights.add( GamePlayState.player2.getLight(
-				GamePlayState.XOffset * 50 * Chunk.SIZE, GamePlayState.YOffset * 50 * Chunk.SIZE));
+	public void enter() {
+		lights.add(GamePlayState.player1.getLight(GamePlayState.XOffset * 50
+				* Chunk.SIZE, GamePlayState.YOffset * 50 * Chunk.SIZE));
+		lights.add(GamePlayState.player2.getLight(GamePlayState.XOffset * 50
+				* Chunk.SIZE, GamePlayState.YOffset * 50 * Chunk.SIZE));
 	}
-	
+
 	public void update() {
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)
@@ -132,6 +132,10 @@ public class Chunk {
 
 		for (Mob m : mobs)
 			m.update(this);
+
+		for (Light l : lights)
+			l.update(GamePlayState.XOffset * 50 * Chunk.SIZE,
+					GamePlayState.YOffset * 50 * Chunk.SIZE);
 	}
 
 	public void drawMobs(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {

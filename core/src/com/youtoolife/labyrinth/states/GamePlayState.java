@@ -61,6 +61,7 @@ public class GamePlayState extends GameState {
 		if (isMap) {
 			minimap.update();
 		} else {
+			chunks[yChunk][xChunk].update();
 			control1.update();
 			control2.update();
 			player1.update();
@@ -134,8 +135,6 @@ public class GamePlayState extends GameState {
 				if (YOffset * speedY > 0)
 					YOffset = 0;
 			}
-
-			chunks[yChunk][xChunk].update();
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			game.enterState(MAINMENUSTATE);

@@ -18,6 +18,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.chunk.Chunk.Exits;
 import com.youtoolife.labyrinth.events.InvokeEvent;
+import com.youtoolife.labyrinth.renderer.Light;
 
 public class ChunkGenerator {
 
@@ -58,6 +59,7 @@ public class ChunkGenerator {
 	private static void addChunk(Element chunk) {
 		String name = chunk.getAttribute("name");
 		Exits type = Exits.valueOf(chunk.getAttribute("type"));
+		
 		GameObject[][] map = new GameObject[Chunk.SIZE][Chunk.SIZE];
 		NodeList blocks = chunk.getElementsByTagName("Block");
 		for (int i = 0; i < blocks.getLength(); i++) {
@@ -66,12 +68,18 @@ public class ChunkGenerator {
 			map[Integer.valueOf(block.getAttribute("y"))][Integer.valueOf(block
 					.getAttribute("x"))] = buf_block;
 		}
+		
 		Vector<InvokeEvent> events = new Vector<InvokeEvent>();
 		if (chunk.getElementsByTagName("Eventlist").item(0)!=null)
 			events = EventsResolver.getEvents((Element) chunk
 					.getElementsByTagName("Eventlist").item(0));
 
-		Chunk buf = new Chunk(type, name, map, events);
+		Vector<Light> lights = new Vector<Light>();
+		if (chunk.getElementsByTagName("Lightlist").item(0)!=null)
+			lights = Light.getLights((Element) chunk
+					.getElementsByTagName("Lightlist").item(0));
+		
+		Chunk buf = new Chunk(type, name, map, events, lights);
 		chunks.add(buf);
 	}
 }

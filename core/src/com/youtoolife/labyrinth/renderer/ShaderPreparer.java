@@ -13,13 +13,9 @@ public class ShaderPreparer {
 
 	public static void prepare(Vector<Light> lights, GameRenderer renderer) {
 		ShaderProgram shader = renderer.LightRender;
-		float[] positions = new float[6];
-		float[] colors = new float[8];
+		float[] positions = new float[3*lights.size()];
+		float[] colors = new float[4*lights.size()];
 		
-		/*String[] ufs = shader.getUniforms();
-		for(String b:ufs)
-			System.out.println(b);
-		*/
 		for (int i = 0; i < lights.size(); i++) {
 			Light l = lights.get(i);
 			positions[i * 3] = l.position.x / MainGame.w;
@@ -34,7 +30,7 @@ public class ShaderPreparer {
 
 		renderer.batch.setShader(shader);
 		shader.begin();
-		shader.setUniformi("lights", 2);
+		shader.setUniformi("lights", lights.size());
 		shader.setUniformf("Resolution", Gdx.graphics.getWidth(),
 				Gdx.graphics.getHeight());
 		shader.setUniform3fv("LightPos", positions, 0, positions.length);

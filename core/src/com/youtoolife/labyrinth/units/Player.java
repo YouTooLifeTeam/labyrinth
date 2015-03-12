@@ -12,7 +12,7 @@ public abstract class Player extends Unit {
 
 	public Player(int ChunkX, int ChunkY, Controller control) {
 		super(ChunkX, ChunkY, control);
-		torch = new Light(0,0, torch_color);
+		torch = new Light(0f,0f, torch_color);
 		torch.exclude = this;
 	}
 
