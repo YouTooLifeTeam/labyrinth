@@ -18,7 +18,7 @@ public abstract class GameObject {
 	private int objectId = 0;
 	
 	public enum BlockType {
-		Wall, Floor, Door, Mine
+		Wall, Floor, Door, Mine, Lamp
 	}
 
 	public Texture main_texture;
@@ -57,6 +57,8 @@ public abstract class GameObject {
 			return new Floor(texture);
 		if(type==BlockType.Wall)
 			return new Wall(texture);
+		if(type==BlockType.Lamp)
+			return new Lamp(texture);
 		return null;
 	}
 

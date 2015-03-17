@@ -12,7 +12,7 @@ import com.youtoolife.labyrinth.units.Unit;
 public class Light {
 
 	public static final float DEFAULT_LIGHT_Z = 0.1f;
-	public static final float LIGHT_INTENSITY = 1.5f;
+	public static final float LIGHT_INTENSITY = 1.2f;
 	public Unit exclude;
 	Vector3 position = new Vector3();
 	Color color;

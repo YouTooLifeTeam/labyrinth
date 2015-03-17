@@ -4,7 +4,7 @@
 	<Eventlist></Eventlist>
 	
 <Lightlist>
-	<Light x="5" y="5" r="0.7" g="0.4" b="0.4" a="0.1"></Light>
+	<Light x="6" y="6" r="0.3" g="0.3" b="0.8" a="0.2"></Light>
 </Lightlist>
 
 <Block img="wall" type="Wall" x="0" y="0"></Block>
@@ -92,7 +92,7 @@
 	<Block img="floor" type="Floor" x="6" y="3"></Block>
 	<Block img="floor" type="Floor" x="6" y="4"></Block>
 	<Block img="floor" type="Floor" x="6" y="5"></Block>
-	<Block img="floor" type="Floor" x="6" y="6"></Block>
+	<Block img="lamp" type="Lamp" x="6" y="6"></Block>
 	<Block img="floor" type="Floor" x="6" y="7"></Block>
 	<Block img="floor" type="Floor" x="6" y="8"></Block>
 	<Block img="floor" type="Floor" x="6" y="9"></Block>
