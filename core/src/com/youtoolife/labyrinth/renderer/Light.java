@@ -7,6 +7,7 @@ import org.w3c.dom.NodeList;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector3;
+import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.units.Unit;
 
 public class Light {
@@ -32,11 +33,18 @@ public class Light {
 
 	public void update(float xOffset, float yOffset) {
 		if (XTile != -1) {
-			position.x = XTile * 50 + xOffset;
-			position.y = YTile * 50 + yOffset;
+			position.x = XTile * 50 + xOffset + 125;
+			position.y = (Chunk.SIZE - YTile - 1) * 50 + yOffset + 25;
 		}
 	}
-
+	
+	public void rotate(){
+		int by = Chunk.SIZE - 1 - XTile;
+		int bx = YTile;
+		YTile = by;
+		XTile = bx;
+	}
+	
 	public void setColor(Color color) {
 		this.color = color;
 	}
@@ -46,6 +54,10 @@ public class Light {
 		position.z = DEFAULT_LIGHT_Z;
 	}
 
+	public Light copy(){
+		return new Light(XTile, YTile, color);
+	}
+	
 	public static Vector<Light> getLights(Element e) {
 		Vector<Light> lights = new Vector<Light>();
 

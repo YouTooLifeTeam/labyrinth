@@ -19,7 +19,7 @@ public class MiniMap {
 												// - 3exitl 4 -
 	// 4 exit, 5 - 2b - exit
 
-	float dx = 0, dy = 0;
+	float dx = MainGame.w, dy = MainGame.h/2;
 
 	public MiniMap(int SIZE) {
 		map = new boolean[SIZE][SIZE];

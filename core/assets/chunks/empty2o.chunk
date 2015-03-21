@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Chunk name="empty2o" type="DiOpposite">
 
-	<Eventlist></Eventlist>
+	<Eventlist>
+		<InvokeEvent type="Step" x="3" y="3" Cooldown="2">
+			<ActionEvent type="CloseDoor" id="1"></ActionEvent>
+		</InvokeEvent>
+		<InvokeEvent type="Step" x="8" y="8" Cooldown="2">
+			<ActionEvent type="OpenDoor" id="1"></ActionEvent>
+		</InvokeEvent>
+	</Eventlist>
 
 	<Block img="wall" type="Wall" x="0" y="0"></Block>
 	<Block img="wall" type="Wall" x="0" y="1"></Block>
@@ -46,7 +53,7 @@
 	<Block img="wall" type="Wall" x="3" y="0"></Block>
 	<Block img="floor" type="Floor" x="3" y="1"></Block>
 	<Block img="floor" type="Floor" x="3" y="2"></Block>
-	<Block img="floor" type="Floor" x="3" y="3"></Block>
+	<Block img="button" type="Floor" x="3" y="3"></Block>
 	<Block img="floor" type="Floor" x="3" y="4"></Block>
 	<Block img="floor" type="Floor" x="3" y="5"></Block>
 	<Block img="floor" type="Floor" x="3" y="6"></Block>
@@ -116,7 +123,7 @@
 	<Block img="floor" type="Floor" x="8" y="5"></Block>
 	<Block img="floor" type="Floor" x="8" y="6"></Block>
 	<Block img="floor" type="Floor" x="8" y="7"></Block>
-	<Block img="floor" type="Floor" x="8" y="8"></Block>
+	<Block img="button" type="Floor" x="8" y="8"></Block>
 	<Block img="floor" type="Floor" x="8" y="9"></Block>
 	<Block img="floor" type="Floor" x="8" y="10"></Block>
 	<Block img="wall" type="Wall" x="8" y="11"></Block>

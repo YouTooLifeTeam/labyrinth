@@ -33,16 +33,16 @@ public class Door extends GameObject {
 		return new Door(this.main_texture,this.getId());
 	}
 
+	public void setOpen(boolean isOpen){
+		this.isOpen = isOpen;
+	}
+	
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void stepOnit(Chunk chunk, Unit player, int dx, int dy) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

@@ -52,6 +52,8 @@ public class Chunk {
 			buf = new GameObject[SIZE][SIZE];
 			for (InvokeEvent e : events)
 				e.rotate();
+			for(Light l: lights)
+				l.rotate();
 		}
 		rotates += times;
 	}
@@ -64,7 +66,10 @@ public class Chunk {
 		Vector<InvokeEvent> bufev = new Vector<InvokeEvent>();
 		for (InvokeEvent ev : events)
 			bufev.add(ev.copy());
-		Chunk chunk = new Chunk(this.type, this.name, buf, bufev, lights);
+		Vector<Light> buflights = new Vector<Light>();
+		for(Light l: lights)
+			buflights.add(l.copy());
+		Chunk chunk = new Chunk(this.type, this.name, buf, bufev, buflights);
 		chunk.generateBlood();
 		return chunk;
 	}
