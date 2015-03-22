@@ -5,12 +5,13 @@
 		<InvokeEvent type="EnterChunk">
 			<ActionEvent type="Spawn" x="8" y="8" mob="Box"></ActionEvent>
 			<ActionEvent type="CloseDoor" id="1"></ActionEvent>
-			<ActionEvent type="CloseDoor" id="1"></ActionEvent>
+			<ActionEvent type="CloseDoor" id="2"></ActionEvent>
 		</InvokeEvent>
 		
 		<InvokeEvent type="Step" x="1" y="1" Cooldown="0.005">
-			<ActionEvent type="OpenDoor" id="1"></ActionEvent>
+			<ActionEvent type="OpenDoor" id="2"></ActionEvent>
 		</InvokeEvent>
+		
 		<InvokeEvent type="Step" x="2" y="1" Cooldown="0.005">
 			<ActionEvent type="CloseDoor" id="1"></ActionEvent>
 		</InvokeEvent>
@@ -21,18 +22,20 @@
 			<ActionEvent type="CloseDoor" id="1"></ActionEvent>
 		</InvokeEvent>
 		
+		<InvokeEvent type="Step" x="2" y="1" Cooldown="0.005">
+			<ActionEvent type="CloseDoor" id="2"></ActionEvent>
+		</InvokeEvent>
+		<InvokeEvent type="Step" x="1" y="2" Cooldown="0.005">
+			<ActionEvent type="CloseDoor" id="2"></ActionEvent>
+		</InvokeEvent>
+		<InvokeEvent type="Step" x="2" y="2" Cooldown="0.005">
+			<ActionEvent type="CloseDoor" id="2"></ActionEvent>
+		</InvokeEvent>
+		
 		<InvokeEvent type="Step" x="10" y="1" Cooldown="0.005">
 			<ActionEvent type="OpenDoor" id="1"></ActionEvent>
 		</InvokeEvent>
-		<InvokeEvent type="Step" x="9" y="1" Cooldown="0.005">
-			<ActionEvent type="CloseDoor" id="1"></ActionEvent>
-		</InvokeEvent>
-		<InvokeEvent type="Step" x="10" y="2" Cooldown="0.005">
-			<ActionEvent type="CloseDoor" id="1"></ActionEvent>
-		</InvokeEvent>
-		<InvokeEvent type="Step" x="9" y="2" Cooldown="0.005">
-			<ActionEvent type="CloseDoor" id="1"></ActionEvent>
-		</InvokeEvent>
+
 	</Eventlist>
 
 	<Block img="wall" type="Wall" x="0" y="0"></Block>
@@ -154,8 +157,8 @@
 	<Block img="wall" type="Wall" x="8" y="11"></Block>
 	             
 	<Block img="wall" type="Wall" x="9" y="0"></Block>
-	<Block img="button" type="Floor" x="9" y="1"></Block>
-	<Block img="button" type="Floor" x="9" y="2"></Block>
+	<Block img="door" type="Door" x="9" y="1" id="2"></Block>
+	<Block img="door" type="Door" x="9" y="2" id="2"></Block>
 	<Block img="floor" type="Floor" x="9" y="3"></Block>
 	<Block img="floor" type="Floor" x="9" y="4"></Block>
 	<Block img="floor" type="Floor" x="9" y="5"></Block>
@@ -181,7 +184,7 @@
 	
 	<Block img="wall" type="Wall" x="10" y="0"></Block>
 	<Block img="button" type="Floor" x="10" y="1"></Block>
-	<Block img="button" type="Floor" x="10" y="2"></Block>
+	<Block img="door" type="Door" x="10" y="2" id="2"></Block>
 	<Block img="floor" type="Floor" x="10" y="3"></Block>
 	<Block img="floor" type="Floor" x="10" y="4"></Block>
 	<Block img="floor" type="Floor" x="10" y="5"></Block>

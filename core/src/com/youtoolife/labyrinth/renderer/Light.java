@@ -19,6 +19,8 @@ public class Light {
 	Color color;
 	int XTile = -1, YTile = -1;
 
+	int rotates = 0;
+
 	public Light(int XTile, int YTile, Color color) {
 		this.XTile = XTile;
 		this.YTile = YTile;
@@ -32,9 +34,16 @@ public class Light {
 	}
 
 	public void update(float xOffset, float yOffset) {
-		if (XTile != -1) {
-			position.x = XTile * 50 + xOffset + 125;
-			position.y = (Chunk.SIZE - YTile - 1) * 50 + yOffset + 25;
+		if (rotates % 2 == 0) {
+			if (XTile != -1) {
+				position.x = XTile * 50 + xOffset + 125;
+				position.y = (Chunk.SIZE - YTile - 1) * 50 + yOffset + 25;
+			}
+		} else {
+			if (XTile != -1) {
+				position.x = (Chunk.SIZE - 1 - XTile) * 50 + xOffset + 125;
+				position.y = YTile * 50 + yOffset + 25;
+			}
 		}
 	}
 
@@ -43,6 +52,7 @@ public class Light {
 		int bx = YTile;
 		YTile = by;
 		XTile = bx;
+		rotates++;
 	}
 
 	public void setColor(Color color) {
