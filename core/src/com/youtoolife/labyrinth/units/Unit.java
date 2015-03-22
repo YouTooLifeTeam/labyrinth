@@ -93,22 +93,17 @@ public abstract class Unit {
 			if (isMove) {
 				if (x + dirx >= 0 && x + dirx <= Chunk.SIZE - 1
 						&& y + diry >= 0 && y + diry <= Chunk.SIZE - 1) {
-					chunk.map[Chunk.SIZE - 1
-							- (y + diry)][x + dirx].stepOnit(
-							chunk, this, dirx,
-							diry);
+					chunk.map[Chunk.SIZE - 1 - (y + diry)][x + dirx].stepOnit(
+							chunk, this, dirx, diry);
 
-			
-					if (chunk.map[Chunk.SIZE - 1
-							- (y + diry)][x + dirx].canStep()) {
-						chunk.map[Chunk.SIZE - 1
-								- y][x].here = null;
+					if (chunk.map[Chunk.SIZE - 1 - (y + diry)][x + dirx]
+							.canStep()) {
+						chunk.map[Chunk.SIZE - 1 - y][x].here = null;
 						x += dirx;
 						xOffset += -dirx * 50;
 						y += diry;
 						yOffset += -diry * 50;
-						chunk.map[Chunk.SIZE - 1
-								- y][x].here = this;
+						chunk.map[Chunk.SIZE - 1 - y][x].here = this;
 					}
 				} else {
 					chunk.map[Chunk.SIZE - 1 - y][x].here = null;

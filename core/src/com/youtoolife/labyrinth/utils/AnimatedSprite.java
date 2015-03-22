@@ -1,5 +1,6 @@
 package com.youtoolife.labyrinth.utils;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -22,22 +23,25 @@ public class AnimatedSprite {
 	private float PreferedDelta = 200;
 	private boolean isFlipped = false;
 	
+	private Texture src;
+	
 	public void draw(SpriteBatch batch) {
 		img[AnimNow].setPosition(x, y);
 		img[AnimNow].draw(batch);
 	}
 
-	private void CutImage(Sprite src) {
+	private void CutImage(Texture src) {
 		for (int i = 0; i <= src.getWidth() / width - 1; i++)
 			img[i] = new Sprite(new TextureRegion(src, (int) (i * width), 0,
 					(int) width, (int) height));
 	}
 
 	public AnimatedSprite(float x, float y, float width, float height,
-			Sprite img, float angle) {
+			Texture img, float angle) {
 		this.img = new Sprite[(int) (img.getWidth() / width)];
 		this.width = width;
 		this.height = height;
+		this.src = img;
 		AnimStart = 0;
 		AnimStop = this.img.length - 1;
 		AnimCount = (int) (img.getWidth() / width);
@@ -160,4 +164,9 @@ public class AnimatedSprite {
 	public int getAnimCount() {
 		return AnimCount;
 	}
+	
+	public Texture getTexture(){
+		return src;
+	}
+	
 }

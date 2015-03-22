@@ -10,31 +10,37 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.units.Unit;
+import com.youtoolife.labyrinth.units.objects.Box;
 import com.youtoolife.labyrinth.utils.Assets;
 
 public abstract class GameObject {
 
 	public Unit here = null;
 	private int objectId = 0;
-	
+
 	public enum BlockType {
 		Wall, Floor, Door, Mine, Lamp
 	}
 
 	public Texture main_texture;
-
+	Texture normal_map;
+	
 	Vector<Sprite> additions;
 
 	public BlockType type;
 
 	public GameObject(BlockType type, Texture texture, int objectId) {
+		
 		this.objectId = objectId;
 		this.type = type;
 		this.main_texture = texture;
 		additions = new Vector<Sprite>();
+		normal_map = Assets.getTexture("normal_map/floor_map");
 	}
 
 	public void draw(SpriteBatch batch, float x, float y) {
+		normal_map.bind(1);
+		main_texture.bind(0);
 		batch.draw(main_texture, x, y, 50, 50);
 		for (Sprite t : additions) {
 			t.setPosition(x - 50, y + 50);
@@ -79,7 +85,10 @@ public abstract class GameObject {
 				+ String.valueOf(num))));
 	}
 	
-	public abstract void stepOnit(Chunk chunk , Unit player, int dx, int dy);
+	public void stepOnit(Chunk chunk , Unit player, int dx, int dy){
+		if(here instanceof Box)
+			((Box)here).step(chunk , player, dx, dy);
+	}
 	
 	public int getId(){
 		return objectId;

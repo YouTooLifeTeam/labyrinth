@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Chunk name="empty1" type="SingleExit">
 
-	<Eventlist></Eventlist>
+	<Eventlist>
+		<InvokeEvent type="EnterChunk">
+			<ActionEvent type="Spawn" x="2" y="2" mob="Box"></ActionEvent>
+			<ActionEvent type="Spawn" x="8" y="8" mob="Box"></ActionEvent>
+		</InvokeEvent>
+	</Eventlist>
 
 	<Block img="wall" type="Wall" x="0" y="0"></Block>
 	<Block img="wall" type="Wall" x="0" y="1"></Block>

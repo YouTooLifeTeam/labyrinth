@@ -44,6 +44,7 @@ public class Mine extends GameObject {
 			prev.here = null;
 			chunk.map[Chunk.SIZE - 1 - player.y - dy][player.x+ dx] = prev;
 		}
+		super.stepOnit(chunk, player, dx, dy);
 	}
 
 	@Override

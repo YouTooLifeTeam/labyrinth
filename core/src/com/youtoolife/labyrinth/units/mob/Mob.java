@@ -1,5 +1,7 @@
 package com.youtoolife.labyrinth.units.mob;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.controller.Controller;
 import com.youtoolife.labyrinth.controller.IIController;
@@ -9,6 +11,8 @@ public abstract class Mob extends Unit{
 
 	IIController control;
 	
+	Texture normal_map;
+	
 	public Mob(int ChunkX, int ChunkY, Controller control, int x, int y) {
 		super(ChunkX, ChunkY, control);
 		this.control = (IIController) control;
@@ -16,6 +20,13 @@ public abstract class Mob extends Unit{
 		this.y = y;
 	}
 
+	@Override
+	public void draw(SpriteBatch batch, float x, float y) {
+		normal_map.bind(1);
+		this.sprite.getTexture().bind(0);
+		super.draw(batch, x, y);
+	}
+	
 	@Override
 	public void update(Chunk chunk){
 		super.update(chunk);

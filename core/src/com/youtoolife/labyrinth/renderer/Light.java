@@ -37,14 +37,14 @@ public class Light {
 			position.y = (Chunk.SIZE - YTile - 1) * 50 + yOffset + 25;
 		}
 	}
-	
-	public void rotate(){
+
+	public void rotate() {
 		int by = Chunk.SIZE - 1 - XTile;
 		int bx = YTile;
 		YTile = by;
 		XTile = bx;
 	}
-	
+
 	public void setColor(Color color) {
 		this.color = color;
 	}
@@ -54,10 +54,10 @@ public class Light {
 		position.z = DEFAULT_LIGHT_Z;
 	}
 
-	public Light copy(){
+	public Light copy() {
 		return new Light(XTile, YTile, color);
 	}
-	
+
 	public static Vector<Light> getLights(Element e) {
 		Vector<Light> lights = new Vector<Light>();
 
@@ -65,11 +65,11 @@ public class Light {
 		for (int i = 0; i < list.getLength(); i++) {
 			Element light = (Element) list.item(i);
 			lights.add(new Light(Integer.parseInt(light.getAttribute("x")),
-					Integer.parseInt(light.getAttribute("y")), new Color(
-							Float.parseFloat(light.getAttribute("r")), Float
-									.parseFloat(light.getAttribute("g")), Float
-									.parseFloat(light.getAttribute("b")), Float
-									.parseFloat(light.getAttribute("a")))));
+					Integer.parseInt(light.getAttribute("y")), new Color(Float
+							.parseFloat(light.getAttribute("r")), Float
+							.parseFloat(light.getAttribute("g")), Float
+							.parseFloat(light.getAttribute("b")), Float
+							.parseFloat(light.getAttribute("a")))));
 		}
 		return lights;
 	}

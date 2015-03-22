@@ -162,7 +162,6 @@ public class GamePlayState extends GameState {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -179,10 +178,7 @@ public class GamePlayState extends GameState {
 		control2 = new KeyBoardController(KeyBoardController.WASD);
 		player1 = new Name1Player(xChunk, yChunk, control1);
 		player2 = new Name2Player(xChunk, yChunk, control2);
-		chunks[yChunk][xChunk].lights.add( GamePlayState.player1.getLight(
-				GamePlayState.XOffset * 50 * Chunk.SIZE, GamePlayState.YOffset * 50 * Chunk.SIZE));
-		chunks[yChunk][xChunk].lights.add( GamePlayState.player2.getLight(
-				GamePlayState.XOffset * 50 * Chunk.SIZE, GamePlayState.YOffset * 50 * Chunk.SIZE));
+		chunks[yChunk][xChunk].enter();
 		minimap = new MiniMap(SIZE);
 		minimap.setViewed(positions[0], positions[1]);
 		minimap.setViewed(positions[2], positions[3]);

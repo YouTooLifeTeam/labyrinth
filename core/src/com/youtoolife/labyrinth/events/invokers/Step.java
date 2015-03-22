@@ -9,7 +9,6 @@ import com.youtoolife.labyrinth.events.InvokeEvent;
 import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.units.Player;
 import com.youtoolife.labyrinth.units.Unit;
-import com.youtoolife.labyrinth.units.mob.Mob;
 
 public class Step extends InvokeEvent{
 
@@ -37,7 +36,7 @@ public class Step extends InvokeEvent{
 				invoke(chunk, p);
 
 			for (int i = 0; i < chunk.mobs.size(); i++) {
-				Mob m = chunk.mobs.get(i);
+				Unit m = chunk.mobs.get(i);
 				if (m.x == x && (Chunk.SIZE - 1 - m.y) == y)
 					invoke(chunk, m);
 			}
@@ -50,7 +49,7 @@ public class Step extends InvokeEvent{
 				invoke(chunk, p);
 
 			for (int i = 0; i < chunk.mobs.size(); i++) {
-				Mob m = chunk.mobs.get(i);
+				Unit m = chunk.mobs.get(i);
 				if (Chunk.SIZE - 1 - m.x == x && m.y == y)
 					invoke(chunk, m);
 			}

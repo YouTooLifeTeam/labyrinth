@@ -13,7 +13,7 @@ import com.youtoolife.labyrinth.events.invokers.EnterChunk;
 import com.youtoolife.labyrinth.events.invokers.ExitChunk;
 import com.youtoolife.labyrinth.renderer.Light;
 import com.youtoolife.labyrinth.states.GamePlayState;
-import com.youtoolife.labyrinth.units.mob.Mob;
+import com.youtoolife.labyrinth.units.Unit;
 
 public class Chunk {
 
@@ -30,7 +30,7 @@ public class Chunk {
 	public GameObject[][] map = new GameObject[SIZE][SIZE];
 	public int rotates = 0;
 
-	public Vector<Mob> mobs;
+	public Vector<Unit> mobs;
 	public Vector<InvokeEvent> events;
 	public Vector<Light> lights;
 
@@ -41,7 +41,7 @@ public class Chunk {
 		this.map = map;
 		this.events = events;
 		this.lights = lights;
-		mobs = new Vector<Mob>();
+		mobs = new Vector<Unit>();
 	}
 
 	public void rotateClockwise(int times) {
@@ -87,7 +87,7 @@ public class Chunk {
 							+ YOffset);
 				}
 
-		for (Mob m : mobs)
+		for (Unit m : mobs)
 			m.draw(batch, ChunkSubX * 50 * SIZE, ChunkSubY * 50 * SIZE);
 	}
 
@@ -122,7 +122,7 @@ public class Chunk {
 			if(e instanceof ExitChunk)
 				e.invoke(this, null);
 		
-		mobs = new Vector<Mob>();
+		mobs = new Vector<Unit>();
 		lights.remove(lights.size() - 1);
 		lights.remove(lights.size() - 1);
 	}
@@ -147,7 +147,7 @@ public class Chunk {
 		for (InvokeEvent e : events)
 			e.check(this);
 
-		for (Mob m : mobs)
+		for (Unit m : mobs)
 			m.update(this);
 
 		for (Light l : lights)
@@ -156,7 +156,7 @@ public class Chunk {
 	}
 
 	public void drawMobs(SpriteBatch batch, float ChunkSubX, float ChunkSubY) {
-		for (Mob m : mobs)
+		for (Unit m : mobs)
 			m.draw(batch, ChunkSubX * 50 * SIZE, ChunkSubY * 50 * SIZE);
 	}
 
