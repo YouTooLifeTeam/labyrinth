@@ -1,6 +1,7 @@
 package com.youtoolife.labyrinth.units.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.controller.Controller;
 import com.youtoolife.labyrinth.units.Unit;
 
@@ -16,7 +17,7 @@ public class Box extends Unit{
 	}
 	
 	@Override
-	public void update(){
+	public void update(Chunk chunk){
 		
 	}
 	

@@ -9,6 +9,8 @@ import com.youtoolife.labyrinth.GameObjects.Floor;
 import com.youtoolife.labyrinth.GameObjects.GameObject;
 import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
 import com.youtoolife.labyrinth.events.InvokeEvent;
+import com.youtoolife.labyrinth.events.invokers.EnterChunk;
+import com.youtoolife.labyrinth.events.invokers.ExitChunk;
 import com.youtoolife.labyrinth.renderer.Light;
 import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.units.mob.Mob;
@@ -115,6 +117,11 @@ public class Chunk {
 		for (int i = 0; i < SIZE; i++)
 			for (int j = 0; j < SIZE; j++)
 				map[i][j].here = null;
+		
+		for(InvokeEvent e:events)
+			if(e instanceof ExitChunk)
+				e.invoke(this, null);
+		
 		mobs = new Vector<Mob>();
 		lights.remove(lights.size() - 1);
 		lights.remove(lights.size() - 1);
@@ -125,6 +132,11 @@ public class Chunk {
 				* Chunk.SIZE, GamePlayState.YOffset * 50 * Chunk.SIZE));
 		lights.add(GamePlayState.player2.getLight(GamePlayState.XOffset * 50
 				* Chunk.SIZE, GamePlayState.YOffset * 50 * Chunk.SIZE));
+		
+		for(InvokeEvent e:events)
+			if(e instanceof EnterChunk)
+				e.invoke(this, null);
+		
 	}
 
 	public void update() {

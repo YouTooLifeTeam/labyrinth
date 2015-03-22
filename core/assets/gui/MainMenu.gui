@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gui name="MainMenu">
-	<background img="MainMenu" />
+	<background img="menu/MainMenu" />
 		<container type="absolute" x="0" y="30" contType="left" indent="0">
-			<sprite x="143.5" y="0" img="title" autoSize="YES" width="230" height="132" id="" action="" align="" />
+			<sprite x="143.5" y="0" img="menu/title" autoSize="YES" width="230" height="132" id="" action="" align="" />
 		</container>
 		<container type="relativeY" x="0" y="3" contType="left" indent="52">
-			<sprite x="143.5" y="0" img="single" autoSize="YES" width="230" height="132" id="" action="single" align="" />
-			<sprite x="143.5" y="0" img="multiplayer" autoSize="YES" width="230" height="132" id="" action="multiplayer" align="" />
+			<sprite x="143.5" y="0" img="menu/single" autoSize="YES" width="230" height="132" id="" action="single" align="" />
+			<sprite x="143.5" y="0" img="menu/multiplayer" autoSize="YES" width="230" height="132" id="" action="multiplayer" align="" />
 		</container>
 		<container type="relativeY" x="0" y="3" contType="left" indent="22.5">
-			<sprite x="143.5" y="0" img="settings" autoSize="YES" width="230" height="132" id="" action="settings" align="" />
-			<sprite x="143.5" y="0" img="score" autoSize="YES" width="230" height="132" id="" action="score" align="" />
-			<sprite x="143.5" y="0" img="about" autoSize="YES" width="230" height="132" id="" action="about" align="" />
+			<sprite x="143.5" y="0" img="menu/settings" autoSize="YES" width="230" height="132" id="" action="settings" align="" />
+			<sprite x="143.5" y="0" img="menu/score" autoSize="YES" width="230" height="132" id="" action="score" align="" />
+			<sprite x="143.5" y="0" img="menu/about" autoSize="YES" width="230" height="132" id="" action="about" align="" />
 		</container>
 		<container type="relativeY" x="0" y="30" contType="left" indent="0">
-			<sprite x="317.5" y="15" img="quit" autoSize="YES" width="230" height="132" id="" action="quit" align="" />
+			<sprite x="317.5" y="15" img="menu/quit" autoSize="YES" width="230" height="132" id="" action="quit" align="" />
 		</container>
 </gui>

@@ -4,6 +4,7 @@ import org.w3c.dom.Element;
 
 import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.events.ActionEvent;
+import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.units.Unit;
 import com.youtoolife.labyrinth.units.mob.Mob;
 import com.youtoolife.labyrinth.units.mob.MobResolver;
@@ -30,7 +31,7 @@ public class Spawn extends ActionEvent {
 		else
 			dx = Chunk.SIZE - 1 - dx;
 
-		Mob buf = MobResolver.getMob(mob, unit.ChunkX, unit.ChunkY, dx, dy);
+		Mob buf = MobResolver.getMob(mob, GamePlayState.player1.ChunkX, GamePlayState.player1.ChunkY, dx, dy);
 		chunk.mobs.add(buf);
 	}
 

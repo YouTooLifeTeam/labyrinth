@@ -16,8 +16,9 @@ public abstract class Mob extends Unit{
 		this.y = y;
 	}
 
+	@Override
 	public void update(Chunk chunk){
-		super.update();
+		super.update(chunk);
 		control.update(chunk, this);
 	}
 	

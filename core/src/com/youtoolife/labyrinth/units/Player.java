@@ -30,8 +30,8 @@ public abstract class Player extends Unit {
 	}
 
 	@Override
-	public void update(){
-		super.update();
+	public void update(Chunk chunk){
+		super.update(chunk);
 		Vector3 position = new Vector3();
 		
 		position.x = this.x * 50 + xOffset + GamePlayState.XOffset * 50 * Chunk.SIZE - 50 * Chunk.SIZE / 2

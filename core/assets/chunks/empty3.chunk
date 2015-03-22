@@ -1,5 +1,15 @@
 <Chunk name="empty3" type="TriExit">
 
+	<Eventlist>
+		<InvokeEvent type="EnterChunk">
+			<ActionEvent type="Spawn" x="2" y="2" mob="Spike"></ActionEvent>
+		</InvokeEvent>
+	</Eventlist>
+
+	<Lightlist>
+		<Light x="2" y="2" r="0.3" g="0.3" b="0.8" a="0.1"></Light>
+	</Lightlist>
+
 	<Block img="wall" type="Wall" x="0" y="0"></Block>
 	<Block img="wall" type="Wall" x="0" y="0"></Block>
 	<Block img="wall" type="Wall" x="0" y="1"></Block>
@@ -30,7 +40,7 @@
 	             
 	<Block img="wall" type="Wall" x="2" y="0"></Block>
 	<Block img="floor" type="Floor" x="2" y="1"></Block>
-	<Block img="floor" type="Floor" x="2" y="2"></Block>
+	<Block img="lamp" type="Floor" x="2" y="2"></Block>
 	<Block img="floor" type="Floor" x="2" y="3"></Block>
 	<Block img="floor" type="Floor" x="2" y="4"></Block>
 	<Block img="floor" type="Floor" x="2" y="5"></Block>

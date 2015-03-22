@@ -64,8 +64,8 @@ public class GamePlayState extends GameState {
 			chunks[yChunk][xChunk].update();
 			control1.update();
 			control2.update();
-			player1.update();
-			player2.update();
+			player1.update(chunks[yChunk][xChunk]);
+			player2.update(chunks[yChunk][xChunk]);
 			if (xChunk != player1.ChunkX) {
 				chunks[yChunk][xChunk].exit();
 				if(XOffset==0)

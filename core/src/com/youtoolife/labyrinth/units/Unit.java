@@ -38,7 +38,7 @@ public abstract class Unit {
 		sprite.draw(batch);
 	}
 
-	public void update() {
+	public void update(Chunk chunk) {
 
 		if ((xOffset != 0) || (yOffset != 0)) {
 			sprite.update(Gdx.graphics.getDeltaTime());
@@ -93,32 +93,32 @@ public abstract class Unit {
 			if (isMove) {
 				if (x + dirx >= 0 && x + dirx <= Chunk.SIZE - 1
 						&& y + diry >= 0 && y + diry <= Chunk.SIZE - 1) {
-					GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+					chunk.map[Chunk.SIZE - 1
 							- (y + diry)][x + dirx].stepOnit(
-							GamePlayState.chunks[ChunkY][ChunkX], this, dirx,
+							chunk, this, dirx,
 							diry);
 
 			
-					if (GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+					if (chunk.map[Chunk.SIZE - 1
 							- (y + diry)][x + dirx].canStep()) {
-						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+						chunk.map[Chunk.SIZE - 1
 								- y][x].here = null;
 						x += dirx;
 						xOffset += -dirx * 50;
 						y += diry;
 						yOffset += -diry * 50;
-						GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1
+						chunk.map[Chunk.SIZE - 1
 								- y][x].here = this;
 					}
 				} else {
-					GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = null;
+					chunk.map[Chunk.SIZE - 1 - y][x].here = null;
 					ChunkX += dirx;
 					x = dirx == 0 ? x : Chunk.SIZE - 1 - x;
 					xOffset += -dirx * 50;
 					ChunkY += diry;
 					y = diry == 0 ? y : Chunk.SIZE - 1 - y;
 					yOffset += -diry * 50;
-					GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = this;
+					chunk.map[Chunk.SIZE - 1 - y][x].here = this;
 					GamePlayState.chunks[ChunkY][ChunkX].enter();
 				}
 			} else {

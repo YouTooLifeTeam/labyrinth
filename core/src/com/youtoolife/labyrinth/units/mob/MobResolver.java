@@ -9,6 +9,8 @@ public class MobResolver {
 		
 		if(mob.equals("Sad"))
 			buf = new SadMob(ChunkX, ChunkY, new IIController(),x,y);
+		if(mob.equals("Spike"))
+			buf = new SpikeMob(ChunkX, ChunkY, new IIController(),x,y);
 		
 		return buf;
 	}

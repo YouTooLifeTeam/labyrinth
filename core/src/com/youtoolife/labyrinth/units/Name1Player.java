@@ -29,8 +29,8 @@ public class Name1Player extends Player {
 	}
 
 	@Override
-	public void update() {
-		super.update();
+	public void update(Chunk chunk) {
+		super.update(chunk);
 		mine_coolDown -= Gdx.graphics.getDeltaTime();
 		if (mine_coolDown < 0)
 			mine_coolDown = 0;

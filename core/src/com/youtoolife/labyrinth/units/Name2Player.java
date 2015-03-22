@@ -30,8 +30,8 @@ public class Name2Player extends Player {
 
 
 	@Override
-	public void update() {
-		super.update();
+	public void update(Chunk chunk) {
+		super.update(chunk);
 		arrow_cooldown -= Gdx.graphics.getDeltaTime();
 		if(arrow_cooldown<0){
 			arrow_cooldown = 0;
