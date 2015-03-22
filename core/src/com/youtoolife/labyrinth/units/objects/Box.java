@@ -18,7 +18,7 @@ public class Box extends Unit {
 		sprite = new AnimatedSprite(0, 0, 50, 50,
 				Assets.getTexture("objects/Box"), 0);
 		this.normal_map = Assets.getTexture("normal_map/box_map");
-		hp = Integer.MAX_VALUE;
+		hp = 2;
 		GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = this;
 		this.x = x;
 		this.y = y;
@@ -26,8 +26,8 @@ public class Box extends Unit {
 
 	@Override
 	public void draw(SpriteBatch batch, float x, float y) {
-		// normal_map.bind(1);
-		// this.sprite.getTexture().bind(0);
+		normal_map.bind(1);
+		this.sprite.getTexture().bind(0);
 		super.draw(batch, x, y);
 	}
 

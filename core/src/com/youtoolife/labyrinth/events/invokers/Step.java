@@ -20,7 +20,7 @@ public class Step extends InvokeEvent{
 		super(e);
 		x = Integer.valueOf(e.getAttribute("x"));
 		y = Integer.valueOf(e.getAttribute("y"));
-		COOLDOWN = Integer.valueOf(e.getAttribute("Cooldown"));
+		COOLDOWN = Float.valueOf(e.getAttribute("Cooldown"));
 	}
 
 	@Override
