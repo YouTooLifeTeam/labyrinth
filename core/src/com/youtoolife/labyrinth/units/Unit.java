@@ -108,11 +108,11 @@ public abstract class Unit {
 				} else {
 					chunk.map[Chunk.SIZE - 1 - y][x].here = null;
 					ChunkX += dirx;
-					x = dirx == 0 ? x : Chunk.SIZE - 1 - x;
-					xOffset += -dirx * 50;
+					x = (dirx == 0 ? x : Chunk.SIZE - 1 - x)+dirx;
+					xOffset += -dirx * 100;
 					ChunkY += diry;
-					y = diry == 0 ? y : Chunk.SIZE - 1 - y;
-					yOffset += -diry * 50;
+					y = (diry == 0 ? y : Chunk.SIZE - 1 - y)+diry;
+					yOffset += -diry * 100;
 					chunk.map[Chunk.SIZE - 1 - y][x].here = this;
 					GamePlayState.chunks[ChunkY][ChunkX].enter();
 				}

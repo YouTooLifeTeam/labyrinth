@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Lamp extends GameObject {
 
-	public Lamp(Texture texture) {
-		super(BlockType.Lamp, texture, 0);
+	public Lamp(Texture texture, int id) {
+		super(BlockType.Lamp, texture, id);
 	}
 
 	@Override
@@ -19,6 +19,6 @@ public class Lamp extends GameObject {
 
 	@Override
 	public GameObject copy() {
-		return new Lamp(this.main_texture);
+		return new Lamp(this.main_texture, this.getId());
 	}
 }

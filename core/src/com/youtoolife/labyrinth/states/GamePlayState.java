@@ -75,6 +75,7 @@ public class GamePlayState extends GameState {
 				xChunk = player1.ChunkX;
 				player2.ChunkX = player1.ChunkX;
 				player2.x = player1.x;
+				player2.xOffset = player1.xOffset;
 				player2.y = Chunk.SIZE - player1.y - 1;
 				chunks[player2.ChunkY][player2.ChunkX].map[Chunk.SIZE - 1
 						- player2.y][player2.x].here = player2;
@@ -88,6 +89,7 @@ public class GamePlayState extends GameState {
 				yChunk = player1.ChunkY;
 				player2.ChunkY = player1.ChunkY;
 				player2.y = player1.y;
+				player2.yOffset = player1.yOffset;
 				player2.x = Chunk.SIZE - player1.x - 1;
 				chunks[player2.ChunkY][player2.ChunkX].map[Chunk.SIZE - 1
 						- player2.y][player2.x].here = player2;
@@ -102,6 +104,7 @@ public class GamePlayState extends GameState {
 				xChunk = player2.ChunkX;
 				player1.ChunkX = player2.ChunkX;
 				player1.x = player2.x;
+				player1.xOffset = player2.xOffset;
 				player1.y = Chunk.SIZE - player2.y - 1;
 				chunks[player1.ChunkY][player1.ChunkX].map[Chunk.SIZE - 1
 						- player1.y][player1.x].here = player1;
@@ -115,6 +118,7 @@ public class GamePlayState extends GameState {
 				yChunk = player2.ChunkY;
 				player1.ChunkY = player2.ChunkY;
 				player1.y = player2.y;
+				player1.yOffset = player2.yOffset;
 				player1.x = Chunk.SIZE - player2.x - 1;
 				chunks[player1.ChunkY][player1.ChunkX].map[Chunk.SIZE - 1
 						- player1.y][player1.x].here = player1;

@@ -28,7 +28,8 @@ public abstract class GameObject {
 	Vector<Sprite> additions;
 
 	public BlockType type;
-
+	boolean isActive = true;
+	
 	public GameObject(BlockType type, Texture texture, int objectId) {
 		
 		this.objectId = objectId;
@@ -57,14 +58,17 @@ public abstract class GameObject {
 	public static GameObject getObject(Element block) {
 		BlockType type = BlockType.valueOf(block.getAttribute("type"));
 		Texture texture = Assets.getTexture(block.getAttribute("img"));
+		
+		int id = block.hasAttribute("id")?Integer.parseInt(block.getAttribute("id")):0;
+		
 		if(type==BlockType.Door)
-			return new Door(texture, Integer.parseInt(block.getAttribute("id")));
+			return new Door(texture, id);
 		if(type==BlockType.Floor)
-			return new Floor(texture);
+			return new Floor(texture,id);
 		if(type==BlockType.Wall)
-			return new Wall(texture);
+			return new Wall(texture,id);
 		if(type==BlockType.Lamp)
-			return new Lamp(texture);
+			return new Lamp(texture,id);
 		return null;
 	}
 
@@ -78,6 +82,14 @@ public abstract class GameObject {
 		additions.get(additions.size() - 1).setColor(1, 1, 1, 0.6f);
 	}
 
+	public void setActive(boolean isActive){
+		this.isActive = isActive;
+	}
+	
+	public boolean isActive(){
+		return isActive;
+	}
+	
 	public void addRandomGap() {
 
 		int num = MathUtils.random(9) + 1;

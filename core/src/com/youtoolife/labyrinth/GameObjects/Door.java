@@ -5,15 +5,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Door extends GameObject {
 
-	boolean isOpen = true;
-	
 	public Door(Texture texture, int id) {
 		super(BlockType.Door, texture,id);
 	}
 
 	@Override
 	public void draw(SpriteBatch batch, float x, float y) {
-		if(isOpen)
+		if(isActive)
 			batch.setColor(0.1f, 0.7f, 0.1f, 1f);
 		else
 			batch.setColor(0.7f, 0.1f, 0.1f, 1f);
@@ -23,7 +21,7 @@ public class Door extends GameObject {
 	
 	@Override
 	public boolean canStep(){
-		return isOpen&&here==null;
+		return isActive&&here==null;
 	}
 	
 	@Override
@@ -31,10 +29,6 @@ public class Door extends GameObject {
 		return new Door(this.main_texture,this.getId());
 	}
 
-	public void setOpen(boolean isOpen){
-		this.isOpen = isOpen;
-	}
-	
 	@Override
 	public void update() {
 	}

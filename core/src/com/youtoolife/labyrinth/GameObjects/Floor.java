@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Floor extends GameObject {
 
-	public Floor(Texture texture) {
-		super(BlockType.Floor, texture,0);
+	public Floor(Texture texture, int id) {
+		super(BlockType.Floor, texture, id);
 	}
 
 	@Override
@@ -20,7 +20,7 @@ public class Floor extends GameObject {
 	
 	@Override
 	public GameObject copy() {
-		return new Floor(this.main_texture);
+		return new Floor(this.main_texture, this.getId());
 	}
 
 	@Override

@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Wall extends GameObject {
 
-	public Wall(Texture texture) {
-		super(BlockType.Wall, texture, 0);
+	public Wall(Texture texture, int id) {
+		super(BlockType.Wall, texture, id);
 	}
 
 	@Override
@@ -19,7 +19,7 @@ public class Wall extends GameObject {
 
 	@Override
 	public GameObject copy() {
-		return new Wall(this.main_texture);
+		return new Wall(this.main_texture, this.getId());
 	}
 
 }

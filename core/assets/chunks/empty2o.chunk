@@ -3,10 +3,10 @@
 
 	<Eventlist>
 		<InvokeEvent type="Step" x="3" y="3" Cooldown="2">
-			<ActionEvent type="CloseDoor" id="1"></ActionEvent>
+			<ActionEvent type="DeactivateObject" id="1"></ActionEvent>
 		</InvokeEvent>
 		<InvokeEvent type="Step" x="8" y="8" Cooldown="2">
-			<ActionEvent type="OpenDoor" id="1"></ActionEvent>
+			<ActionEvent type="ActivateObject" id="1"></ActionEvent>
 		</InvokeEvent>
 	</Eventlist>
 
