@@ -22,7 +22,6 @@ public class Name1Player extends Player {
 		sprite.setPreferedDelta(50 / moveSpeed / 3);
 		sprite.setAnimStart(0);
 		sprite.setAnimStop(3);
-		hp = 3;
 		torch_color = new Color(0.8f, 0.7f, 0, 0.1f);
 		GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = this;
 	}

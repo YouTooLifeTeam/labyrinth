@@ -113,7 +113,7 @@ public abstract class Unit {
 					ChunkY += diry;
 					y = (diry == 0 ? y : Chunk.SIZE - 1 - y)+diry;
 					yOffset += -diry * 100;
-					chunk.map[Chunk.SIZE - 1 - y][x].here = this;
+					GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = this;
 					GamePlayState.chunks[ChunkY][ChunkX].enter();
 				}
 			} else {
