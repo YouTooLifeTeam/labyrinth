@@ -24,14 +24,14 @@ public abstract class GameObject {
 
 	public Texture main_texture;
 	Texture normal_map;
-	
+
 	Vector<Sprite> additions;
 
 	public BlockType type;
 	boolean isActive = true;
-	
+
 	public GameObject(BlockType type, Texture texture, int objectId) {
-		
+
 		this.objectId = objectId;
 		this.type = type;
 		this.main_texture = texture;
@@ -40,17 +40,19 @@ public abstract class GameObject {
 	}
 
 	public void draw(SpriteBatch batch, float x, float y) {
-		normal_map.bind(1);
-		main_texture.bind(0);
-		batch.draw(main_texture, x, y, 50, 50);
-		for (Sprite t : additions) {
-			t.setPosition(x - 50, y + 50);
-			t.draw(batch);
-		}
+		//if (this.here != null) {
+			normal_map.bind(1);
+			main_texture.bind(0);
+			batch.draw(main_texture, x, y, 50, 50);
+			for (Sprite t : additions) {
+				t.setPosition(x - 50, y + 50);
+				t.draw(batch);
+			}
+		//}
 	}
 
 	public abstract boolean canStep();
-	
+
 	public abstract void update();
 
 	public abstract GameObject copy();
@@ -58,17 +60,18 @@ public abstract class GameObject {
 	public static GameObject getObject(Element block) {
 		BlockType type = BlockType.valueOf(block.getAttribute("type"));
 		Texture texture = Assets.getTexture(block.getAttribute("img"));
-		
-		int id = block.hasAttribute("id")?Integer.parseInt(block.getAttribute("id")):0;
-		
-		if(type==BlockType.Door)
+
+		int id = block.hasAttribute("id") ? Integer.parseInt(block
+				.getAttribute("id")) : 0;
+
+		if (type == BlockType.Door)
 			return new Door(texture, id);
-		if(type==BlockType.Floor)
-			return new Floor(texture,id);
-		if(type==BlockType.Wall)
-			return new Wall(texture,id);
-		if(type==BlockType.Lamp)
-			return new Lamp(texture,id);
+		if (type == BlockType.Floor)
+			return new Floor(texture, id);
+		if (type == BlockType.Wall)
+			return new Wall(texture, id);
+		if (type == BlockType.Lamp)
+			return new Lamp(texture, id);
 		return null;
 	}
 
@@ -77,33 +80,32 @@ public abstract class GameObject {
 		int num = MathUtils.random(9) + 1;
 		additions.add(new Sprite(Assets.getTexture("blood/b-"
 				+ String.valueOf(num))));
-		additions.get(additions.size() - 1).setRotation(
-				MathUtils.random(360f));
+		additions.get(additions.size() - 1).setRotation(MathUtils.random(360f));
 		additions.get(additions.size() - 1).setColor(1, 1, 1, 0.6f);
 	}
 
-	public void setActive(boolean isActive){
+	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-	
-	public boolean isActive(){
+
+	public boolean isActive() {
 		return isActive;
 	}
-	
+
 	public void addRandomGap() {
 
 		int num = MathUtils.random(9) + 1;
 		additions.add(new Sprite(Assets.getTexture("gaps/g-"
 				+ String.valueOf(num))));
 	}
-	
-	public void stepOnit(Chunk chunk , Unit player, int dx, int dy){
-		if(here instanceof Box)
-			((Box)here).step(chunk , player, dx, dy);
+
+	public void stepOnit(Chunk chunk, Unit player, int dx, int dy) {
+		if (here instanceof Box)
+			((Box) here).step(chunk, player, dx, dy);
 	}
-	
-	public int getId(){
+
+	public int getId() {
 		return objectId;
 	}
-	
+
 }

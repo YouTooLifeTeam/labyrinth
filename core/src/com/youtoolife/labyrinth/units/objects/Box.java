@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.chunk.Chunk;
-import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.units.Unit;
 import com.youtoolife.labyrinth.utils.AnimatedSprite;
 import com.youtoolife.labyrinth.utils.Assets;
@@ -13,13 +12,13 @@ public class Box extends Unit {
 
 	Texture normal_map;
 
-	public Box(int ChunkX, int ChunkY, int x, int y) {
-		super(ChunkX, ChunkY, null);
+	public Box(Chunk chunk ,int x, int y) {
+		super(0,0, null);
 		sprite = new AnimatedSprite(0, 0, 50, 50,
 				Assets.getTexture("objects/Box"), 0);
 		this.normal_map = Assets.getTexture("normal_map/box_map");
 		hp = 2;
-		GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = this;
+		chunk.map[Chunk.SIZE - 1 - y][x].here = this;
 		this.x = x;
 		this.y = y;
 	}

@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.youtoolife.labyrinth.MainGame;
 import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.controller.Controller;
-import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.utils.AnimatedSprite;
 import com.youtoolife.labyrinth.utils.Assets;
 
@@ -13,8 +12,8 @@ public class SadMob extends Mob {
 
 	Texture dead;
 
-	public SadMob(int ChunkX, int ChunkY, Controller control, int x, int y) {
-		super(ChunkX, ChunkY, control, x, y);
+	public SadMob(Chunk chunk, Controller control, int x, int y) {
+		super(chunk, control, x, y);
 		sprite = new AnimatedSprite(0, 0, 50, 50, Assets.getTexture("mob/sad"),
 				0);
 		this.normal_map = Assets.getTexture("normal_map/sad_map");
@@ -24,7 +23,6 @@ public class SadMob extends Mob {
 		sprite.setAnimStop(3);
 		hp = 1;
 		dead = Assets.getTexture("mob/dead/sad");
-		GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = this;
 	}
 
 	@Override

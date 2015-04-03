@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.youtoolife.labyrinth.chunk.Chunk;
 import com.youtoolife.labyrinth.controller.Controller;
 import com.youtoolife.labyrinth.controller.Controller.Action;
-import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.units.Player;
 import com.youtoolife.labyrinth.utils.AnimatedSprite;
 import com.youtoolife.labyrinth.utils.Assets;
@@ -15,8 +14,8 @@ public class SpikeMob extends Mob {
 	final int damage = 2;
 	private float coolDown = 0;
 
-	public SpikeMob(int ChunkX, int ChunkY, Controller control, int x, int y) {
-		super(ChunkX, ChunkY, control, x, y);
+	public SpikeMob(Chunk chunk, Controller control, int x, int y) {
+		super(chunk, control, x, y);
 		sprite = new AnimatedSprite(0, 0, 50, 50,
 				Assets.getTexture("mob/spike"), 0);
 		this.normal_map = Assets.getTexture("normal_map/spike_map");
@@ -24,7 +23,6 @@ public class SpikeMob extends Mob {
 		sprite.setPreferedDelta(0.25f);
 		sprite.setAnimStart(0);
 		sprite.setAnimStop(3);
-		GamePlayState.chunks[ChunkY][ChunkX].map[Chunk.SIZE - 1 - y][x].here = this;
 		this.hp = Integer.MAX_VALUE;
 	}
 

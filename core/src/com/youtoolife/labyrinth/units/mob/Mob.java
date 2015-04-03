@@ -13,11 +13,12 @@ public abstract class Mob extends Unit{
 	
 	Texture normal_map;
 	
-	public Mob(int ChunkX, int ChunkY, Controller control, int x, int y) {
-		super(ChunkX, ChunkY, control);
+	public Mob(Chunk chunk, Controller control, int x, int y) {
+		super(0,0, control);
 		this.control = (IIController) control;
 		this.x = x;
 		this.y = y;
+		chunk.map[Chunk.SIZE - 1 - y][x].here = this;
 	}
 
 	@Override
