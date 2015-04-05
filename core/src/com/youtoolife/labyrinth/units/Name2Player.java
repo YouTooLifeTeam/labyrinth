@@ -10,7 +10,7 @@ import com.youtoolife.labyrinth.utils.Assets;
 
 public class Name2Player extends Player {
 
-	public final float COOLDOWN = 5;
+	public final static float COOLDOWN = 5;
 	public float arrow_cooldown = COOLDOWN;
 
 	public Name2Player(int ChunkX, int ChunkY, Controller control) {

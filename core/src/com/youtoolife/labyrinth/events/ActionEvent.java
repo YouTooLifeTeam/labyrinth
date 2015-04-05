@@ -7,7 +7,7 @@ import com.youtoolife.labyrinth.units.Unit;
 
 public abstract class ActionEvent {
 
-	Element base;
+	public Element base;
 	
 	public ActionEvent(Element e){
 		base = e;

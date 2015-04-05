@@ -10,8 +10,8 @@ import com.youtoolife.labyrinth.utils.Assets;
 
 public class SpikeMob extends Mob {
 
-	final float coolDownTime = 1;
-	final int damage = 2;
+	final static float coolDownTime = 1;
+	final static int damage = 2;
 	private float coolDown = 0;
 
 	public SpikeMob(Chunk chunk, Controller control, int x, int y) {

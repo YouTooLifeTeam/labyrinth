@@ -13,7 +13,7 @@ public class KeyBoardController extends Controller {
 
 	float dl = 0, dr = 0, du = 0, dd = 0, dsa = 0, dna = 0;
 
-	final float delta = 0.04f;
+	final static float delta = 0.04f;
 	
 	public KeyBoardController(int[] key_map){
 		this.key_map = key_map;	}

@@ -136,15 +136,15 @@ public class MazeGenerator {
 		return MazeGenerator.maze;
 	}
 
-	private class Maze {
+	private static class Maze {
 		static final int fullfill = 89;
 		static final int wallshort = 70;
 
 		int size;
 
 		Random rand = new Random();
-		char[][] m = new char[size + 1][size + 1];
-		int[][] r = new int[2][size / 2 * size / 2];
+		char[][] m;
+		int[][] r;
 		int h = 0;
 
 		int startx, starty;

@@ -35,13 +35,13 @@ public class Gui {
 			batch.draw(hearth, MainGame.w / 2 - 150 - i * 50 + MainGame.w/2, MainGame.h / 2
 					- gui.getHeight() + MainGame.h/2);
 
-			float scale = (player1.COOLDOWN-player1.mine_coolDown) / player1.COOLDOWN;
-			float coef = player1.mine_coolDown / player1.COOLDOWN;
+			float scale = (Name1Player.COOLDOWN-player1.mine_coolDown) / Name1Player.COOLDOWN;
+			float coef = player1.mine_coolDown / Name1Player.COOLDOWN;
 			batch.draw(mine, -100 + 25 * coef + MainGame.w/2, MainGame.h - gui.getHeight()
 					+ 25 * coef, 50 * scale, 50 * scale);
 
-			scale = (player2.COOLDOWN - player2.arrow_cooldown) / player2.COOLDOWN;
-			coef = player2.arrow_cooldown / player2.COOLDOWN;
+			scale = (Name2Player.COOLDOWN - player2.arrow_cooldown) / Name2Player.COOLDOWN;
+			coef = player2.arrow_cooldown / Name2Player.COOLDOWN;
 			batch.draw(arrow, 50 + 25 * coef + MainGame.w/2, MainGame.h - gui.getHeight()
 					+ 25 * coef, 50 * scale, 50 * scale);
 	}

@@ -65,7 +65,7 @@ public class ChunkGenerator {
 		for (int i = 0; i < blocks.getLength(); i++) {
 			Element block = (Element) blocks.item(i);
 			GameObject buf_block = GameObject.getObject(block);
-			map[Integer.valueOf(block.getAttribute("y"))][Integer.valueOf(block
+			map[Integer.parseInt(block.getAttribute("y"))][Integer.parseInt(block
 					.getAttribute("x"))] = buf_block;
 		}
 		

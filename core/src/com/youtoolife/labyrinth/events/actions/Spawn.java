@@ -14,8 +14,8 @@ public class Spawn extends ActionEvent {
 	
 	public Spawn(Element e) {
 		super(e);
-		x = Integer.valueOf(e.getAttribute("x"));
-		y = Integer.valueOf(e.getAttribute("y"));
+		x = Integer.parseInt(e.getAttribute("x"));
+		y = Integer.parseInt(e.getAttribute("y"));
 		mob = e.getAttribute("mob");
 	}
 

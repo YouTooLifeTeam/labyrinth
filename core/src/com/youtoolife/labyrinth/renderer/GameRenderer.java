@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
@@ -27,8 +26,6 @@ public class GameRenderer {
 	SpriteBatch batch;
 	OrthographicCamera cam;
 
-	BitmapFont font;
-
 	TextureRegion shadowMap1D; // 1 dimensional shadow map
 	TextureRegion occluders; // occluder map
 
@@ -41,13 +38,9 @@ public class GameRenderer {
 
 	ShaderProgram ShadowMap, ShadowRender, LightRender;
 
-	ShaderPreparer shaderPrep;
-
 	public GameRenderer() {
 
-		ShaderProgram.pedantic = false;
 		batch = MainGame.batch;
-		font = new BitmapFont();
 		cam = MainGame.camera;
 		cam.setToOrtho(false);
 

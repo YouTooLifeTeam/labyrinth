@@ -69,7 +69,6 @@ public class TestState extends GameState {
 		MainGame.camera.setToOrtho(false, 50, 50);
 		MainGame.camera.update();
 		tex = Assets.getTexture("floor");
-		ShaderProgram.pedantic = false;
 		normal = Assets.getTexture("floor_normal");
 		shader = new ShaderProgram(Shade.VERT, Shade.FRAG);
 		System.out.println(shader.getLog());

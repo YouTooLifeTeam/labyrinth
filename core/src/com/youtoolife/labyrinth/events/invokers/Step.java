@@ -18,9 +18,9 @@ public class Step extends InvokeEvent {
 
 	public Step(Element e) {
 		super(e);
-		x = Integer.valueOf(e.getAttribute("x"));
-		y = Integer.valueOf(e.getAttribute("y"));
-		COOLDOWN = Float.valueOf(e.getAttribute("Cooldown"));
+		x = Integer.parseInt(e.getAttribute("x"));
+		y = Integer.parseInt(e.getAttribute("y"));
+		COOLDOWN = Float.parseFloat(e.getAttribute("Cooldown"));
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.youtoolife.labyrinth.chunk.ChunkGenerator;
 import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.states.MainMenuState;
@@ -37,7 +38,7 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 		//camera.zoom = 4f;
 		//camera.update();
 		font = new BitmapFont();
-
+		ShaderProgram.pedantic = false;
 		this.addState(new MainMenuState(MAINMENUSTATE, this));
 		this.addState(new GamePlayState(GAMEPLAYSTATE, this));
 		//this.addState(new TestState(TESTSTATE, this));

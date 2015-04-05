@@ -10,7 +10,7 @@ public class GamePadController extends Controller {
 
 	float dl = 0, dr = 0, du = 0, dd = 0, dsa = 0, dna = 0;
 
-	final float delta = 0.04f;
+	final static float delta = 0.04f;
 	
 	@Override
 	public void update() {

@@ -16,7 +16,7 @@ public abstract class Player extends Unit {
 		torch.exclude = this;
 	}
 
-	final float moveSpeed = 200;
+	final static float moveSpeed = 200;
 
 	Color torch_color = new Color(1, 0.75f, 0, 0.1f);
 	Light torch;

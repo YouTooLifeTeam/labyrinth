@@ -19,7 +19,7 @@ public class Chunk {
 
 	public static final int SIZE = 12;
 
-	private final float CHANCE = 0.05f;
+	private final static float CHANCE = 0.05f;
 
 	public enum Exits {
 		SingleExit, DiNeighbour, DiOpposite, TriExit, QuadroExit, NoExit
