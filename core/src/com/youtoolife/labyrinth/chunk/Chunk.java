@@ -86,7 +86,7 @@ public class Chunk {
 					map[i][j].draw(batch, j * 50 + XOffset, (SIZE - 1 - i) * 50
 							+ YOffset);
 				}
-
+		batch.flush();
 		for (Unit m : mobs)
 			m.draw(batch, ChunkSubX * 50 * SIZE, ChunkSubY * 50 * SIZE);
 	}

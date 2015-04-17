@@ -34,7 +34,7 @@ public class GameRenderer {
 	boolean softShadows = true;
 
 	public static final Vector3 AMBIENT_COLOR = new Vector3(0.8f, 0.7f, 0);
-	public static final float AMBIENT_INTENSITY = 0.15f;
+	public static final float AMBIENT_INTENSITY = 0f;
 
 	ShaderProgram ShadowMap, ShadowRender, LightRender;
 

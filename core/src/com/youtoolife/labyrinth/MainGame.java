@@ -9,8 +9,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.youtoolife.labyrinth.chunk.ChunkGenerator;
-import com.youtoolife.labyrinth.states.GamePlayState;
-import com.youtoolife.labyrinth.states.MainMenuState;
+import com.youtoolife.labyrinth.test.TestState;
 import com.youtoolife.labyrinth.utils.Assets;
 import com.youtoolife.labyrinth.utils.StateBasedGame;
 
@@ -23,7 +22,7 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 	
 	public static final int GAMEPLAYSTATE = 1;
 	public static final int MAINMENUSTATE = 2;
-	//public static final int TESTSTATE = 3;
+	public static final int TESTSTATE = 3;
 	public static float w = 800;
 	public static float h = 600;
 
@@ -38,9 +37,11 @@ public class MainGame extends StateBasedGame implements ApplicationListener {
 		//camera.zoom = 4f;
 		//camera.update();
 		font = new BitmapFont();
+
 		ShaderProgram.pedantic = false;
 		this.addState(new MainMenuState(MAINMENUSTATE, this));
 		this.addState(new GamePlayState(GAMEPLAYSTATE, this));
+		this.addState(new TestState(TESTSTATE, this));
 		//this.addState(new TestState(TESTSTATE, this));
 		//this.enterState(TESTSTATE);
 		this.enterState(MAINMENUSTATE);
