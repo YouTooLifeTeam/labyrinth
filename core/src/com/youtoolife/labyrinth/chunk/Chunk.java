@@ -147,8 +147,8 @@ public class Chunk {
 		for (InvokeEvent e : events)
 			e.check(this);
 
-		for (Unit m : mobs)
-			m.update(this);
+		for (int i = 0; i<mobs.size();i++)
+			mobs.get(i).update(this);
 
 		for (Light l : lights)
 			l.update(GamePlayState.XOffset * 50 * Chunk.SIZE,

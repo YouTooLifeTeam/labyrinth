@@ -9,7 +9,7 @@ public class KeyBoardController extends Controller {
 	
 	int[] key_map = null;
 	public static final int[] ARROWS = { Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.V, Input.Keys.SHIFT_RIGHT};
-	public static final int[] WASD = { Input.Keys.A, Input.Keys.D, Input.Keys.W, Input.Keys.S, Input.Keys.ALT_LEFT, Input.Keys.SHIFT_LEFT};
+	public static final int[] WASD = { Input.Keys.A, Input.Keys.D, Input.Keys.W, Input.Keys.S, Input.Keys.F, Input.Keys.SHIFT_LEFT};
 
 	float dl = 0, dr = 0, du = 0, dd = 0, dsa = 0, dna = 0;
 

@@ -55,7 +55,7 @@ public class Box extends Unit {
 
 	public void step(Chunk chunk, Unit player, int dx, int dy) {
 		this.moveSpeed = player.moveSpeed;
-		if (x + dx >= 0 && x + dx <= Chunk.SIZE - 1 && y + dx >= 0
+		if (x + dx >= 0 && x + dx <= Chunk.SIZE - 1 && y + dy >= 0
 				&& y + dy <= Chunk.SIZE - 1) {
 			chunk.map[Chunk.SIZE - 1 - (y + dy)][x + dx].stepOnit(chunk, this,
 					dx, dy);
