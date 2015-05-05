@@ -1,0 +1,193 @@
+<Chunk name="empty3" type="TriExit">
+
+	<Eventlist>
+		<InvokeEvent type="EnterChunk">
+			<ActionEvent type="Spawn" x="5" y="5" mob="Box"></ActionEvent>
+			<ActionEvent type="Spawn" x="6" y="5" mob="Box"></ActionEvent>
+			<ActionEvent type="Spawn" x="7" y="5" mob="Box"></ActionEvent>
+			<ActionEvent type="DeactivateObject" id="1"></ActionEvent>
+			<ActionEvent type="DeactivateObject" id="2"></ActionEvent>
+			<ActionEvent type="DeactivateObject" id="3"></ActionEvent>
+		</InvokeEvent>
+		
+		<InvokeEvent type="Step" x="6" y="5" Cooldown="0.05">
+			<ActionEvent type="DeactivateObject" id="1"></ActionEvent>
+			<ActionEvent type="DeactivateObject" id="2"></ActionEvent>
+			<ActionEvent type="DeactivateObject" id="3"></ActionEvent>
+		</InvokeEvent>
+		
+		<InvokeEvent type="Step" x="6" y="9" Cooldown="0.05">
+			<ActionEvent type="ActivateObject" id="2"></ActionEvent>
+		</InvokeEvent>
+		<InvokeEvent type="Step" x="6" y="2" Cooldown="0.05">
+			<ActionEvent type="ActivateObject" id="3"></ActionEvent>
+		</InvokeEvent>
+		<InvokeEvent type="Step" x="6" y="7" Cooldown="0.05">
+			<ActionEvent type="ActivateObject" id="1"></ActionEvent>
+		</InvokeEvent>
+	</Eventlist>
+
+	<Lightlist>
+		<Light x="5" y="7" r="0.3" g="0.3" b="0.8" a="0.1"></Light>
+		<Light x="7" y="7" r="0.3" g="0.3" b="0.8" a="0.1"></Light>
+	</Lightlist>
+
+	<Block img="wall" type="Wall" x="0" y="0"></Block>
+	<Block img="wall" type="Wall" x="0" y="0"></Block>
+	<Block img="wall" type="Wall" x="0" y="1"></Block>
+	<Block img="wall" type="Wall" x="0" y="2"></Block>
+	<Block img="wall" type="Wall" x="0" y="3"></Block>
+	<Block img="wall" type="Wall" x="0" y="4"></Block>
+	<Block img="door" type="Door" id="1" x="0" y="5"></Block>
+	<Block img="door" type="Door" id="1" x="0" y="6"></Block>
+	<Block img="wall" type="Wall" x="0" y="7"></Block>
+	<Block img="wall" type="Wall" x="0" y="8"></Block>
+	<Block img="wall" type="Wall" x="0" y="9"></Block>
+	<Block img="wall" type="Wall" x="0" y="10"></Block>
+	<Block img="wall" type="Wall" x="0" y="11"></Block>
+	
+	
+	<Block img="wall" type="Wall" x="1" y="0"></Block>
+	<Block img="floor" type="Floor" x="1" y="1"></Block>
+	<Block img="floor" type="Floor" x="1" y="2"></Block>
+	<Block img="floor" type="Floor" x="1" y="3"></Block>
+	<Block img="floor" type="Floor" x="1" y="4"></Block>
+	<Block img="floor" type="Floor" x="1" y="5"></Block>
+	<Block img="floor" type="Floor" x="1" y="6"></Block>
+	<Block img="floor" type="Floor" x="1" y="7"></Block>
+	<Block img="floor" type="Floor" x="1" y="8"></Block>
+	<Block img="floor" type="Floor" x="1" y="9"></Block>
+	<Block img="floor" type="Floor" x="1" y="10"></Block>
+	<Block img="wall" type="Wall" x="1" y="11"></Block>
+	             
+	<Block img="wall" type="Wall" x="2" y="0"></Block>
+	<Block img="floor" type="Floor" x="2" y="1"></Block>
+	<Block img="floor" type="Floor" x="2" y="2"></Block>
+	<Block img="floor" type="Floor" x="2" y="3"></Block>
+	<Block img="floor" type="Floor" x="2" y="4"></Block>
+	<Block img="floor" type="Floor" x="2" y="5"></Block>
+	<Block img="floor" type="Floor" x="2" y="6"></Block>
+	<Block img="floor" type="Floor" x="2" y="7"></Block>
+	<Block img="floor" type="Floor" x="2" y="8"></Block>
+	<Block img="floor" type="Floor" x="2" y="9"></Block>
+	<Block img="floor" type="Floor" x="2" y="10"></Block>
+	<Block img="wall" type="Wall" x="2" y="11"></Block>
+	             
+	<Block img="wall" type="Wall" x="3" y="0"></Block>
+	<Block img="floor" type="Floor" x="3" y="1"></Block>
+	<Block img="floor" type="Floor" x="3" y="2"></Block>
+	<Block img="floor" type="Floor" x="3" y="3"></Block>
+	<Block img="floor" type="Floor" x="3" y="4"></Block>
+	<Block img="floor" type="Floor" x="3" y="5"></Block>
+	<Block img="floor" type="Floor" x="3" y="6"></Block>
+	<Block img="floor" type="Floor" x="3" y="7"></Block>
+	<Block img="floor" type="Floor" x="3" y="8"></Block>
+	<Block img="floor" type="Floor" x="3" y="9"></Block>
+	<Block img="floor" type="Floor" x="3" y="10"></Block>
+	<Block img="wall" type="Wall" x="3" y="11"></Block>
+	             
+	<Block img="wall" type="Wall" x="4" y="0"></Block>
+	<Block img="floor" type="Floor" x="4" y="1"></Block>
+	<Block img="floor" type="Floor" x="4" y="2"></Block>
+	<Block img="floor" type="Floor" x="4" y="3"></Block>
+	<Block img="wall" type="Wall" x="4" y="4"></Block>
+	<Block img="wall" type="Wall" x="4" y="5"></Block>
+	<Block img="wall" type="Wall" x="4" y="6"></Block>
+	<Block img="wall" type="Wall" x="4" y="7"></Block>
+	<Block img="wall" type="Wall" x="4" y="8"></Block>
+	<Block img="floor" type="Floor" x="4" y="9"></Block>
+	<Block img="floor" type="Floor" x="4" y="10"></Block>
+	<Block img="wall" type="Wall" x="4" y="11"></Block>
+	             
+	<Block img="wall" type="Wall" x="5" y="0"></Block>
+	<Block img="floor" type="Floor" x="5" y="1"></Block>
+	<Block img="floor" type="Floor" x="5" y="2"></Block>
+	<Block img="floor" type="Floor" x="5" y="3"></Block>
+	<Block img="door" type="Door" id="2" x="5" y="4"></Block>
+	<Block img="floor" type="Floor" x="5" y="5"></Block>
+	<Block img="door" type="Door" id="3" x="5" y="6"></Block>
+	<Block img="lamp" type="Floor" x="5" y="7"></Block>
+	<Block img="wall" type="Wall" x="5" y="8"></Block>
+	<Block img="floor" type="Floor" x="5" y="9"></Block>
+	<Block img="floor" type="Floor" x="5" y="10"></Block>
+	<Block img="door" type="Door" id="1" x="5" y="11"></Block>
+	             
+	<Block img="wall" type="Wall" x="6" y="0"></Block>
+	<Block img="floor" type="Floor" x="6" y="1"></Block>
+	<Block img="button" type="Floor" x="6" y="2"></Block>
+	<Block img="floor" type="Floor" x="6" y="3"></Block>
+	<Block img="door" type="Door" id="2" x="6" y="4"></Block>
+	<Block img="button" type="Floor" x="6" y="5"></Block>
+	<Block img="door" type="Door" id="3" x="6" y="6"></Block>
+	<Block img="button" type="Floor" x="6" y="7"></Block>
+	<Block img="wall" type="Wall" x="6" y="8"></Block>
+	<Block img="button" type="Floor" x="6" y="9"></Block>
+	<Block img="floor" type="Floor" x="6" y="10"></Block>
+	<Block img="door" type="Door" id="1" x="6" y="11"></Block>
+	             
+	<Block img="wall" type="Wall" x="7" y="0"></Block>
+	<Block img="floor" type="Floor" x="7" y="1"></Block>
+	<Block img="floor" type="Floor" x="7" y="2"></Block>
+	<Block img="floor" type="Floor" x="7" y="3"></Block>
+	<Block img="door" type="Door" id="2" x="7" y="4"></Block>
+	<Block img="floor" type="Floor" x="7" y="5"></Block>
+	<Block img="door" type="Door" id="3" x="7" y="6"></Block>
+	<Block img="lamp" type="Floor" x="7" y="7"></Block>
+	<Block img="wall" type="Wall" x="7" y="8"></Block>
+	<Block img="floor" type="Floor" x="7" y="9"></Block>
+	<Block img="floor" type="Floor" x="7" y="10"></Block>
+	<Block img="wall" type="Wall" x="7" y="11"></Block>
+	             
+	<Block img="wall" type="Wall" x="8" y="0"></Block>
+	<Block img="floor" type="Floor" x="8" y="1"></Block>
+	<Block img="floor" type="Floor" x="8" y="2"></Block>
+	<Block img="floor" type="Floor" x="8" y="3"></Block>
+	<Block img="wall" type="Wall" x="8" y="4"></Block>
+	<Block img="wall" type="Wall" x="8" y="5"></Block>
+	<Block img="wall" type="Wall" x="8" y="6"></Block>
+	<Block img="wall" type="Wall" x="8" y="7"></Block>
+	<Block img="wall" type="Wall" x="8" y="8"></Block>
+	<Block img="floor" type="Floor" x="8" y="9"></Block>
+	<Block img="floor" type="Floor" x="8" y="10"></Block>
+	<Block img="wall" type="Wall" x="8" y="11"></Block>
+	             
+	<Block img="wall" type="Wall" x="9" y="0"></Block>
+	<Block img="floor" type="Floor" x="9" y="1"></Block>
+	<Block img="floor" type="Floor" x="9" y="2"></Block>
+	<Block img="floor" type="Floor" x="9" y="3"></Block>
+	<Block img="floor" type="Floor" x="9" y="4"></Block>
+	<Block img="floor" type="Floor" x="9" y="5"></Block>
+	<Block img="floor" type="Floor" x="9" y="6"></Block>
+	<Block img="floor" type="Floor" x="9" y="7"></Block>
+	<Block img="floor" type="Floor" x="9" y="8"></Block>
+	<Block img="floor" type="Floor" x="9" y="9"></Block>
+	<Block img="floor" type="Floor" x="9" y="10"></Block>
+	<Block img="wall" type="Wall" x="9" y="11"></Block>
+	
+	<Block img="wall" type="Wall" x="10" y="0"></Block>
+	<Block img="floor" type="Floor" x="10" y="1"></Block>
+	<Block img="floor" type="Floor" x="10" y="2"></Block>
+	<Block img="floor" type="Floor" x="10" y="3"></Block>
+	<Block img="floor" type="Floor" x="10" y="4"></Block>
+	<Block img="floor" type="Floor" x="10" y="5"></Block>
+	<Block img="floor" type="Floor" x="10" y="6"></Block>
+	<Block img="floor" type="Floor" x="10" y="7"></Block>
+	<Block img="floor" type="Floor" x="10" y="8"></Block>
+	<Block img="floor" type="Floor" x="10" y="9"></Block>
+	<Block img="floor" type="Floor" x="10" y="10"></Block>
+	<Block img="wall" type="Wall" x="10" y="11"></Block>
+	
+	<Block img="wall" type="Wall" x="11" y="0"></Block>
+	<Block img="wall" type="Wall" x="11" y="1"></Block>
+	<Block img="wall" type="Wall" x="11" y="2"></Block>
+	<Block img="wall" type="Wall" x="11" y="3"></Block>
+	<Block img="wall" type="Wall" x="11" y="4"></Block>
+	<Block img="door" type="Door" id="1" x="11" y="5"></Block>
+	<Block img="door" type="Door" id="1" x="11" y="6"></Block>
+	<Block img="wall" type="Wall" x="11" y="7"></Block>
+	<Block img="wall" type="Wall" x="11" y="8"></Block>
+	<Block img="wall" type="Wall" x="11" y="9"></Block>
+	<Block img="wall" type="Wall" x="11" y="10"></Block>
+	<Block img="wall" type="Wall" x="11" y="11"></Block>
+	
+</Chunk>

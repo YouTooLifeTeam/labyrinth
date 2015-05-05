@@ -39,7 +39,7 @@ public class Arrow extends Unit {
 	public void draw(SpriteBatch batch, float x, float y) {
 		// normal_map.bind(1);
 		// this.sprite.getTexture().bind(0);
-		super.draw(batch, x, y);
+		super.draw(batch, x, y+25);
 	}
 
 	@Override
@@ -64,20 +64,23 @@ public class Arrow extends Unit {
 				&& y + direction[1] >= 0 && y + direction[1] <= Chunk.SIZE - 1) {
 			chunk.map[Chunk.SIZE - 1 - (y + direction[1])][x + direction[0]]
 					.stepOnit(chunk, this, direction[0], direction[1]);
-			;
+			
 			if (chunk.map[Chunk.SIZE - 1 - (y + direction[1])][x + direction[0]]
 					.canStep()) {
 				chunk.map[Chunk.SIZE - 1 - y][x].here = null;
 				x += direction[0];
-				xOffset += -direction[0] * 50;
+				xOffset -= direction[0] * 50;
 				y += direction[1];
-				yOffset += -direction[1] * 50;
+				yOffset -= direction[1] * 50;
 				chunk.map[Chunk.SIZE - 1 - y][x].here = this;
 			} else {
 				if (chunk.map[Chunk.SIZE - 1 - (y + direction[1])][x
-						+ direction[0]].here != null)
+						+ direction[0]].here != null) {
 					chunk.map[Chunk.SIZE - 1 - (y + direction[1])][x
 							+ direction[0]].here.hp -= damage;
+					chunk.map[Chunk.SIZE - 1 - (y + direction[1])][x
+							+ direction[0]].addRandomBlood();
+				}
 				for (int i = 0; i < chunk.mobs.size(); i++)
 					if (chunk.mobs.get(i) == this) {
 						chunk.map[Chunk.SIZE - 1 - y][x].here = null;
