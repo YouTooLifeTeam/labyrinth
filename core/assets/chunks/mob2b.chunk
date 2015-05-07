@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Chunk name="empty2b" type="DiNeighbour">
+<Chunk name="mob2b" type="DiNeighbour">
 
 	<Eventlist>
-		<InvokeEvent type="Step" x="5" y="5" Cooldown="5">
+		<InvokeEvent type="Step" x="5" y="5">
 			<ActionEvent type="Spawn" x="2" y="2" mob="Sad"></ActionEvent>
 		</InvokeEvent>
 	</Eventlist>

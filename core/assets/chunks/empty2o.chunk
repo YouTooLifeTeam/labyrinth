@@ -5,7 +5,7 @@
 		<InvokeEvent type="EnterChunk">
 			<ActionEvent type="DeactivateObject" id="1"></ActionEvent>
 		</InvokeEvent>
-		<InvokeEvent type="Step" x="8" y="8" Cooldown="2">
+		<InvokeEvent type="Step" x="8" y="8">
 			<ActionEvent type="ActivateObject" id="1"></ActionEvent>
 		</InvokeEvent>
 	</Eventlist>

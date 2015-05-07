@@ -41,6 +41,8 @@ public abstract class Player extends Unit {
 		position.z = 0;
 		torch.setColor(torch_color);
 		torch.setPosition(position);
+		
+		chunk.map[Chunk.SIZE - 1 - y][x].here = this;
 	}
 	
 }

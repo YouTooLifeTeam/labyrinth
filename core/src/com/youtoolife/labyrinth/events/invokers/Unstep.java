@@ -21,7 +21,7 @@ public class Unstep extends InvokeEvent {
 
 	@Override
 	public void check(Chunk chunk) {
-		GameObject tile = null;
+		GameObject tile = chunk.map[y][x];
 		if((tile.here==null)!=lastValue){
 			if(tile.here==null)
 				invoke(chunk, null);
@@ -38,8 +38,8 @@ public class Unstep extends InvokeEvent {
 
 	@Override
 	public void rotate() {
-		int by = Chunk.SIZE - 1 - x;
-		int bx = y;
+		int by = x;
+		int bx = Chunk.SIZE - 1 - y;
 		y = by;
 		x = bx;
 		for (ActionEvent e : events)

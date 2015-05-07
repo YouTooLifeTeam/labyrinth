@@ -11,6 +11,7 @@ import com.youtoolife.labyrinth.GameObjects.GameObject.BlockType;
 import com.youtoolife.labyrinth.events.InvokeEvent;
 import com.youtoolife.labyrinth.events.invokers.EnterChunk;
 import com.youtoolife.labyrinth.events.invokers.ExitChunk;
+import com.youtoolife.labyrinth.events.invokers.Step;
 import com.youtoolife.labyrinth.renderer.Light;
 import com.youtoolife.labyrinth.states.GamePlayState;
 import com.youtoolife.labyrinth.units.Unit;
